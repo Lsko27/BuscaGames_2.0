@@ -96,14 +96,21 @@ const AboutPage = () => {
       </div>
 
       {/* EQUIPE */}
-      <div>
-        <h3>Equipe do Projeto</h3>
-        <p>Quem somos</p>
+      <div className="bg-slate-950 py-12">
+        <h3 className="text-center text-white text-3xl font-bold my-2">
+          Equipe do Projeto
+        </h3>
+        <p className="text-center text-gray-300 text-lg mb-2">Quem somos</p>
         <div className="flex items-center justify-center gap-6 p-5">
           {teamMembers.map((member) => (
             <TeamCard key={member.rm} params={member} />
           ))}
         </div>
+      </div>
+
+      {/* FORMULÁRIO DE CONTATO */}
+      <div>
+        <h3>Fale Conosco</h3>
       </div>
     </>
   );
