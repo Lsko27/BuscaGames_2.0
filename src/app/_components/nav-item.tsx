@@ -13,7 +13,7 @@ const NavItem = ({ href, label, icon }: NavItemProps) => {
     <Button asChild variant="ghost">
       <Link href={href} className="flex items-center gap-2">
         {icon}
-        <span>{label}</span>
+        <span className="text-lg">{label}</span>
       </Link>
     </Button>
   );

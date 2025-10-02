@@ -17,7 +17,7 @@ import NavItem from "./nav-item";
 
 const Header = () => {
   return (
-    <div className="p-5 bg-gray-800 flex justify-between items-center">
+    <div className="py-5 px-8 bg-gray-900 flex justify-between items-center">
       {/* Logo */}
       <div>
         <Link href="/">
@@ -39,16 +39,16 @@ const Header = () => {
       </div>
 
       <div className="hidden md:flex gap-2 text-white">
-        <Button size="icon" variant="ghost">
+        <Button size="lg" variant="ghost">
           <MoonIcon />
         </Button>
-        <Button size="icon" variant="ghost">
+        <Button size="lg" variant="ghost">
           <ShoppingCart />
         </Button>
       </div>
 
       <div className="hidden md:block">
-        <Button size="icon" variant="ghost" className="text-white">
+        <Button size="lg" variant="ghost" className="text-white">
           <LogIn />
         </Button>
       </div>
