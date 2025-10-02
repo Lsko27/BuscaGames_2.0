@@ -1,5 +1,5 @@
 import Image from "next/image";
-import FooterSocialMediaLinks from "./footer-socialmedia-links";
+import FooterSocialMediaLinks from "./social-media-links";
 import {
   Facebook,
   GithubIcon,
