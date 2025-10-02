@@ -1,7 +1,9 @@
 import Image from "next/image";
 import AboutCard from "../_components/about-card";
 import TeamCard from "../_components/team-card";
-import { Github, Instagram, Linkedin } from "lucide-react";
+import { Github, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import ContactAboutForm from "../_components/contact-about-form";
+import FooterContact from "../_components/footer-contact";
 
 const AboutPage = () => {
   const teamMembers = [
@@ -68,6 +70,7 @@ const AboutPage = () => {
       ],
     },
   ];
+
   return (
     <>
       {/* IMAGEM */}
@@ -109,8 +112,41 @@ const AboutPage = () => {
       </div>
 
       {/* FORMULÁRIO DE CONTATO */}
-      <div>
-        <h3>Fale Conosco</h3>
+      <div className="p-10 bg-gray-900">
+        <h3 className="text-3xl font-bold mb-8 text-center text-white">
+          Fale Conosco
+        </h3>
+
+        <div className="p-7 bg-gray-800 w-full max-w-5xl rounded-lg mx-auto">
+          <div className="flex flex-col lg:flex-row gap-8 items-center justify-center">
+            {/* ESQUERDA */}
+            <div className="lg:w-1/2 flex flex-col justify-between h-full text-center lg:text-left">
+              <h4 className="text-indigo-300 font-semibold text-2xl mb-5">
+                Entre em contato
+              </h4>
+              <p className="text-gray-300 mb-3">
+                Tem alguma dúvida ou sugestão? Estamos aqui para ajudar!
+              </p>
+
+              <div className="flex flex-col gap-3 text-xl text-white">
+                <FooterContact
+                  icon={<Mail />}
+                  label="equipebuscagames@gmail.com"
+                />
+                <FooterContact icon={<Phone />} label="(11) 95125-4014" />
+                <FooterContact
+                  icon={<MapPin />}
+                  label="São Paulo, SP - Brasil"
+                />
+              </div>
+            </div>
+
+            {/* DIREITA */}
+            <div className="lg:w-1/2 p-8 bg-gray-900 rounded-lg">
+              <ContactAboutForm />
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

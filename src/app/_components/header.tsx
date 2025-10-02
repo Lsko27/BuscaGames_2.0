@@ -42,10 +42,10 @@ const Header = () => {
 
       {/* Botões (lua, carrinho, login) */}
       <div className="hidden md:flex flex-1 max-w-[200px] text-white justify-between">
-        <Button size="lg" variant="ghost">
+        <Button size="lg" variant="ghost" className="rounded-full">
           <MoonIcon />
         </Button>
-        <Button size="lg" variant="ghost">
+        <Button size="lg" variant="ghost" className="rounded-full">
           <ShoppingCart />
         </Button>
         <Button size="lg" variant="ghost" className="text-white">
