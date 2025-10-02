@@ -17,7 +17,7 @@ import NavItem from "./nav-item";
 
 const Header = () => {
   return (
-    <div className="py-5 px-8 bg-gray-900 flex justify-between items-center">
+    <div className="py-5 px-10 bg-gray-900 flex justify-between items-center">
       {/* Logo */}
       <div>
         <Link href="/">
