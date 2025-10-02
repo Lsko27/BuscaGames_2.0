@@ -9,7 +9,6 @@ const AboutPage = () => {
       imageUrl: "/profile1.png",
       name: "Caio Oliveira",
       role: "Desenvolvedor",
-      position: "Gerente de Projeto",
       rm: "RM 561294",
       socialLinks: [
         {
@@ -27,7 +26,6 @@ const AboutPage = () => {
       imageUrl: "/profile2.png",
       name: "Yuri Lesko",
       role: "Designer UI/UX",
-      position: "Responsável pelo Design",
       rm: "RM 564119",
       socialLinks: [
         {
@@ -36,6 +34,37 @@ const AboutPage = () => {
         },
         { icon: <Github />, url: "https://github.com/Lsko27" },
         { icon: <Instagram />, url: "https://www.instagram.com/les.ko_/" },
+      ],
+    },
+    {
+      imageUrl: "/profile5.png",
+      name: "Sérgio Cavalcante",
+      role: "Desenvolvedor",
+      rm: "RM 563208",
+      socialLinks: [
+        {
+          icon: <Linkedin />,
+          url: "https://www.linkedin.com/in/sergio-filipi-cavalcante-737053174/",
+        },
+        { icon: <Github />, url: "https://github.com/SergioJCavalcante" },
+        {
+          icon: <Instagram />,
+          url: "https://www.instagram.com/sergioo_cavalcante/",
+        },
+      ],
+    },
+    {
+      imageUrl: "/profile3.png",
+      name: "Rubens Escobar",
+      role: "Desenvolvedor",
+      rm: "RM 562164",
+      socialLinks: [
+        {
+          icon: <Linkedin />,
+          url: "https://www.linkedin.com/in/rubensescobar/",
+        },
+        { icon: <Github />, url: "https://github.com/rubensescobar" },
+        { icon: <Instagram />, url: "https://www.instagram.com/r.escobar_/" },
       ],
     },
   ];
