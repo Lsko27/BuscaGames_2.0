@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import NavItem from "./nav-item";
+import { Badge } from "./ui/badge";
 
 const Header = () => {
   return (
@@ -45,9 +46,18 @@ const Header = () => {
         <Button size="lg" variant="ghost" className="rounded-full">
           <MoonIcon />
         </Button>
-        <Button size="lg" variant="ghost" className="rounded-full">
-          <ShoppingCart />
-        </Button>
+        <div className="relative">
+          <Button size="lg" variant="ghost" className="rounded-full">
+            <ShoppingCart />
+          </Button>
+          {/* Badge ShadCN */}
+          <Badge
+            className="absolute -top-2 -right-2 rounded-full"
+            variant="destructive"
+          >
+            0
+          </Badge>
+        </div>
         <Button size="lg" variant="ghost" className="text-white">
           <LogIn />
           <span className="text-lg">Login</span>
