@@ -25,12 +25,14 @@ const Header = () => {
         </Link>
       </div>
 
+      {/* Menu hamburguer (mobile) */}
       <div className="block md:hidden">
         <Button size="icon" variant="ghost" className="text-white">
           <MenuIcon />
         </Button>
       </div>
 
+      {/* Links */}
       <div className="hidden md:flex gap-6 text-white">
         <NavItem href="/" icon={<HomeIcon />} label="Home" />
         <NavItem href="/games" icon={<Joystick />} label="Games" />
@@ -38,18 +40,17 @@ const Header = () => {
         <NavItem href="/about" icon={<InfoIcon />} label="Sobre Nós" />
       </div>
 
-      <div className="hidden md:flex gap-2 text-white">
+      {/* Botões (lua, carrinho, login) */}
+      <div className="hidden md:flex flex-1 max-w-[200px] text-white justify-between">
         <Button size="lg" variant="ghost">
           <MoonIcon />
         </Button>
         <Button size="lg" variant="ghost">
           <ShoppingCart />
         </Button>
-      </div>
-
-      <div className="hidden md:block">
         <Button size="lg" variant="ghost" className="text-white">
           <LogIn />
+          <span className="text-lg">Login</span>
         </Button>
       </div>
     </div>

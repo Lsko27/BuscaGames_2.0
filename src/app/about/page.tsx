@@ -8,7 +8,7 @@ const AboutPage = () => {
     {
       imageUrl: "/profile1.png",
       name: "Caio Oliveira",
-      role: "Desenvolvedor",
+      role: "Gerente do Projeto",
       rm: "RM 561294",
       socialLinks: [
         {
