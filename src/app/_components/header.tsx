@@ -52,7 +52,7 @@ const Header = () => {
           </Button>
           {/* Badge ShadCN */}
           <Badge
-            className="absolute -top-2 -right-2 rounded-full"
+            className="absolute -top-1 -right-1 rounded-full"
             variant="destructive"
           >
             0

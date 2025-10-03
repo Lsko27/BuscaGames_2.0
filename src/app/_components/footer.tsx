@@ -15,7 +15,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="mx-auto px-10 py-5 bg-gray-900 border-t-4 border-purple-600">
+    <div className="mx-auto p-12 bg-gray-900 border-t-4 border-purple-600">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Coluna 1: Logo + Parágrafo + Social */}
         <div className="flex flex-col items-start space-y-4">
@@ -93,7 +93,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className=" mt-6 py-6 border-t border-gray-300">
+      <div className="mt-8 pt-6 border-t border-gray-300">
         <div className="flex justify-between mt-2">
           <p className="text-gray-300">
             © 2025 BuscaGames. Todos os direitos reservados.
