@@ -15,7 +15,7 @@ import Link from "next/link"
 
 const SidebarButton = () => {
   return (
-    <SheetContent className="w-[40%] bg-gray-900 p-6">
+    <SheetContent className="w-[40%] bg-gray-900 p-6 text-white">
       <SheetHeader>
         <SheetTitle className="border-b border-gray-400 py-5 text-center text-xl text-white">
           Menu

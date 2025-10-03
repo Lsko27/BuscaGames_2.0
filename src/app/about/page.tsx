@@ -100,7 +100,7 @@ const AboutPage = () => {
 
       {/* EQUIPE */}
       <div className="bg-slate-950 py-12">
-        <h3 className="my-2 text-center text-3xl font-bold text-white">
+        <h3 className="my-2 text-center text-4xl font-bold text-white">
           Equipe do Projeto
         </h3>
         <p className="mb-2 text-center text-lg text-gray-300">Quem somos</p>
@@ -113,7 +113,7 @@ const AboutPage = () => {
 
       {/* FORMULÁRIO DE CONTATO */}
       <div className="bg-gray-900 p-10">
-        <h3 className="mb-8 text-center text-3xl font-bold text-white">
+        <h3 className="mb-8 text-center text-4xl font-bold text-white">
           Fale Conosco
         </h3>
 
@@ -121,7 +121,7 @@ const AboutPage = () => {
           <div className="flex flex-col items-center justify-center gap-8 lg:flex-row">
             {/* ESQUERDA */}
             <div className="flex h-full flex-col justify-between text-center lg:w-1/2 lg:text-left">
-              <h4 className="mb-5 text-2xl font-semibold text-indigo-300">
+              <h4 className="mb-5 text-3xl font-semibold text-indigo-300">
                 Entre em contato
               </h4>
               <p className="mb-3 text-gray-300">
