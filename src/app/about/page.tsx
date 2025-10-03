@@ -74,7 +74,7 @@ const AboutPage = () => {
   return (
     <>
       {/* IMAGEM */}
-      <div className="relative h-1/4 w-full">
+      <div className="relative h-[50vh] w-full">
         <Image
           alt="background image"
           src="/freepik__expand__92115.png"

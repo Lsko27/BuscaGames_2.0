@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image"
 import CountdownCards from "./countdown-cards"
 import { Button } from "./ui/button"
 import { useEffect, useMemo, useState } from "react"
