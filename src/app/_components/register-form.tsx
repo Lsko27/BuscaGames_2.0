@@ -163,7 +163,7 @@ const RegisterForm = () => {
               <FormControl>
                 <Input
                   type="password"
-                  placeholder="Digite novamente sua senha"
+                  placeholder="Confirme sua senha"
                   {...field}
                   className="border-purple-600 text-white"
                 />
@@ -179,8 +179,9 @@ const RegisterForm = () => {
               htmlFor="notifications"
               className="text-md leading-none text-gray-300 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
-              Aceito receber notificações via <strong>e-mail</strong> e{" "}
-              <strong>WhatsApp</strong>.
+              Aceito receber notificações via{" "}
+              <span className="font-semibold">e-mail</span> e{" "}
+              <span className="font-semibold">WhatsApp</span>.
             </label>
           </div>
 
@@ -204,7 +205,7 @@ const RegisterForm = () => {
         <div className="flex items-center justify-center">
           <Button
             type="submit"
-            className="w-full rounded-lg bg-purple-700 text-white"
+            className="w-full rounded-lg bg-purple-700 text-lg text-white"
           >
             Cadastrar
           </Button>
