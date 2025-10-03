@@ -65,9 +65,11 @@ const Header = () => {
             0
           </Badge>
         </div>
-        <Button size="lg" variant="ghost" className="text-white">
-          <LogIn />
-          <span className="text-lg">Login</span>
+        <Button size="lg" variant="ghost" className="text-white" asChild>
+          <Link href="/login">
+            <LogIn />
+            <span className="text-lg">Login</span>
+          </Link>
         </Button>
       </div>
     </div>
