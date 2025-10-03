@@ -1,0 +1,55 @@
+import {
+  HomeIcon,
+  InfoIcon,
+  Joystick,
+  ListTodo,
+  LogIn,
+  MoonIcon,
+  ShoppingCart,
+} from "lucide-react"
+import NavItem from "./nav-item"
+import { Button } from "./ui/button"
+import { Badge } from "./ui/badge"
+import { SheetContent, SheetHeader, SheetTitle } from "./ui/sheet"
+
+const SidebarButton = () => {
+  return (
+    <SheetContent className="w-[40%] bg-gray-900 p-6">
+      <SheetHeader>
+        <SheetTitle className="border-b border-gray-400 py-5 text-center text-xl text-white">
+          Menu
+        </SheetTitle>
+      </SheetHeader>
+      <div className="flex flex-col justify-center gap-3 border-b border-gray-400 pb-5 text-white">
+        <NavItem href="/" icon={<HomeIcon />} label="Home" />
+        <NavItem href="/games" icon={<Joystick />} label="Games" />
+        <NavItem href="/quests" icon={<ListTodo />} label="Quests" />
+        <NavItem href="/about" icon={<InfoIcon />} label="Sobre Nós" />
+      </div>
+
+      <div className="flex flex-col items-center justify-center gap-3">
+        <Button size="lg" variant="ghost" className="rounded-full text-white">
+          <MoonIcon />
+        </Button>
+        <div className="relative">
+          <Button size="lg" variant="ghost" className="rounded-full text-white">
+            <ShoppingCart />
+          </Button>
+          {/* Badge ShadCN */}
+          <Badge
+            className="absolute -top-1 -right-1 rounded-full"
+            variant="destructive"
+          >
+            0
+          </Badge>
+        </div>
+        <Button size="lg" variant="ghost" className="text-white">
+          <LogIn />
+          <span className="text-lg">Login</span>
+        </Button>
+      </div>
+    </SheetContent>
+  )
+}
+
+export default SidebarButton

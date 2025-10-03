@@ -15,6 +15,8 @@ import {
 import Link from "next/link"
 import NavItem from "./nav-item"
 import { Badge } from "./ui/badge"
+import { Sheet, SheetTrigger } from "./ui/sheet"
+import SidebarButton from "./sidebar-button"
 
 const Header = () => {
   return (
@@ -27,14 +29,19 @@ const Header = () => {
       </div>
 
       {/* Menu hamburguer (mobile) */}
-      <div className="block md:hidden">
-        <Button size="icon" variant="ghost" className="text-white">
-          <MenuIcon />
-        </Button>
+      <div className="ml-auto block md:hidden">
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button size="icon" variant="ghost" className="text-white">
+              <MenuIcon />
+            </Button>
+          </SheetTrigger>
+          <SidebarButton />
+        </Sheet>
       </div>
 
       {/* Links */}
-      <div className="hidden gap-6 text-white md:flex">
+      <div className="hidden space-y-3 text-white md:flex">
         <NavItem href="/" icon={<HomeIcon />} label="Home" />
         <NavItem href="/games" icon={<Joystick />} label="Games" />
         <NavItem href="/quests" icon={<ListTodo />} label="Quests" />
