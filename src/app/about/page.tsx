@@ -15,7 +15,7 @@ const AboutPage = () => {
       socialLinks: [
         {
           icon: <Linkedin />,
-          url: "https://linkedin.com/in/alicesilva",
+          url: "https://www.linkedin.com/in/caio-cesar-dev",
         },
         { icon: <Github />, url: "https://github.com/CaioCesarOliver" },
         {
