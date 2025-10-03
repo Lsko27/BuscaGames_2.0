@@ -1,5 +1,5 @@
 import Image from "next/image"
-import LoginForm from "../_components/login-form"
+import RegisterForm from "../_components/register-form"
 
 const LoginPage = () => {
   return (
@@ -32,8 +32,8 @@ const LoginPage = () => {
 
           {/* DIREITA */}
           <div className="flex w-1/2 items-center justify-center">
-            <div className="bg-black p-8">
-              <LoginForm />
+            <div className="rounded-xl border-1 border-purple-600 bg-black p-8">
+              <RegisterForm />
             </div>
           </div>
         </div>
