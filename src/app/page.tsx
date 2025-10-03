@@ -1,8 +1,10 @@
+import LaunchCountdown from "./_components/launch-countdown";
+
 const HomePage = () => {
   return (
-    <h1>
-      Home Page
-    </h1>
+    <>
+      <LaunchCountdown />
+    </>
   );
 };
 
