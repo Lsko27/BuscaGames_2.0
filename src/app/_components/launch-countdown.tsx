@@ -50,16 +50,8 @@ const LaunchCountdown = () => {
   }, [launchDate])
 
   return (
-    <div className="relative flex h-[65%] w-full flex-col items-center justify-center">
-      <Image
-        alt="GTA VI Banner"
-        src="/gta6-banner.png"
-        fill
-        className="object-cover"
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0.7)] to-[rgba(0,0,0,0.6)]" />
-
-      <div className="absolute top-1/3 flex flex-col items-center text-white">
+    <div className="flex flex-col items-center justify-center">
+      <div className="top-1/3 flex flex-col items-center text-white">
         <h3 className="text-5xl font-bold">GTA VI está chegando!</h3>
         <p className="text-lg">
           Prepare-se para o lançamento mais aguardado dos games
