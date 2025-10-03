@@ -42,7 +42,7 @@ const TeamCard = ({ params }: TeamCardProps) => {
         </div>
 
         {/* Links sociais */}
-        <div className="mt-auto flex justify-center space-x-4 pb-4 text-2xl text-white">
+        <div className="mt-auto flex justify-center space-x-4 pb-4 text-white">
           {params.socialLinks.map(({ icon, url }, i) => (
             <SocialMediaLinks key={i} href={url} icon={icon} />
           ))}

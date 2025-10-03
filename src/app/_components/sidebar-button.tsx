@@ -11,6 +11,7 @@ import NavItem from "./nav-item"
 import { Button } from "./ui/button"
 import { Badge } from "./ui/badge"
 import { SheetContent, SheetHeader, SheetTitle } from "./ui/sheet"
+import Link from "next/link"
 
 const SidebarButton = () => {
   return (
@@ -43,9 +44,11 @@ const SidebarButton = () => {
             0
           </Badge>
         </div>
-        <Button size="lg" variant="ghost" className="text-white">
-          <LogIn />
-          <span className="text-lg">Login</span>
+        <Button size="lg" variant="ghost" className="text-white" asChild>
+          <Link href="/login">
+            <LogIn />
+            <span className="text-lg">Login</span>
+          </Link>
         </Button>
       </div>
     </SheetContent>

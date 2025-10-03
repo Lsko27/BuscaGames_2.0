@@ -14,6 +14,7 @@ import {
 } from "./ui/form"
 import { Input } from "./ui/input"
 import { Send } from "lucide-react"
+import { toast } from "sonner"
 
 const formSchema = z.object({
   name: z.string().trim().min(1, { message: "Nome é obrigatório" }),
@@ -40,7 +41,13 @@ const ContactAboutForm = () => {
   })
 
   const onSubmit = (data: FormData) => {
-    console.log("Form submitted:", data)
+    try {
+      toast.success("Mensagem enviada com sucesso!")
+      console.log("Form submitted:", data)
+    } catch (error) {
+      toast.error("Erro ao enviar mensagem!")
+      console.error(error)
+    }
   }
 
   return (

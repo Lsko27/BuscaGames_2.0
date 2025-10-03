@@ -8,6 +8,7 @@ import z from "zod"
 import { Button } from "./ui/button"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
+import { toast } from "sonner"
 
 const forgotPasswordSchema = z.object({
   email: z
@@ -26,8 +27,14 @@ const ForgotPasswordForm = () => {
   })
 
   const onSubmit = (data: FormData) => {
-    console.log("Enviar link de recuperação para:", data.email)
-    // Aqui você chamaria sua API para enviar o email de recuperação
+    try {
+      toast.success("Link enviado com sucesso")
+      console.log("Enviar link de recuperação para:", data.email)
+      // Aqui você chamaria sua API para enviar o email de recuperação
+    } catch (error) {
+      toast.error("Erro ao enviar link!")
+      console.error(error)
+    }
   }
 
   return (
