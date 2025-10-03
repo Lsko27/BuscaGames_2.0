@@ -9,6 +9,8 @@ import { Button } from "./ui/button"
 import Link from "next/link"
 import { Checkbox } from "./ui/checkbox"
 import { PasswordRequirements } from "./password-requirements"
+import { useState } from "react"
+import { Eye, EyeOff } from "lucide-react"
 
 const formSchema = z
   .object({
@@ -57,6 +59,9 @@ const RegisterForm = () => {
   }
 
   const passwordValue = form.watch("password")
+
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   return (
     <Form {...form}>
@@ -140,12 +145,21 @@ const RegisterForm = () => {
             <FormItem>
               <FormLabel className="text-lg text-white">Senha</FormLabel>
               <FormControl>
-                <Input
-                  type="password"
-                  placeholder="Digite sua senha"
-                  {...field}
-                  className="border-purple-600 text-white"
-                />
+                <div className="relative">
+                  <Input
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Digite sua senha"
+                    {...field}
+                    className="border-purple-600 pr-10 text-white"
+                  />
+                  <button
+                    type="button"
+                    className="absolute top-1/2 right-2 -translate-y-1/2 text-gray-400"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                  </button>
+                </div>
               </FormControl>
               <PasswordRequirements password={passwordValue} />
             </FormItem>
@@ -161,12 +175,25 @@ const RegisterForm = () => {
                 Confirmar Senha
               </FormLabel>
               <FormControl>
-                <Input
-                  type="password"
-                  placeholder="Confirme sua senha"
-                  {...field}
-                  className="border-purple-600 text-white"
-                />
+                <div className="relative">
+                  <Input
+                    type={showConfirmPassword ? "text" : "password"}
+                    placeholder="Confirme sua senha"
+                    {...field}
+                    className="border-purple-600 pr-10 text-white"
+                  />
+                  <button
+                    type="button"
+                    className="absolute top-1/2 right-2 -translate-y-1/2 text-gray-400"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  >
+                    {showConfirmPassword ? (
+                      <EyeOff size={20} />
+                    ) : (
+                      <Eye size={20} />
+                    )}
+                  </button>
+                </div>
               </FormControl>
             </FormItem>
           )}

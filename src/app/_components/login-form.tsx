@@ -16,7 +16,8 @@ import { useForm } from "react-hook-form"
 import Link from "next/link"
 import { Checkbox } from "./ui/checkbox"
 import { Card, CardContent } from "./ui/card"
-import { InfoIcon } from "lucide-react"
+import { Eye, EyeOff, InfoIcon } from "lucide-react"
+import { useState } from "react"
 
 // Schema Zod
 const formSchema = z.object({
@@ -37,6 +38,8 @@ const LoginForm = () => {
   const onSubmit = (data: FormData) => {
     console.log("Login data:", data)
   }
+
+  const [showPassword, setShowPassword] = useState(false)
 
   return (
     <>
@@ -63,7 +66,7 @@ const LoginForm = () => {
                   <Input
                     placeholder="Digite seu email"
                     {...field}
-                    className="border-purple-600"
+                    className="border-purple-600 text-white"
                   />
                 </FormControl>
                 <FormMessage />
@@ -78,12 +81,21 @@ const LoginForm = () => {
               <FormItem>
                 <FormLabel className="text-lg text-white">Senha</FormLabel>
                 <FormControl>
-                  <Input
-                    type="password"
-                    placeholder="Digite sua senha"
-                    {...field}
-                    className="border-purple-600 text-white"
-                  />
+                  <div className="relative">
+                    <Input
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Digite sua senha"
+                      {...field}
+                      className="border-purple-600 pr-10 text-white"
+                    />
+                    <button
+                      type="button"
+                      className="absolute top-1/2 right-2 -translate-y-1/2 text-gray-400"
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                    </button>
+                  </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>
