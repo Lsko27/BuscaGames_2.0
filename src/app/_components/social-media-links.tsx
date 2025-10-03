@@ -1,10 +1,10 @@
-import Link from "next/link";
-import { Button } from "./ui/button";
-import { ReactNode } from "react";
+import Link from "next/link"
+import { Button } from "./ui/button"
+import { ReactNode } from "react"
 
 interface SocialMediaLinksProps {
-  href: string;
-  icon: ReactNode;
+  href: string
+  icon: ReactNode
 }
 
 const SocialMediaLinks = ({ href, icon }: SocialMediaLinksProps) => {
@@ -14,7 +14,7 @@ const SocialMediaLinks = ({ href, icon }: SocialMediaLinksProps) => {
         {icon}
       </Link>
     </Button>
-  );
-};
+  )
+}
 
-export default SocialMediaLinks;
+export default SocialMediaLinks

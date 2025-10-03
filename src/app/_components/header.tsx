@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import Image from "next/image";
-import { Button } from "./ui/button";
+import Image from "next/image"
+import { Button } from "./ui/button"
 import {
   HomeIcon,
   InfoIcon,
@@ -11,14 +11,14 @@ import {
   MenuIcon,
   MoonIcon,
   ShoppingCart,
-} from "lucide-react";
-import Link from "next/link";
-import NavItem from "./nav-item";
-import { Badge } from "./ui/badge";
+} from "lucide-react"
+import Link from "next/link"
+import NavItem from "./nav-item"
+import { Badge } from "./ui/badge"
 
 const Header = () => {
   return (
-    <div className="py-5 px-10 bg-gray-900 flex justify-between items-center">
+    <div className="flex items-center justify-between bg-gray-900 px-10 py-5">
       {/* Logo */}
       <div>
         <Link href="/">
@@ -34,7 +34,7 @@ const Header = () => {
       </div>
 
       {/* Links */}
-      <div className="hidden md:flex gap-6 text-white">
+      <div className="hidden gap-6 text-white md:flex">
         <NavItem href="/" icon={<HomeIcon />} label="Home" />
         <NavItem href="/games" icon={<Joystick />} label="Games" />
         <NavItem href="/quests" icon={<ListTodo />} label="Quests" />
@@ -42,7 +42,7 @@ const Header = () => {
       </div>
 
       {/* Botões (lua, carrinho, login) */}
-      <div className="hidden md:flex flex-1 max-w-[200px] text-white justify-between">
+      <div className="hidden max-w-[200px] flex-1 justify-between text-white md:flex">
         <Button size="lg" variant="ghost" className="rounded-full">
           <MoonIcon />
         </Button>
@@ -64,7 +64,7 @@ const Header = () => {
         </Button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

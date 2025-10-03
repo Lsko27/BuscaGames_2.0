@@ -1,9 +1,9 @@
-import Image from "next/image";
-import AboutCard from "../_components/about-card";
-import TeamCard from "../_components/team-card";
-import { Github, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react";
-import ContactAboutForm from "../_components/contact-about-form";
-import FooterContact from "../_components/footer-contact";
+import Image from "next/image"
+import AboutCard from "../_components/about-card"
+import TeamCard from "../_components/team-card"
+import { Github, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react"
+import ContactAboutForm from "../_components/contact-about-form"
+import FooterContact from "../_components/footer-contact"
 
 const AboutPage = () => {
   const teamMembers = [
@@ -69,7 +69,7 @@ const AboutPage = () => {
         { icon: <Instagram />, url: "https://www.instagram.com/r.escobar_/" },
       ],
     },
-  ];
+  ]
 
   return (
     <>
@@ -83,27 +83,27 @@ const AboutPage = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0.7)] to-[rgba(0,0,0,0.6)]" />
 
-        <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-2">
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
+          <h2 className="mb-2 text-3xl font-bold text-white md:text-5xl">
             Sobre a BuscaGames
           </h2>
-          <p className="text-lg md:text-2xl text-blue-300">
+          <p className="text-lg text-blue-300 md:text-2xl">
             Conheça nossa equipe e missão de levar tecnologia de ponta a você.
           </p>
         </div>
       </div>
 
       {/* CARD SOBRE NÓS */}
-      <div className="bg-gray-900 w-full py-14 flex items-center justify-center">
+      <div className="flex w-full items-center justify-center bg-gray-900 py-14">
         <AboutCard />
       </div>
 
       {/* EQUIPE */}
       <div className="bg-slate-950 py-12">
-        <h3 className="text-center text-white text-3xl font-bold my-2">
+        <h3 className="my-2 text-center text-3xl font-bold text-white">
           Equipe do Projeto
         </h3>
-        <p className="text-center text-gray-300 text-lg mb-2">Quem somos</p>
+        <p className="mb-2 text-center text-lg text-gray-300">Quem somos</p>
         <div className="flex items-center justify-center gap-6 p-5">
           {teamMembers.map((member) => (
             <TeamCard key={member.rm} params={member} />
@@ -112,19 +112,19 @@ const AboutPage = () => {
       </div>
 
       {/* FORMULÁRIO DE CONTATO */}
-      <div className="p-10 bg-gray-900">
-        <h3 className="text-3xl font-bold mb-8 text-center text-white">
+      <div className="bg-gray-900 p-10">
+        <h3 className="mb-8 text-center text-3xl font-bold text-white">
           Fale Conosco
         </h3>
 
-        <div className="p-7 bg-gray-800 w-full max-w-5xl rounded-lg mx-auto">
-          <div className="flex flex-col lg:flex-row gap-8 items-center justify-center">
+        <div className="mx-auto w-full max-w-5xl rounded-lg bg-gray-800 p-7">
+          <div className="flex flex-col items-center justify-center gap-8 lg:flex-row">
             {/* ESQUERDA */}
-            <div className="lg:w-1/2 flex flex-col justify-between h-full text-center lg:text-left">
-              <h4 className="text-indigo-300 font-semibold text-2xl mb-5">
+            <div className="flex h-full flex-col justify-between text-center lg:w-1/2 lg:text-left">
+              <h4 className="mb-5 text-2xl font-semibold text-indigo-300">
                 Entre em contato
               </h4>
-              <p className="text-gray-300 mb-3">
+              <p className="mb-3 text-gray-300">
                 Tem alguma dúvida ou sugestão? Estamos aqui para ajudar!
               </p>
 
@@ -142,14 +142,14 @@ const AboutPage = () => {
             </div>
 
             {/* DIREITA */}
-            <div className="lg:w-1/2 p-8 bg-gray-900 rounded-lg">
+            <div className="rounded-lg bg-gray-900 p-8 lg:w-1/2">
               <ContactAboutForm />
             </div>
           </div>
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default AboutPage;
+export default AboutPage

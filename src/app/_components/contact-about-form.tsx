@@ -1,9 +1,9 @@
-"use client";
+"use client"
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { Button } from "./ui/button";
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import * as z from "zod"
+import { Button } from "./ui/button"
 import {
   Form,
   FormField,
@@ -11,9 +11,9 @@ import {
   FormLabel,
   FormControl,
   FormMessage,
-} from "./ui/form";
-import { Input } from "./ui/input";
-import { Send } from "lucide-react";
+} from "./ui/form"
+import { Input } from "./ui/input"
+import { Send } from "lucide-react"
 
 const formSchema = z.object({
   name: z.string().trim().min(1, { message: "Nome é obrigatório" }),
@@ -24,9 +24,9 @@ const formSchema = z.object({
     .email("Email inválido"),
   subject: z.string().trim().min(1, { message: "Assunto é obrigatório" }),
   message: z.string().trim().min(1, { message: "Mensagem é obrigatória" }),
-});
+})
 
-type FormData = z.infer<typeof formSchema>;
+type FormData = z.infer<typeof formSchema>
 
 const ContactAboutForm = () => {
   const form = useForm<FormData>({
@@ -37,11 +37,11 @@ const ContactAboutForm = () => {
       subject: "",
       message: "",
     },
-  });
+  })
 
   const onSubmit = (data: FormData) => {
-    console.log("Form submitted:", data);
-  };
+    console.log("Form submitted:", data)
+  }
 
   return (
     <div>
@@ -116,7 +116,7 @@ const ContactAboutForm = () => {
                   <textarea
                     placeholder="Escreva sua mensagem aqui"
                     rows={5}
-                    className="w-full px-3 py-2 rounded-md bg-gray-800 text-white border border-gray-600 focus:border-indigo-500 focus:outline-none resize-none"
+                    className="w-full resize-none rounded-md border border-gray-600 bg-gray-800 px-3 py-2 text-white focus:border-indigo-500 focus:outline-none"
                     {...field}
                   />
                 </FormControl>
@@ -125,7 +125,7 @@ const ContactAboutForm = () => {
             )}
           />
 
-          <div className="bg-indigo-500 text-white text-lg rounded-lg">
+          <div className="rounded-lg bg-indigo-500 text-lg text-white">
             <Button
               type="submit"
               variant="ghost"
@@ -138,7 +138,7 @@ const ContactAboutForm = () => {
         </form>
       </Form>
     </div>
-  );
-};
+  )
+}
 
-export default ContactAboutForm;
+export default ContactAboutForm

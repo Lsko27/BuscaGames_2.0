@@ -1,11 +1,11 @@
-import { ReactNode } from "react";
-import { Button } from "./ui/button";
-import Link from "next/link";
+import { ReactNode } from "react"
+import { Button } from "./ui/button"
+import Link from "next/link"
 
 interface NavItemProps {
-  href: string;
-  icon: ReactNode;
-  label: string;
+  href: string
+  icon: ReactNode
+  label: string
 }
 
 const NavItem = ({ href, label, icon }: NavItemProps) => {
@@ -16,7 +16,7 @@ const NavItem = ({ href, label, icon }: NavItemProps) => {
         <span className="text-lg">{label}</span>
       </Link>
     </Button>
-  );
-};
+  )
+}
 
-export default NavItem;
+export default NavItem

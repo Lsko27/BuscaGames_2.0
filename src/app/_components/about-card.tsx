@@ -1,15 +1,15 @@
-import Image from "next/image";
+import Image from "next/image"
 
 const AboutCard = () => {
   return (
-    <div className="bg-purple-800 rounded-lg shadow-lg p-6 w-[55%]">
-      <div className="flex flex-col md:flex-row gap-8 h-full">
+    <div className="w-[55%] rounded-lg bg-purple-800 p-6 shadow-lg">
+      <div className="flex h-full flex-col gap-8 md:flex-row">
         {/* ESQUERDA: Texto */}
-        <div className="flex flex-col w-full md:w-1/2 space-y-4">
-          <h4 className="text-2xl font-extrabold text-white p-3">
+        <div className="flex w-full flex-col space-y-4 md:w-1/2">
+          <h4 className="p-3 text-2xl font-extrabold text-white">
             Nossa História
           </h4>
-          <p className="text-gray-300 text-lg font-semibold text-justify">
+          <p className="text-justify text-lg font-semibold text-gray-300">
             A equipe BuscaGames foi criada em fevereiro de 2025 com base nos
             projetos mensais propostos pela FIAP para desenvolvermos nossos
             conhecimentos. Somos uma equipe de estudantes do curso de Sistema de
@@ -23,18 +23,18 @@ const AboutCard = () => {
         </div>
 
         {/* DIREITA: Imagem */}
-        <div className="flex w-full md:w-1/2 justify-center items-start">
+        <div className="flex w-full items-start justify-center md:w-1/2">
           <Image
             alt="team"
             src="/team.png"
             width={300}
             height={300}
-            className="w-full max-w-[300px] md:max-w-[500px] h-auto"
+            className="h-auto w-full max-w-[300px] md:max-w-[500px]"
           />
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AboutCard;
+export default AboutCard
