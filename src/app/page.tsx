@@ -29,10 +29,7 @@ const HomePage = () => {
           Jogos Em destaque
         </h3>
         <div className="flex flex-wrap justify-center gap-3">
-          <GameCard />
-          <GameCard />
-          <GameCard />
-          <GameCard />
+          
         </div>
         <div className="flex items-center justify-center gap-2 py-8">
           <Button
@@ -49,7 +46,7 @@ const HomePage = () => {
         </div>
       </div>
 
-      <div className="bg-gray-800 px-32 py-20">
+      <div className="bg-gray-800 py-20 px-">
         <div className="flex justify-between gap-8">
           {/* ESQUERDA */}
           <div className="flex w-1/2 flex-col gap-4">
