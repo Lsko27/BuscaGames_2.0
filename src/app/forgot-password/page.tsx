@@ -5,7 +5,7 @@ import Image from "next/image"
 
 const ForgotPasswordPage = () => {
   return (
-    <div className="relative flex min-h-[60%] items-center justify-center">
+    <div className="relative flex min-h-[60vh] items-center justify-center">
       {/* Background */}
       <div className="absolute inset-0">
         <Image

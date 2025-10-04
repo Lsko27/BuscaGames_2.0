@@ -41,11 +41,27 @@ const Header = () => {
       </div>
 
       {/* Links */}
-      <div className="hidden space-y-3 text-white md:flex">
-        <NavItem href="/" icon={<HomeIcon />} label="Home" />
-        <NavItem href="/games" icon={<Joystick />} label="Games" />
-        <NavItem href="/quests" icon={<ListTodo />} label="Quests" />
-        <NavItem href="/about" icon={<InfoIcon />} label="Sobre Nós" />
+      <div className="hidden justify-center space-x-6 text-white md:flex">
+        <NavItem
+          href="/"
+          icon={<HomeIcon className="mr-2 h-6 w-6" />}
+          label="Home"
+        />
+        <NavItem
+          href="/games"
+          icon={<Joystick className="mr-2 h-6 w-6" />}
+          label="Games"
+        />
+        <NavItem
+          href="/quests"
+          icon={<ListTodo className="mr-2 h-6 w-6" />}
+          label="Quests"
+        />
+        <NavItem
+          href="/about"
+          icon={<InfoIcon className="mr-2 h-6 w-6" />}
+          label="Sobre Nós"
+        />
       </div>
 
       {/* Botões (lua, carrinho, login) */}
