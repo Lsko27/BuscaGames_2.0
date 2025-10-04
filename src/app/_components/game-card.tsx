@@ -53,10 +53,12 @@ const GameCard = ({ params }: GameCardProps) => {
                   )}
 
                   <p className="text-xl font-semibold text-green-400">
-                    {Intl.NumberFormat("pt-BR", {
-                      style: "currency",
-                      currency: "BRL",
-                    }).format(Number(params.price))}
+                    {Number(params.price) === 0
+                      ? "Gratuito"
+                      : Intl.NumberFormat("pt-BR", {
+                          style: "currency",
+                          currency: "BRL",
+                        }).format(Number(params.price))}
                   </p>
                 </div>
               </div>
