@@ -1,6 +1,5 @@
 import Image from "next/image"
 import LaunchCountdown from "./_components/launch-countdown"
-import GameCard from "./_components/game-card"
 import { Button } from "./_components/ui/button"
 import Link from "next/link"
 import { CheckCircle, Joystick } from "lucide-react"
@@ -28,9 +27,7 @@ const HomePage = () => {
         <h3 className="mb-6 text-3xl font-bold text-white">
           Jogos Em destaque
         </h3>
-        <div className="flex flex-wrap justify-center gap-3">
-          
-        </div>
+        <div className="flex flex-wrap justify-center gap-3"></div>
         <div className="flex items-center justify-center gap-2 py-8">
           <Button
             variant="ghost"
@@ -46,7 +43,7 @@ const HomePage = () => {
         </div>
       </div>
 
-      <div className="bg-gray-800 py-20 px-">
+      <div className="bg-gray-800 px-32 py-20">
         <div className="flex justify-between gap-8">
           {/* ESQUERDA */}
           <div className="flex w-1/2 flex-col gap-4">
@@ -74,7 +71,7 @@ const HomePage = () => {
           </div>
 
           {/* DIREITA */}
-          <div className="w-1/2 rounded-lg bg-gray-900 p-7">
+          <div className="w-1/2 rounded-lg bg-gray-900 p-9">
             <OffersForm />
           </div>
         </div>
