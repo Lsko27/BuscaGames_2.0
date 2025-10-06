@@ -16,9 +16,9 @@ import Link from "next/link"
 const Footer = () => {
   return (
     <footer className="mx-auto border-t-4 border-purple-600 bg-gray-900 p-8 sm:p-12">
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-4">
+      <div className="flex flex-col gap-8 md:flex-row md:justify-between">
         {/* Coluna 1: Logo + Parágrafo + Social */}
-        <div className="flex flex-col items-center space-y-4 text-center md:items-start md:text-left">
+        <div className="flex flex-col items-center text-center md:items-start md:text-left lg:space-y-5">
           <Image src="/logo.png" alt="BuscaGames" width={150} height={50} />
 
           <p className="text-sm text-gray-300 sm:text-base">
@@ -34,33 +34,30 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Navegação + Categorias */}
-        <div className="grid grid-cols-2 gap-8">
-          {/* Navegação */}
-          <div className="flex flex-col items-center text-center md:items-start md:text-left">
-            <h3 className="mb-3 text-xl font-bold text-white">Navegação</h3>
-            <div className="space-y-2 text-sm text-gray-300 sm:text-base">
-              <FooterNavigations href="/" label="Home" />
-              <FooterNavigations href="/games" label="Games" />
-              <FooterNavigations href="/quests" label="Quests" />
-              <FooterNavigations href="/about" label="Sobre Nós" />
-              <FooterNavigations href="/profile" label="Perfil" />
-            </div>
+        {/* Navegação */}
+        <div className="flex flex-col items-center text-center md:items-start md:text-left">
+          <h3 className="mb-3 text-xl font-bold text-white">Navegação</h3>
+          <div className="space-y-2 text-sm text-gray-300 sm:text-base">
+            <FooterNavigations href="/" label="Home" />
+            <FooterNavigations href="/games" label="Games" />
+            <FooterNavigations href="/quests" label="Quests" />
+            <FooterNavigations href="/about" label="Sobre Nós" />
+            <FooterNavigations href="/profile" label="Perfil" />
           </div>
+        </div>
 
-          {/* Categorias */}
-          <div className="flex flex-col items-center text-center md:items-start md:text-left">
-            <h3 className="mb-3 text-xl font-bold text-white">Categorias</h3>
-            <div className="space-y-2 text-sm text-gray-300 sm:text-base">
-              <FooterNavigations href="/games?category=rpg" label="RPG" />
-              <FooterNavigations href="/games?category=action" label="Ação" />
-              <FooterNavigations href="/games?category=horror" label="Terror" />
-              <FooterNavigations
-                href="/games?category=adventure"
-                label="Aventura"
-              />
-              <FooterNavigations href="/games?category=all" label="Ver todas" />
-            </div>
+        {/* Categorias */}
+        <div className="flex flex-col items-center text-center md:items-start md:text-left">
+          <h3 className="mb-3 text-xl font-bold text-white">Categorias</h3>
+          <div className="space-y-2 text-sm text-gray-300 sm:text-base">
+            <FooterNavigations href="/games?category=rpg" label="RPG" />
+            <FooterNavigations href="/games?category=action" label="Ação" />
+            <FooterNavigations href="/games?category=horror" label="Terror" />
+            <FooterNavigations
+              href="/games?category=adventure"
+              label="Aventura"
+            />
+            <FooterNavigations href="/games?category=all" label="Ver todas" />
           </div>
         </div>
 
