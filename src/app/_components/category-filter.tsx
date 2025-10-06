@@ -23,6 +23,7 @@ import {
   Trophy,
   Ghost,
   Zap,
+  CarFront,
 } from "lucide-react"
 
 const iconMap: Record<string, React.ElementType> = {
@@ -41,6 +42,7 @@ const iconMap: Record<string, React.ElementType> = {
   Esportes: Trophy,
   Terror: Ghost,
   Ação: Zap,
+  Corrida: CarFront,
 }
 
 interface CategoryFilterProps {
