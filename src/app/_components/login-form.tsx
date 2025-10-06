@@ -18,14 +18,15 @@ import { Checkbox } from "./ui/checkbox"
 import { Card, CardContent } from "./ui/card"
 import { Eye, EyeOff, InfoIcon } from "lucide-react"
 import { useState } from "react"
-import Image from "next/image"
+import Swal from "sweetalert2"
 
 // Schema Zod
 const formSchema = z.object({
-  email: z.string().trim().min(2, {
-    message: "Preencha os campos e tente novamente",
-  }),
-  password: z.string().min(2, { message: "Preencha os campo obrigatório" }),
+  email: z
+    .string()
+    .trim()
+    .min(2, { message: "Preencha os campos e tente novamente" }),
+  password: z.string().min(2, { message: "Preencha o campo obrigatório" }),
 })
 
 type FormData = z.infer<typeof formSchema>
@@ -36,11 +37,51 @@ const LoginForm = () => {
     defaultValues: { email: "", password: "" },
   })
 
-  const onSubmit = (data: FormData) => {
-    console.log("Login data:", data)
-  }
-
   const [showPassword, setShowPassword] = useState(false)
+  const [error] = useState("")
+  const [loading, setLoading] = useState(false)
+
+  const onSubmit = async (data: FormData) => {
+    setLoading(true)
+
+    try {
+      const res = await fetch("http://localhost:5050/users/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+
+      const result = await res.json()
+      Swal.fire({
+        title: "Login realizado com sucesso",
+        text: "Bem-vindo de volta!",
+        icon: "success",
+        confirmButtonText: "Ok",
+      })
+
+      if (!res.ok) {
+        Swal.fire({
+          title: "Erro ao fazer login",
+          text: "Verifique os dados e tente novamente!",
+          icon: "error",
+          confirmButtonText: "Ok",
+        })
+      } else {
+        console.log("Login realizado com sucesso:", result)
+        // Aqui você pode salvar o token ou redirecionar o usuário
+      }
+    } catch (err) {
+      console.error(err)
+      Swal.fire({
+        title: "Erro ao fazer login",
+        text: "Verifique os dados e tente novamente!",
+        icon: "error",
+        confirmButtonText: "Ok",
+      })
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
     <>
@@ -103,6 +144,8 @@ const LoginForm = () => {
             )}
           />
 
+          {error && <p className="text-red-500">{error}</p>}
+
           <div className="flex justify-between gap-3 text-white">
             <div className="flex items-center space-x-2">
               <Checkbox id="remember" className="bg-white" />
@@ -120,32 +163,13 @@ const LoginForm = () => {
             </Link>
           </div>
 
-          <div className="flex flex-col gap-6">
-            <div className="flex items-center justify-center">
-              <Button
-                type="submit"
-                className="w-full rounded-lg bg-purple-700 text-lg"
-              >
-                Entrar
-              </Button>
-            </div>
-
-            <div className="flex items-center justify-center">
-              <Button
-                variant="outline"
-                type="submit"
-                className="w-full rounded-lg bg-gray-300 text-lg text-black"
-              >
-                <Image
-                  alt="Fazer login com o Google"
-                  src="/104093.png"
-                  width={18}
-                  height={18}
-                />
-                Entrar com Google
-              </Button>
-            </div>
-          </div>
+          <Button
+            type="submit"
+            className="w-full rounded-lg bg-purple-700 text-lg"
+            disabled={loading}
+          >
+            {loading ? "Entrando..." : "Entrar"}
+          </Button>
         </form>
       </Form>
     </>
