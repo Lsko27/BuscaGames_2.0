@@ -68,7 +68,6 @@ const LoginForm = () => {
         })
       } else {
         console.log("Login realizado com sucesso:", result)
-        // Aqui você pode salvar o token ou redirecionar o usuário
       }
     } catch (err) {
       console.error(err)
@@ -84,20 +83,25 @@ const LoginForm = () => {
   }
 
   return (
-    <>
-      <Card className="mb-5 border-none bg-blue-900 py-2">
-        <CardContent className="px-4 py-2">
-          <div className="flex h-fit gap-2">
-            <InfoIcon className="text-md text-white" />
-            <p className="text-sm text-white">
-              Se você ainda não tem conta, selecione a aba Cadastro.
-            </p>
-          </div>
+    <div className="mx-auto w-full max-w-lg px-4 sm:px-6 lg:px-0">
+      {/* CARD INFO */}
+      <Card className="mb-6 border-none bg-blue-900">
+        <CardContent className="flex items-start gap-2 px-4 py-3">
+          <InfoIcon className="text-md mt-1 shrink-0 text-white" />
+          <p className="text-sm leading-snug text-white">
+            Se você ainda não tem conta, selecione a aba{" "}
+            <span className="font-semibold text-indigo-300">Cadastro</span>.
+          </p>
         </CardContent>
       </Card>
 
+      {/* FORM */}
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="w-full space-y-8"
+        >
+          {/* EMAIL */}
           <FormField
             control={form.control}
             name="email"
@@ -116,6 +120,7 @@ const LoginForm = () => {
             )}
           />
 
+          {/* SENHA */}
           <FormField
             control={form.control}
             name="password"
@@ -144,35 +149,38 @@ const LoginForm = () => {
             )}
           />
 
-          {error && <p className="text-red-500">{error}</p>}
+          {/* ERRO */}
+          {error && <p className="text-sm text-red-500">{error}</p>}
 
-          <div className="flex justify-between gap-3 text-white">
-            <div className="flex items-center space-x-2">
-              <Checkbox id="remember" className="bg-white" />
+          {/* LEMBRAR & ESQUECI SENHA */}
+          <div className="flex flex-col justify-between gap-3 text-white sm:flex-row">
+            <div className="flex items-center gap-2">
+              <Checkbox id="remember" className="shrink-0 bg-white" />
               <label
                 htmlFor="remember"
-                className="text-md leading-none text-gray-300 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                className="text-sm leading-snug text-gray-300"
               >
-                Manter-me Conectado
+                Manter-me conectado
               </label>
             </div>
-            <Link href="/forgot-password">
-              <p className="text-sm text-purple-400 underline">
+            <Link href="/forgot-password" className="self-start sm:self-center">
+              <p className="text-sm text-purple-400 underline transition-colors hover:text-purple-300">
                 Esqueci minha senha
               </p>
             </Link>
           </div>
 
+          {/* BOTÃO */}
           <Button
             type="submit"
-            className="w-full rounded-lg bg-purple-700 text-lg"
+            className="w-full rounded-lg bg-purple-700 text-lg text-white transition-all hover:bg-purple-800"
             disabled={loading}
           >
             {loading ? "Entrando..." : "Entrar"}
           </Button>
         </form>
       </Form>
-    </>
+    </div>
   )
 }
 

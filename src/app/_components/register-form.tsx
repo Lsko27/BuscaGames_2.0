@@ -101,7 +101,7 @@ const RegisterForm = () => {
         console.log("Usuário cadastrado com sucesso:", result)
         Swal.fire({
           title: "Cadastro realizado com sucesso",
-          text: "Seja Bem-vindo ao site!",
+          text: "Seja bem-vindo ao site!",
           icon: "success",
           confirmButtonText: "Ok",
         })
@@ -116,13 +116,17 @@ const RegisterForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <div className="flex gap-5">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="mx-auto w-full max-w-lg space-y-8 px-4 sm:px-6 lg:px-0"
+      >
+        {/* NOME E SOBRENOME */}
+        <div className="flex flex-col gap-5 sm:flex-row">
           <FormField
             control={form.control}
             name="firstName"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="flex-1">
                 <FormLabel className="text-lg text-white">Nome</FormLabel>
                 <FormControl>
                   <Input
@@ -138,7 +142,7 @@ const RegisterForm = () => {
             control={form.control}
             name="lastName"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="flex-1">
                 <FormLabel className="text-lg text-white">Sobrenome</FormLabel>
                 <FormControl>
                   <Input
@@ -152,6 +156,7 @@ const RegisterForm = () => {
           />
         </div>
 
+        {/* USUÁRIO */}
         <FormField
           control={form.control}
           name="userName"
@@ -171,6 +176,7 @@ const RegisterForm = () => {
           )}
         />
 
+        {/* EMAIL */}
         <FormField
           control={form.control}
           name="email"
@@ -188,6 +194,7 @@ const RegisterForm = () => {
           )}
         />
 
+        {/* SENHA */}
         <FormField
           control={form.control}
           name="password"
@@ -216,6 +223,7 @@ const RegisterForm = () => {
           )}
         />
 
+        {/* CONFIRMAR SENHA */}
         <FormField
           control={form.control}
           name="confirmPassword"
@@ -249,14 +257,16 @@ const RegisterForm = () => {
           )}
         />
 
-        {error && <p className="text-red-500">{error}</p>}
+        {/* ERRO */}
+        {error && <p className="text-sm text-red-500">{error}</p>}
 
-        <div className="flex flex-col justify-between gap-5 text-white">
-          <div className="mt-3 flex items-center space-x-2">
-            <Checkbox id="notifications" className="bg-white" />
+        {/* CHECKBOXES */}
+        <div className="flex flex-col justify-between gap-4 text-white">
+          <div className="flex items-start gap-2">
+            <Checkbox id="notifications" className="mt-1 shrink-0 bg-white" />
             <label
               htmlFor="notifications"
-              className="text-md leading-none text-gray-300"
+              className="text-sm leading-snug text-gray-300"
             >
               Aceito receber notificações via{" "}
               <span className="font-semibold">e-mail</span> e{" "}
@@ -264,11 +274,15 @@ const RegisterForm = () => {
             </label>
           </div>
 
-          <div className="flex items-center space-x-2">
-            <Checkbox id="privacy" className="bg-white" required />
+          <div className="flex items-start gap-2">
+            <Checkbox
+              id="privacy"
+              className="mt-1 shrink-0 bg-white"
+              required
+            />
             <label
               htmlFor="privacy"
-              className="text-md leading-none text-gray-300"
+              className="text-sm leading-snug text-gray-300"
             >
               Concordo com as{" "}
               <Link
@@ -281,10 +295,11 @@ const RegisterForm = () => {
           </div>
         </div>
 
+        {/* BOTÃO */}
         <div className="flex items-center justify-center">
           <Button
             type="submit"
-            className="w-full rounded-lg bg-purple-700 text-lg text-white"
+            className="w-full rounded-lg bg-purple-700 text-lg text-white transition-all hover:bg-purple-800"
             disabled={loading}
           >
             {loading ? "Cadastrando..." : "Cadastrar"}
