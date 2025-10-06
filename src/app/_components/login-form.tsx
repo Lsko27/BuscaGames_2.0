@@ -18,6 +18,7 @@ import { Checkbox } from "./ui/checkbox"
 import { Card, CardContent } from "./ui/card"
 import { Eye, EyeOff, InfoIcon } from "lucide-react"
 import { useState } from "react"
+import Image from "next/image"
 
 // Schema Zod
 const formSchema = z.object({
@@ -119,13 +120,31 @@ const LoginForm = () => {
             </Link>
           </div>
 
-          <div className="flex items-center justify-center">
-            <Button
-              type="submit"
-              className="w-full rounded-lg bg-purple-700 text-lg text-white"
-            >
-              Entrar
-            </Button>
+          <div className="flex flex-col gap-6">
+            <div className="flex items-center justify-center">
+              <Button
+                type="submit"
+                className="w-full rounded-lg bg-purple-700 text-lg"
+              >
+                Entrar
+              </Button>
+            </div>
+
+            <div className="flex items-center justify-center">
+              <Button
+                variant="outline"
+                type="submit"
+                className="w-full rounded-lg bg-gray-300 text-lg text-black"
+              >
+                <Image
+                  alt="Fazer login com o Google"
+                  src="/104093.png"
+                  width={18}
+                  height={18}
+                />
+                Entrar com Google
+              </Button>
+            </div>
           </div>
         </form>
       </Form>
