@@ -47,7 +47,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchGames = async () => {
       try {
-        const res = await fetch("http://localhost:5050/games/featured")
+        const res = await fetch("http://localhost:5050/games?featured=true")
         const data: Game[] = await res.json()
         setGames(data || [])
       } catch (err) {
