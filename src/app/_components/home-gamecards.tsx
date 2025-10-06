@@ -10,19 +10,17 @@ interface GameCardProps {
     title: string
     image: string
     price: number
-    originalPrice: number
     discount: number
     rating: number
-    categories: string[]
   }
 }
 
-const GameCard = ({ params }: GameCardProps) => {
+const HomeGameCards = ({ params }: GameCardProps) => {
   return (
-    <Card className="group relative w-full max-w-xl overflow-hidden border-none p-0">
+    <Card className="group relative w-full max-w-md overflow-hidden border-none p-0">
       <CardContent className="p-0">
         {/* Imagem ocupa todo o card */}
-        <div className="relative h-72 w-full">
+        <div className="relative h-60 w-full">
           <Image
             src={params.image}
             alt={params.title}
@@ -36,21 +34,14 @@ const GameCard = ({ params }: GameCardProps) => {
             </Badge>
           )}
 
-          <div className="absolute inset-0 flex flex-col justify-start bg-black/60 p-4 text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover:opacity-100">
-            <div className="flex h-full flex-col justify-between p-4 text-white">
-              <h3 className="text-2xl font-semibold">{params.title}</h3>
+          <div className="absolute inset-0 flex flex-col justify-between bg-black/60 p-4 text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover:opacity-100">
+            <div className="flex h-full flex-col justify-between p-2 text-left text-white">
+              <h3 className="text-left text-2xl font-semibold">
+                {params.title}
+              </h3>
 
               <div>
                 <div className="flex items-center gap-3">
-                  {Number(params.price) !== Number(params.originalPrice) && (
-                    <p className="text-sm font-bold text-gray-400 line-through">
-                      {Intl.NumberFormat("pt-BR", {
-                        style: "currency",
-                        currency: "BRL",
-                      }).format(Number(params.originalPrice))}
-                    </p>
-                  )}
-
                   <p className="text-xl font-semibold text-green-400">
                     {Number(params.price) === 0
                       ? "Gratuito"
@@ -62,14 +53,6 @@ const GameCard = ({ params }: GameCardProps) => {
                 </div>
               </div>
 
-              <div className="flex gap-2">
-                {params.categories.map((category, i) => (
-                  <Badge key={i} className="text-md rounded-xl bg-blue-600">
-                    {category}
-                  </Badge>
-                ))}
-              </div>
-
               <div className="mt-2 flex items-center justify-between gap-1">
                 <RatingStars rating={params.rating} />
                 <div className="flex items-center justify-center gap-3">
@@ -78,11 +61,11 @@ const GameCard = ({ params }: GameCardProps) => {
                     <p className="text-lg">Adicionar</p>
                   </Button>
 
-                  <Button variant="ghost" size="lg" className="rounded-full">
+                  <Button variant="ghost" size="sm" className="rounded-full">
                     <Eye />
                   </Button>
 
-                  <Button variant="ghost" size="lg" className="rounded-full">
+                  <Button variant="ghost" size="sm" className="rounded-full">
                     <Heart />
                   </Button>
                 </div>
@@ -95,4 +78,4 @@ const GameCard = ({ params }: GameCardProps) => {
   )
 }
 
-export default GameCard
+export default HomeGameCards

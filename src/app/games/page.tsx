@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import GameCard from "../_components/game-card"
+import LoadingScreen from "../_components/loading-screen"
 
 interface GameFromAPI {
   id: string
@@ -65,7 +66,7 @@ const GamesPage = () => {
     fetchGames()
   }, [])
 
-  if (loading) return <p className="p-10 text-white">Carregando jogos...</p>
+  if (loading) return <LoadingScreen />
 
   return (
     <div className="min-h-screen bg-zinc-900 p-10">

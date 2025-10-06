@@ -1,11 +1,69 @@
+"use client"
+
+import { useEffect, useState } from "react"
 import Image from "next/image"
-import LaunchCountdown from "./_components/launch-countdown"
-import { Button } from "./_components/ui/button"
 import Link from "next/link"
-import { CheckCircle, Joystick } from "lucide-react"
+import { Button } from "./_components/ui/button"
+import { CheckCircle, Joystick, ChevronLeft, ChevronRight } from "lucide-react"
+import LaunchCountdown from "./_components/launch-countdown"
 import OffersForm from "./_components/offers-form"
+import HomeGameCards from "./_components/home-gamecards"
+import LoadingScreen from "./_components/loading-screen"
+import { toast } from "sonner"
+
+interface Game {
+  id: string
+  title: string
+  image: string
+  rating: number
+  price: number
+  discount: number
+}
 
 const HomePage = () => {
+  const [games, setGames] = useState<Game[]>([])
+  const [loading, setLoading] = useState(true)
+  const [pageIndex, setPageIndex] = useState(0)
+  const gamesPerPage = 4
+
+  useEffect(() => {
+    const fetchGames = async () => {
+      try {
+        const res = await fetch("http://localhost:5050/games/featured")
+        const data: Game[] = await res.json()
+
+        if (!data || data.length === 0) {
+          setGames([])
+          return
+        }
+
+        setGames(data)
+      } catch (err) {
+        console.error("Erro ao buscar jogos:", err)
+        toast.error("Erro ao Buscar jogos!")
+        setGames([])
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchGames()
+  }, [])
+
+  const totalPages = Math.ceil(games.length / gamesPerPage)
+
+  const handlePrev = () => {
+    setPageIndex((prev) => (prev > 0 ? prev - 1 : totalPages - 1))
+  }
+
+  const handleNext = () => {
+    setPageIndex((prev) => (prev < totalPages - 1 ? prev + 1 : 0))
+  }
+
+  const startIndex = pageIndex * gamesPerPage
+  const endIndex = startIndex + gamesPerPage
+  const visibleGames = games.slice(startIndex, endIndex)
+
   return (
     <>
       {/* SECTION LANÇAMENTO */}
@@ -24,10 +82,42 @@ const HomePage = () => {
 
       {/* OUTRO CONTEÚDO */}
       <div className="mt-10 w-full text-center">
-        <h3 className="mb-6 text-3xl font-bold text-white">
+        <h3 className="mb-9 text-3xl font-bold text-white">
           Jogos Em destaque
         </h3>
-        <div className="flex flex-wrap justify-center gap-3"></div>
+
+        <div className="px-10">
+          {loading ? (
+            <LoadingScreen />
+          ) : games.length === 0 ? (
+            <p className="text-gray-400">Nenhum jogo em destaque no momento.</p>
+          ) : (
+            <div className="relative w-full px-10">
+              {/* Botões do carousel */}
+              <Button
+                variant="default"
+                onClick={handlePrev}
+                className="absolute top-1/2 left-0 z-20 -translate-y-1/2 rounded-full bg-blue-500 p-2"
+              >
+                <ChevronLeft className="text-white" />
+              </Button>
+              <Button
+                variant="default"
+                onClick={handleNext}
+                className="absolute top-1/2 right-0 z-20 -translate-y-1/2 rounded-full bg-blue-500 p-2"
+              >
+                <ChevronRight className="text-white" />
+              </Button>
+
+              <div className="flex justify-center gap-4 overflow-hidden">
+                {visibleGames.map((game) => (
+                  <HomeGameCards key={game.id} params={game} />
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
         <div className="flex items-center justify-center gap-2 py-8">
           <Button
             variant="ghost"
