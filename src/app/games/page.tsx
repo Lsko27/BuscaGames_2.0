@@ -69,8 +69,8 @@ const GamesPage = () => {
   if (loading) return <LoadingScreen />
 
   return (
-    <div className="min-h-screen bg-zinc-900 p-10">
-      <div className="grid grid-cols-3 gap-6">
+    <div className="flex justify-center bg-zinc-900 py-6">
+      <div className="grid w-full max-w-[1800px] grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {games.map((game) => (
           <GameCard key={game.id} params={game} />
         ))}
