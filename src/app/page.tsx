@@ -24,20 +24,32 @@ const HomePage = () => {
   const [games, setGames] = useState<Game[]>([])
   const [loading, setLoading] = useState(true)
   const [pageIndex, setPageIndex] = useState(0)
-  const gamesPerPage = 4
+  const [gamesPerPage, setGamesPerPage] = useState(4)
+  const [step, setStep] = useState(4)
+
+  // Ajusta gamesPerPage e step baseado na largura da tela
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setGamesPerPage(1)
+        setStep(1)
+      } else {
+        setGamesPerPage(4)
+        setStep(4)
+      }
+    }
+
+    handleResize() // chama no load
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
 
   useEffect(() => {
     const fetchGames = async () => {
       try {
         const res = await fetch("http://localhost:5050/games/featured")
         const data: Game[] = await res.json()
-
-        if (!data || data.length === 0) {
-          setGames([])
-          return
-        }
-
-        setGames(data)
+        setGames(data || [])
       } catch (err) {
         console.error("Erro ao buscar jogos:", err)
         toast.error("Erro ao Buscar jogos!")
@@ -50,19 +62,15 @@ const HomePage = () => {
     fetchGames()
   }, [])
 
-  const totalPages = Math.ceil(games.length / gamesPerPage)
-
   const handlePrev = () => {
-    setPageIndex((prev) => (prev > 0 ? prev - 1 : totalPages - 1))
+    setPageIndex((prev) =>
+      prev - step >= 0 ? prev - step : Math.max(0, games.length - gamesPerPage),
+    )
   }
 
   const handleNext = () => {
-    setPageIndex((prev) => (prev < totalPages - 1 ? prev + 1 : 0))
+    setPageIndex((prev) => (prev + step < games.length ? prev + step : 0))
   }
-
-  const startIndex = pageIndex * gamesPerPage
-  const endIndex = startIndex + gamesPerPage
-  const visibleGames = games.slice(startIndex, endIndex)
 
   return (
     <>
@@ -75,8 +83,10 @@ const HomePage = () => {
           className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0.8)] to-[rgba(0,0,0,0.7)]" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <LaunchCountdown />
+        <div className="absolute inset-0 flex items-center justify-center px-4 text-center">
+          <div className="w-full max-w-4xl">
+            <LaunchCountdown />
+          </div>
         </div>
       </div>
 
@@ -86,13 +96,13 @@ const HomePage = () => {
           Jogos Em destaque
         </h3>
 
-        <div className="px-10">
+        <div className="relative w-full overflow-hidden px-10">
           {loading ? (
             <LoadingScreen />
           ) : games.length === 0 ? (
             <p className="text-gray-400">Nenhum jogo em destaque no momento.</p>
           ) : (
-            <div className="relative w-full px-10">
+            <>
               {/* Botões do carousel */}
               <Button
                 variant="default"
@@ -109,12 +119,23 @@ const HomePage = () => {
                 <ChevronRight className="text-white" />
               </Button>
 
-              <div className="flex justify-center gap-4 overflow-hidden">
-                {visibleGames.map((game) => (
-                  <HomeGameCards key={game.id} params={game} />
+              <div
+                className="flex transition-transform duration-500 ease-in-out"
+                style={{
+                  transform: `translateX(-${(pageIndex * 100) / gamesPerPage}%)`,
+                }}
+              >
+                {games.map((game) => (
+                  <div
+                    key={game.id}
+                    className="flex-shrink-0 px-2"
+                    style={{ width: `${100 / gamesPerPage}%` }}
+                  >
+                    <HomeGameCards params={game} />
+                  </div>
                 ))}
               </div>
-            </div>
+            </>
           )}
         </div>
 
@@ -133,10 +154,10 @@ const HomePage = () => {
         </div>
       </div>
 
-      <div className="bg-gray-800 px-32 py-20">
-        <div className="flex justify-between gap-8">
+      <div className="bg-gray-800 px-4 py-20 sm:px-6">
+        <div className="mx-auto flex max-w-6xl flex-col gap-10 lg:flex-row lg:gap-8">
           {/* ESQUERDA */}
-          <div className="flex w-1/2 flex-col gap-4">
+          <div className="flex flex-col gap-4 lg:w-1/2">
             <h4 className="text-2xl font-bold">
               Inscreva-se para Ofertas Exclusivas
             </h4>
@@ -161,7 +182,7 @@ const HomePage = () => {
           </div>
 
           {/* DIREITA */}
-          <div className="w-1/2 rounded-lg bg-gray-900 p-9">
+          <div className="rounded-lg bg-gray-900 p-6 sm:p-9 lg:w-1/2">
             <OffersForm />
           </div>
         </div>
