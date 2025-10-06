@@ -28,7 +28,7 @@ const RatingStars = ({ rating, maxStars = 5, className }: RatingStarsProps) => {
           return <Star key={i} className="h-5 w-5 text-yellow-400" />
         }
       })}
-      <span className="ml-2 text-sm text-gray-300">{rating.toFixed(1)}</span>
+      <span className="ml-1 text-sm text-gray-300">{rating.toFixed(1)}</span>
     </div>
   )
 }

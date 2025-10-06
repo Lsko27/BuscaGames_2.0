@@ -2,7 +2,7 @@ import Image from "next/image"
 import { Card, CardContent } from "./ui/card"
 import { Badge } from "./ui/badge"
 import RatingStars from "./rating-stars"
-import { Eye, Heart, ShoppingCart } from "lucide-react"
+import { Heart, ShoppingCart } from "lucide-react"
 import { Button } from "./ui/button"
 
 interface GameCardProps {
@@ -59,10 +59,6 @@ const HomeGameCards = ({ params }: GameCardProps) => {
                   <Button variant="ghost" className="bg-green-600">
                     <ShoppingCart />
                     <p className="text-lg">Adicionar</p>
-                  </Button>
-
-                  <Button variant="ghost" size="sm" className="rounded-full">
-                    <Eye />
                   </Button>
 
                   <Button variant="ghost" size="sm" className="rounded-full">
