@@ -51,7 +51,7 @@ const CategoryFilter = ({ isSheet = false }: CategoryFilterProps) => {
   const [categories, setCategories] = useState<{ id: string; name: string }[]>(
     [],
   )
-  const [price, setPrice] = useState(200)
+  const [price, setPrice] = useState(400)
   const router = useRouter()
   const searchParams = useSearchParams()
   const selectedCategory = searchParams.get("category")

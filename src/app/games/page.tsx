@@ -103,7 +103,7 @@ const GamesPage = () => {
           </SheetTrigger>
           <SheetContent
             side="left"
-            className="h-full w-72 overflow-y-auto bg-zinc-800 p-4 text-white"
+            className="h-full w-[70%] overflow-y-auto bg-zinc-800 p-4 text-white [&::-webkit-scrollbar]:hidden"
           >
             <SheetHeader>
               <SheetTitle className="text-white">Filtros</SheetTitle>

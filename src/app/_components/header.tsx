@@ -17,8 +17,12 @@ import NavItem from "./nav-item"
 import { Badge } from "./ui/badge"
 import { Sheet, SheetTrigger } from "./ui/sheet"
 import SidebarButton from "./sidebar-button"
+import { useState } from "react"
 
 const Header = () => {
+  const [sheetOpen, setSheetOpen] = useState(false)
+
+  const handleSheetClose = () => setSheetOpen(false)
   return (
     <div className="flex items-center justify-between bg-gray-900 px-10 py-5">
       {/* Logo */}
@@ -30,13 +34,13 @@ const Header = () => {
 
       {/* Menu hamburguer (mobile) */}
       <div className="ml-auto block md:hidden">
-        <Sheet>
+        <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
           <SheetTrigger asChild>
             <Button size="icon" variant="ghost" className="text-white">
               <MenuIcon />
             </Button>
           </SheetTrigger>
-          <SidebarButton />
+          <SidebarButton onClick={handleSheetClose} />
         </Sheet>
       </div>
 
