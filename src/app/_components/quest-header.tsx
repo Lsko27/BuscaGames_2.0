@@ -5,9 +5,9 @@ const QuestHeader = () => {
   const userProgress = 50
 
   return (
-    <div className="flex w-full items-center justify-center">
+    <div className="flex w-full flex-col gap-6 md:flex-row md:items-center md:gap-6">
       {/* ESQUERDA */}
-      <div className="flex w-full flex-col p-0">
+      <div className="flex w-full flex-col gap-3">
         <h3 className="text-4xl font-bold">Quests & Missões</h3>
         <p className="text-lg text-gray-400">
           Complete desafios, ganhe XP e desbloqueie recompensas exclusivas!
@@ -15,8 +15,8 @@ const QuestHeader = () => {
       </div>
 
       {/* DIREITA */}
-      <div className="flex w-full items-center gap-3">
-        <Card className="w-full border-blue-300 bg-zinc-900">
+      <div className="flex w-full justify-center md:justify-start">
+        <Card className="w-full max-w-4xl border-blue-300 bg-zinc-900">
           <CardContent>
             <div className="flex items-center justify-start gap-3">
               <div className="relative">

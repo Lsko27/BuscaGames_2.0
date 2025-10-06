@@ -13,9 +13,8 @@ interface Quest {
 }
 
 const QuestsPage = async () => {
-  // Fetch das quests do backend
   const res = await fetch("http://localhost:5050/quests", {
-    cache: "no-store", // para sempre buscar a versão mais recente
+    cache: "no-store",
   })
   const quests: Quest[] = await res.json()
 
@@ -23,47 +22,54 @@ const QuestsPage = async () => {
   const weeklyQuests = quests.filter((q) => q.type === "WEEKLY")
 
   return (
-    <>
-      {/* Header */}
-      <div className="relative h-[20vh] w-full">
+    <div className="min-h-screen w-full bg-slate-950 text-white">
+      {/* HEADER */}
+      <div className="relative h-auto w-full p-10">
         <Image
           alt="Banner"
           src="/freepik__expand__92115.png"
           fill
           className="object-cover"
+          priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0.5)] to-[rgba(0,0,0,0.3)]" />
-        <div className="absolute w-full px-48 py-10">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/40" />
+
+        <div className="relative flex w-full justify-center px-6 py-8 md:px-12 lg:px-24">
           <QuestHeader />
         </div>
       </div>
 
-      <div className="min-h-screen space-y-10 bg-slate-950 px-28 py-10">
+      {/* CONTEÚDO */}
+      <div className="w-full space-y-16 px-4 py-10 sm:px-6 md:px-10 lg:px-24">
         {/* Quests Diárias */}
-        <div>
-          <h2 className="my-8 text-center text-3xl font-semibold text-white">
+        <section>
+          <h2 className="mb-8 text-center text-2xl font-semibold sm:text-3xl">
             Quests Diárias
           </h2>
-          <div className="flex justify-center gap-4">
-            {dailyQuests.map((quest) => (
-              <QuestCards key={quest.id} params={quest} />
-            ))}
+          <div className="flex justify-center">
+            <div className="grid auto-rows-min grid-cols-1 justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {dailyQuests.map((quest) => (
+                <QuestCards key={quest.id} params={quest} />
+              ))}
+            </div>
           </div>
-        </div>
+        </section>
 
         {/* Quests Semanais */}
-        <div>
-          <h2 className="mt-12 mb-8 text-center text-3xl font-semibold text-white">
+        <section>
+          <h2 className="mb-8 text-center text-2xl font-semibold sm:text-3xl">
             Quests Semanais
           </h2>
-          <div className="flex justify-center gap-6">
-            {weeklyQuests.map((quest) => (
-              <QuestCards key={quest.id} params={quest} />
-            ))}
+          <div className="flex justify-center">
+            <div className="grid auto-rows-min grid-cols-1 justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {weeklyQuests.map((quest) => (
+                <QuestCards key={quest.id} params={quest} />
+              ))}
+            </div>
           </div>
-        </div>
+        </section>
       </div>
-    </>
+    </div>
   )
 }
 
