@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { useSearchParams } from "next/navigation"
 import GameCard from "../_components/game-card"
 import LoadingScreen from "../_components/loading-screen"
 
@@ -36,11 +37,18 @@ interface GameForCard {
 const GamesPage = () => {
   const [games, setGames] = useState<GameForCard[]>([])
   const [loading, setLoading] = useState(true)
+  const searchParams = useSearchParams()
+  const category = searchParams.get("category") // Pega a categoria da URL
 
   useEffect(() => {
     const fetchGames = async () => {
+      setLoading(true)
       try {
-        const res = await fetch("http://localhost:5050/games")
+        const url = category
+          ? `http://localhost:5050/games/category/${category}`
+          : "http://localhost:5050/games"
+
+        const res = await fetch(url)
         const data: GameFromAPI[] = await res.json()
 
         const formatted: GameForCard[] = data.map((g) => ({
@@ -64,7 +72,7 @@ const GamesPage = () => {
     }
 
     fetchGames()
-  }, [])
+  }, [category]) // Re-fetch quando a categoria mudar
 
   if (loading) return <LoadingScreen />
 

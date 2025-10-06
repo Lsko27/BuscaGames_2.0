@@ -51,13 +51,13 @@ const Footer = () => {
           <h3 className="mb-3 text-xl font-bold text-white">Categorias</h3>
           <div className="space-y-2 text-sm text-gray-300 sm:text-base">
             <FooterNavigations href="/games?category=rpg" label="RPG" />
-            <FooterNavigations href="/games?category=action" label="Ação" />
-            <FooterNavigations href="/games?category=horror" label="Terror" />
+            <FooterNavigations href="/games?category=ação" label="Ação" />
+            <FooterNavigations href="/games?category=terror" label="Terror" />
             <FooterNavigations
-              href="/games?category=adventure"
+              href="/games?category=aventura"
               label="Aventura"
             />
-            <FooterNavigations href="/games?category=all" label="Ver todas" />
+            <FooterNavigations href="/games" label="Ver todas" />
           </div>
         </div>
 
