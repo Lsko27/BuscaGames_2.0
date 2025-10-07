@@ -1,3 +1,5 @@
+"use client"
+
 import {
   HomeIcon,
   InfoIcon,
@@ -12,12 +14,16 @@ import { Button } from "./ui/button"
 import { Badge } from "./ui/badge"
 import { SheetContent, SheetHeader, SheetTitle } from "./ui/sheet"
 import Link from "next/link"
+import { useSession } from "next-auth/react"
+import UserDropdown from "./user-dropdown"
 
 interface SidebarButtonProps {
   onClick?: () => void
 }
 
 const SidebarButton = ({ onClick }: SidebarButtonProps) => {
+  const { data } = useSession()
+
   return (
     <SheetContent className="w-[55%] bg-gray-900 p-6 text-white">
       <SheetHeader>
@@ -75,18 +81,24 @@ const SidebarButton = ({ onClick }: SidebarButtonProps) => {
           </Badge>
         </div>
 
-        <Button
-          size="lg"
-          variant="ghost"
-          className="text-white"
-          asChild
-          onClick={onClick} // fecha o sheet ao clicar
-        >
-          <Link href="/login">
-            <LogIn />
-            <span className="text-lg">Login</span>
-          </Link>
-        </Button>
+        {data?.user ? (
+          <UserDropdown
+            params={{
+              id: data.user.id,
+              name: data.user.name,
+              email: data.user.email,
+              userName: data.user.userName,
+              image: data.user.image,
+            }}
+          />
+        ) : (
+          <Button size="lg" variant="ghost" className="text-white" asChild>
+            <Link href="/login">
+              <LogIn />
+              <span className="text-lg">Login</span>
+            </Link>
+          </Button>
+        )}
       </div>
     </SheetContent>
   )

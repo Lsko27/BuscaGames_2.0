@@ -31,7 +31,7 @@ const RequireAuth = ({ children }: RequireAuthProps) => {
             />
             <h1 className="text-5xl font-bold text-white">Acesso Restrito</h1>
 
-            <div className="mt-6 space-y-5 text-center">
+            <div className="mt-3 space-y-5 text-center">
               <p className="text-gray-300">
                 Você não tem permissão para acessar essa página
               </p>
