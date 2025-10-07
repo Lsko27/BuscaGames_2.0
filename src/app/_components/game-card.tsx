@@ -1,12 +1,17 @@
+"use client"
+
 import Image from "next/image"
 import { Card, CardContent } from "./ui/card"
 import { Badge } from "./ui/badge"
 import RatingStars from "./rating-stars"
 import { Eye, Heart, ShoppingCart } from "lucide-react"
 import { Button } from "./ui/button"
+import { useEffect, useState } from "react"
+import { toast } from "sonner"
 
 interface GameCardProps {
   params: {
+    id: string
     title: string
     image: string
     price: number
@@ -15,13 +20,57 @@ interface GameCardProps {
     rating: number
     categories: string[]
   }
+  userId: string // id do usuário logado
 }
 
-const GameCard = ({ params }: GameCardProps) => {
+const GameCard = ({ params, userId }: GameCardProps) => {
+  const [isFavorite, setIsFavorite] = useState(false)
+
+  // Verifica se já está nos favoritos
+  useEffect(() => {
+    const checkFavorite = async () => {
+      console.log("🔹 userId:", userId, "params.id:", params.id) // <-- log
+      if (!userId) return // evita fazer fetch sem userId
+
+      try {
+        const res = await fetch(`http://localhost:5050/favorites/${userId}`)
+        const favoriteGameIds: string[] = await res.json()
+        setIsFavorite(favoriteGameIds.includes(params.id))
+      } catch (err) {
+        console.error("Erro ao buscar favoritos:", err)
+      }
+    }
+    checkFavorite()
+  }, [params.id, userId])
+
+  const toggleFavorite = async () => {
+    try {
+      if (isFavorite) {
+        await fetch("http://localhost:5050/favorites", {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userId, gameId: params.id }),
+        })
+        setIsFavorite(false)
+        toast.success("Removido dos favoritos")
+      } else {
+        await fetch("http://localhost:5050/favorites", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userId, gameId: params.id }),
+        })
+        setIsFavorite(true)
+        toast.success("Adicionado aos favoritos")
+      }
+    } catch (err) {
+      console.error(err)
+      toast.error("Erro ao atualizar favoritos")
+    }
+  }
+
   return (
     <Card className="group relative w-full max-w-xl overflow-hidden border-none p-0">
       <CardContent className="p-0">
-        {/* Imagem ocupa todo o card */}
         <div className="relative h-72 w-full">
           <Image
             src={params.image}
@@ -82,7 +131,12 @@ const GameCard = ({ params }: GameCardProps) => {
                     <Eye />
                   </Button>
 
-                  <Button variant="ghost" size="lg" className="rounded-full">
+                  <Button
+                    variant="ghost"
+                    size="lg"
+                    className={`rounded-full ${isFavorite ? "text-red-500" : ""}`}
+                    onClick={toggleFavorite}
+                  >
                     <Heart />
                   </Button>
                 </div>
