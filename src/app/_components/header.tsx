@@ -18,9 +18,12 @@ import { Badge } from "./ui/badge"
 import { Sheet, SheetTrigger } from "./ui/sheet"
 import SidebarButton from "./sidebar-button"
 import { useState } from "react"
+import { useSession } from "next-auth/react"
+import UserDropdown from "./user-dropdown"
 
 const Header = () => {
   const [sheetOpen, setSheetOpen] = useState(false)
+  const { data } = useSession()
 
   const handleSheetClose = () => setSheetOpen(false)
   return (
@@ -69,7 +72,7 @@ const Header = () => {
       </div>
 
       {/* Botões (lua, carrinho, login) */}
-      <div className="hidden max-w-[200px] flex-1 justify-between text-white md:flex">
+      <div className="hidden max-w-[300px] flex-1 justify-between text-white md:flex">
         <Button size="lg" variant="ghost" className="rounded-full">
           <MoonIcon />
         </Button>
@@ -85,12 +88,24 @@ const Header = () => {
             0
           </Badge>
         </div>
-        <Button size="lg" variant="ghost" className="text-white" asChild>
-          <Link href="/login">
-            <LogIn />
-            <span className="text-lg">Login</span>
-          </Link>
-        </Button>
+        {data?.user ? (
+          <UserDropdown
+            params={{
+              id: data.user.id,
+              name: data.user.name,
+              email: data.user.email,
+              userName: data.user.userName,
+              avatar: data.user.avatar || "/avatar-generico.jpg",
+            }}
+          />
+        ) : (
+          <Button size="lg" variant="ghost" className="text-white" asChild>
+            <Link href="/login">
+              <LogIn />
+              <span className="text-lg">Login</span>
+            </Link>
+          </Button>
+        )}
       </div>
     </div>
   )

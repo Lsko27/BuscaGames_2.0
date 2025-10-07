@@ -3,6 +3,7 @@ import "./globals.css"
 import Header from "./_components/header"
 import Footer from "./_components/footer"
 import { Toaster } from "sonner"
+import AuthProvider from "./_providers/session-provider"
 
 export const metadata: Metadata = {
   title: "BuscaGames",
@@ -18,10 +19,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
-        <div className="bg-gray-900 text-white">{children}</div>
-        <Footer />
-        <Toaster />
+        <AuthProvider>
+          <Header />
+          <div className="bg-gray-900 text-white">{children}</div>
+          <Footer />
+          <Toaster />
+        </AuthProvider>
       </body>
     </html>
   )

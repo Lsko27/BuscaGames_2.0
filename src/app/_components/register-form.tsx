@@ -13,6 +13,10 @@ import { useState } from "react"
 import { Eye, EyeOff } from "lucide-react"
 import Swal from "sweetalert2"
 
+interface RegisterFormProps {
+  switchToLogin: () => void
+}
+
 const formSchema = z
   .object({
     firstName: z
@@ -54,7 +58,8 @@ const formSchema = z
 
 type FormData = z.infer<typeof formSchema>
 
-const RegisterForm = () => {
+const RegisterForm = ({ switchToLogin }: RegisterFormProps) => {
+
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -104,6 +109,8 @@ const RegisterForm = () => {
           text: "Seja bem-vindo ao site!",
           icon: "success",
           confirmButtonText: "Ok",
+        }).then(() => {
+          switchToLogin()
         })
       }
     } catch (err) {

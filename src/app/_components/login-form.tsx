@@ -1,5 +1,6 @@
 "use client"
 
+import { signIn } from "next-auth/react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { Button } from "./ui/button"
@@ -19,6 +20,7 @@ import { Card, CardContent } from "./ui/card"
 import { Eye, EyeOff, InfoIcon } from "lucide-react"
 import { useState } from "react"
 import Swal from "sweetalert2"
+import { useRouter } from "next/navigation"
 
 // Schema Zod
 const formSchema = z.object({
@@ -32,6 +34,8 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>
 
 const LoginForm = () => {
+  const router = useRouter()
+
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: { email: "", password: "" },
@@ -45,29 +49,28 @@ const LoginForm = () => {
     setLoading(true)
 
     try {
-      const res = await fetch("http://localhost:5050/users/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+      const res = await signIn("credentials", {
+        redirect: false,
+        email: data.email,
+        password: data.password,
       })
 
-      const result = await res.json()
-      Swal.fire({
-        title: "Login realizado com sucesso",
-        text: "Bem-vindo de volta!",
-        icon: "success",
-        confirmButtonText: "Ok",
-      })
-
-      if (!res.ok) {
+      if (res?.error) {
         Swal.fire({
           title: "Erro ao fazer login",
-          text: "Verifique os dados e tente novamente!",
+          text: res.error,
           icon: "error",
           confirmButtonText: "Ok",
         })
       } else {
-        console.log("Login realizado com sucesso:", result)
+        Swal.fire({
+          title: "Login realizado com sucesso",
+          text: "Bem-vindo de volta!",
+          icon: "success",
+          confirmButtonText: "Ok",
+        }).then(() => {
+          router.push("/")
+        })
       }
     } catch (err) {
       console.error(err)

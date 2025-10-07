@@ -9,6 +9,8 @@ import { LogIn, UserPlus } from "lucide-react"
 const AuthTabs = () => {
   const [activeTab, setActiveTab] = useState<"login" | "register">("login")
 
+  const handleSwitchToLogin = () => setActiveTab("login")
+
   return (
     <div className="mx-auto flex w-full max-w-md flex-col items-center justify-center p-4">
       {/* Abas */}
@@ -40,7 +42,9 @@ const AuthTabs = () => {
       {/* Conteúdo da aba */}
       <div className="w-full">
         {activeTab === "login" && <LoginForm />}
-        {activeTab === "register" && <RegisterForm />}
+        {activeTab === "register" && (
+          <RegisterForm switchToLogin={handleSwitchToLogin} />
+        )}
       </div>
     </div>
   )
