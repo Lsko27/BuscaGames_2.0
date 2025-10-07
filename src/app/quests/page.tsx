@@ -2,16 +2,7 @@ import Image from "next/image"
 import QuestCards from "../_components/quest-cards"
 import QuestHeader from "../_components/quest-header"
 import RequireAuth from "../_components/require-auth"
-
-interface Quest {
-  id: string
-  title: string
-  description: string
-  points: number
-  progress: number
-  totalSteps: number
-  type: "DAILY" | "WEEKLY"
-}
+import { Quest } from "@/types/quest"
 
 const QuestsPage = async () => {
   const res = await fetch("http://localhost:5050/quests", {
@@ -50,8 +41,8 @@ const QuestsPage = async () => {
             </h2>
             <div className="flex justify-center">
               <div className="grid auto-rows-min grid-cols-1 justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                {dailyQuests.map((quest) => (
-                  <QuestCards key={quest.id} params={quest} />
+                {dailyQuests.map((q) => (
+                  <QuestCards key={q.id} quest={q} />
                 ))}
               </div>
             </div>
@@ -64,8 +55,8 @@ const QuestsPage = async () => {
             </h2>
             <div className="flex justify-center">
               <div className="grid auto-rows-min grid-cols-1 justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                {weeklyQuests.map((quest) => (
-                  <QuestCards key={quest.id} params={quest} />
+                {weeklyQuests.map((q) => (
+                  <QuestCards key={q.id} quest={q} />
                 ))}
               </div>
             </div>

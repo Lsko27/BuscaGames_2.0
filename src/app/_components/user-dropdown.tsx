@@ -1,7 +1,7 @@
 "use client"
 
 import { useSession, signOut } from "next-auth/react"
-import { LogOut } from "lucide-react"
+import { LibraryBig, LogOut, Settings, User } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import { Button } from "./ui/button"
 import {
@@ -63,16 +63,28 @@ const UserDropdown = ({ params }: UserDropdownProps) => {
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="bg-zinc-900 text-white">
+      <DropdownMenuContent className="border-gray-600 bg-zinc-900 p-3 text-white">
         <DropdownMenuLabel>Minha Conta</DropdownMenuLabel>
-        <DropdownMenuSeparator />
+        <DropdownMenuSeparator className="bg-gray-600" />
         <DropdownMenuItem asChild>
-          <Link href="/profile">Perfil</Link>
+          <Link href="/profile">
+            <User className="text-white" />
+            Perfil
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link href="/settings">Configurações</Link>
+          <Link href="/library">
+            <LibraryBig className="text-white" />
+            Biblioteca
+          </Link>
         </DropdownMenuItem>
-        <DropdownMenuSeparator />
+        <DropdownMenuItem asChild>
+          <Link href="/settings">
+            <Settings className="text-white" />
+            Configurações
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator className="bg-gray-600" />
         <DropdownMenuItem
           variant="destructive"
           onClick={() => signOut({ callbackUrl: "/" })}

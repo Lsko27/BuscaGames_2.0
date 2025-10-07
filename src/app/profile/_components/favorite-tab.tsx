@@ -1,6 +1,7 @@
+import { Button } from "@/app/_components/ui/button"
+import { Card, CardContent } from "@/app/_components/ui/card"
 import { BellRing, Heart } from "lucide-react"
-import { Button } from "./ui/button"
-import { Card, CardContent } from "./ui/card"
+import Link from "next/link"
 
 const FavoriteTab = () => {
   return (
@@ -13,8 +14,8 @@ const FavoriteTab = () => {
             <p className="text-lg font-medium text-gray-400">
               Você ainda não adicionou jogos aos favoritos
             </p>
-            <Button variant="ghost" className="w-full bg-purple-700">
-              Explorar Jogos
+            <Button variant="ghost" className="w-full bg-purple-700" asChild>
+              <Link href="/games">Explorar Jogos</Link>
             </Button>
           </div>
         </CardContent>

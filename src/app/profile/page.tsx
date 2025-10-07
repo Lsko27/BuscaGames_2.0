@@ -1,49 +1,64 @@
 "use client"
 
+import { useState } from "react"
 import RequireAuth from "../_components/require-auth"
 import ProfileHeader from "../_components/profile-header"
-import { Card, CardContent } from "../_components/ui/card"
-import { BellRing, Heart } from "lucide-react"
+import OverviewTab from "./_components/overview-tab"
+import LibraryTab from "./_components/library-tab"
+import FavoriteTab from "./_components/favorite-tab"
 import { Button } from "../_components/ui/button"
+import AchievementsTab from "./_components/achievements-tab"
+
+const tabs = [
+  { key: "overview", label: "Visão Geral" },
+  { key: "library", label: "Biblioteca" },
+  { key: "favorites", label: "Favoritos" },
+  { key: "achievements", label: "Conquistas" },
+]
 
 const ProfilePage = () => {
+  const [activeTab, setActiveTab] = useState("overview")
+
+  const renderTab = () => {
+    switch (activeTab) {
+      case "overview":
+        return <OverviewTab />
+      case "library":
+        return <LibraryTab />
+      case "favorites":
+        return <FavoriteTab />
+      case "achievements":
+        return <AchievementsTab />
+      default:
+        return null
+    }
+  }
+
   return (
     <RequireAuth>
       <div className="w-full">
         <ProfileHeader />
-        <div className="mt-8 min-h-[50vh] px-16">
-          <Card className="border-0 bg-gray-800 text-white">
-            <CardContent>
-              <h2 className="mb-6 text-xl font-semibold">
-                Meus Jogos Favoritos
-              </h2>
-              <div className="flex flex-col items-center justify-center gap-3">
-                <Heart size={45} className="fill-gray-400 text-gray-400" />
-                <p className="text-lg font-medium text-gray-400">
-                  Você ainda não adicionou jogos aos favoritos
-                </p>
-                <Button variant="ghost" className="w-full bg-purple-700">
-                  Explorar Jogos
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
 
-          <Card className="mt-5 border-0 bg-gray-800 text-white">
-            <CardContent>
-              <h2 className="mb-6 text-xl font-semibold">Alerta de Preços</h2>
-              <div className="flex flex-col items-center justify-center gap-3">
-                <BellRing size={45} className="fill-gray-400 text-gray-400" />
-                <p className="text-lg font-medium text-gray-400">
-                  Você não configurou alertas de preços
-                </p>
-                <p className="text-gray-500">
-                  Adicione jogos aos favoritos e configure alertas de preço para
-                  receber notificações quando os preços baixarem
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+        {/* MENU DE ABAS */}
+        <div className="flex flex-wrap gap-4 px-16 pt-6">
+          {tabs.map((tab) => (
+            <Button
+              key={tab.key}
+              onClick={() => setActiveTab(tab.key)}
+              className={`rounded-full px-6 py-2 text-sm font-medium transition-all duration-300 ${
+                activeTab === tab.key
+                  ? "scale-105 bg-purple-700 text-white shadow-md"
+                  : "bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white"
+              }`}
+            >
+              {tab.label}
+            </Button>
+          ))}
+        </div>
+
+        {/* CONTEÚDO DA ABA */}
+        <div className="min-h-[60vh] px-16 py-10 transition-all duration-500">
+          {renderTab()}
         </div>
       </div>
     </RequireAuth>
