@@ -53,13 +53,28 @@ const handler = NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
+        // Normaliza a URL da imagem
+        let imageUrl: string | undefined = undefined
+
+        if (user.image) {
+          imageUrl = user.image.startsWith("http")
+            ? user.image // Google OAuth
+            : `http://localhost:5050${user.image}` // Credentials
+        }
+
         token.user = {
           ...user,
-          image: user.image,
+          image: imageUrl,
+          userName:
+            user.userName ||
+            user.name ||
+            user.email?.split("@")[0] ||
+            "Usuário",
         }
       }
       return token
     },
+
     async session({ session, token }) {
       session.user = token.user
       return session

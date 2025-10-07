@@ -27,7 +27,7 @@ const Header = () => {
 
   const handleSheetClose = () => setSheetOpen(false)
   return (
-    <div className="flex items-center justify-between bg-gray-900 px-10 py-5">
+    <div className="flex items-center justify-between border-b border-purple-600 bg-gray-900 px-10 py-5">
       {/* Logo */}
       <div>
         <Link href="/">
@@ -95,7 +95,7 @@ const Header = () => {
               name: data.user.name,
               email: data.user.email,
               userName: data.user.userName,
-              avatar: data.user.avatar || "/avatar-generico.jpg",
+              image: data.user.image,
             }}
           />
         ) : (

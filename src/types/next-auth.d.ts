@@ -8,7 +8,7 @@ declare module "next-auth" {
       email: string
       userName: string
       token: string
-      image: string
+      image?: string
     }
   }
 
@@ -18,7 +18,7 @@ declare module "next-auth" {
     email: string
     userName: string
     token: string
-    image: string
+    image?: string
   }
 }
 
@@ -30,7 +30,7 @@ declare module "next-auth/jwt" {
       email: string
       userName: string
       token: string
-      image: string
+      image?: string
     }
   }
 }

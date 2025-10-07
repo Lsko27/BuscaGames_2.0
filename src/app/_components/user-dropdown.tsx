@@ -40,7 +40,6 @@ const UserDropdown = ({ params }: UserDropdownProps) => {
   const avatar = user.image ?? undefined
 
   if (!userName) return null
-  console.log("user.image/avatar", user.image)
 
   return (
     <DropdownMenu>

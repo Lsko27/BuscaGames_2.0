@@ -1,8 +1,18 @@
+"use client"
+
 import { Card, CardContent } from "./ui/card"
-import { Avatar, AvatarImage } from "./ui/avatar"
+import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar"
+import { useSession } from "next-auth/react"
 
 const QuestHeader = () => {
   const userProgress = 50
+  const { data: session, status } = useSession()
+
+  if (status === "loading" || !session?.user) return null
+
+  const user = session.user
+  const userName = user.userName || user.name || user.email?.split("@")[0] || "Usuário"
+  const avatar = user.image
 
   return (
     <div className="flex w-full flex-col gap-6 md:flex-row md:items-center md:gap-6">
@@ -21,10 +31,13 @@ const QuestHeader = () => {
             <div className="flex items-center justify-start gap-3">
               <div className="relative">
                 <Avatar className="h-16 w-16">
-                  <AvatarImage
-                    src="/imagemAvatar.png"
-                    className="object-cover"
-                  />
+                  {avatar ? (
+                    <AvatarImage src={avatar} alt={userName} />
+                  ) : (
+                    <AvatarFallback className="bg-gray-800">
+                      {userName[0].toUpperCase()}
+                    </AvatarFallback>
+                  )}
                 </Avatar>
 
                 <div className="absolute -right-1 -bottom-1 rounded-full border-2 border-gray-900 bg-green-500 px-2 py-0.5 text-xs font-bold text-black">
@@ -33,7 +46,7 @@ const QuestHeader = () => {
               </div>
 
               <div className="flex w-full flex-col gap-2">
-                <p className="text-xl text-white">Yuri Lesko</p>
+                <p className="text-xl text-white">{userName}</p>
 
                 <div className="h-2 w-full overflow-hidden rounded-full bg-gray-700">
                   <div
