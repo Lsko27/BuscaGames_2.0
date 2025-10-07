@@ -3,7 +3,6 @@
 import { signIn } from "next-auth/react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
-import { Button } from "./ui/button"
 import {
   Form,
   FormField,
@@ -21,6 +20,8 @@ import { Eye, EyeOff, InfoIcon } from "lucide-react"
 import { useState } from "react"
 import Swal from "sweetalert2"
 import { useRouter } from "next/navigation"
+import LoadingButton from "./loading-button"
+import Image from "next/image"
 
 // Schema Zod
 const formSchema = z.object({
@@ -174,13 +175,27 @@ const LoginForm = () => {
           </div>
 
           {/* BOTÃO */}
-          <Button
-            type="submit"
-            className="w-full rounded-lg bg-purple-700 text-lg text-white transition-all hover:bg-purple-800"
-            disabled={loading}
-          >
-            {loading ? "Entrando..." : "Entrar"}
-          </Button>
+          <div className="flex flex-col gap-5">
+            <LoadingButton
+              type="submit"
+              className="w-full rounded-lg bg-purple-700 text-lg text-white transition-all hover:bg-purple-800"
+              disabled={loading}
+            >
+              {loading ? "Entrando..." : "Entrar"}
+            </LoadingButton>
+
+            <LoadingButton
+              type="button"
+              className="w-full rounded-lg bg-gray-300 text-lg text-black transition-all hover:bg-gray-100"
+              disabled={loading}
+              onClick={() => signIn("google", { callbackUrl: "/" })}
+            >
+              <div className="flex items-center justify-center gap-3">
+                <Image src="/google.svg" alt="Google" width={20} height={20} />
+                <p>Entrar com Google</p>
+              </div>
+            </LoadingButton>
+          </div>
         </form>
       </Form>
     </div>

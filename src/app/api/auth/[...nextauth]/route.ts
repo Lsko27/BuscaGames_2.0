@@ -1,5 +1,6 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
+import GoogleProvider from "next-auth/providers/google"
 
 const handler = NextAuth({
   providers: [
@@ -30,15 +31,33 @@ const handler = NextAuth({
           name: data.user.name,
           email: data.user.email,
           userName: data.user.userName,
-          avatar: data.user.avatar,
+          image: data.user.image,
           token: data.token,
         }
       },
     }),
+
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code",
+        },
+      },
+    }),
   ],
+
   callbacks: {
     async jwt({ token, user }) {
-      if (user) token.user = user
+      if (user) {
+        token.user = {
+          ...user,
+          image: user.image,
+        }
+      }
       return token
     },
     async session({ session, token }) {
@@ -46,9 +65,11 @@ const handler = NextAuth({
       return session
     },
   },
+
   pages: {
     signIn: "/login",
   },
+
   secret: process.env.NEXT_AUTH_SECRET,
 })
 
