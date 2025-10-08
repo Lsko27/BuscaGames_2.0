@@ -6,9 +6,11 @@ import Image from "next/image"
 import CartProducts from "./_components/cart-product"
 import FinishOrder from "./_components/finish-order"
 import Rewards from "./_components/rewards"
+import { toast } from "sonner"
 
 interface Game {
   id: string
+  cartItemId: string
   title: string
   image: string
   price: number
@@ -52,18 +54,19 @@ const CartPage = () => {
         if (data?.cart?.items) {
           const games = data.cart.items.map((item: CartItemResponse) => ({
             id: item.game.id,
+            cartItemId: item.id, // ✅ Importante para deletar
             title: item.game.title,
             image: `http://localhost:5050${item.game.image}`,
             price: Number(item.game.price),
             originalPrice: Number(item.game.originalPrice),
             rating: item.game.rating,
             categories: item.game.tags || [],
-            cartItemId: item.id, // opcional se precisar para deletar
           }))
           setCartGames(games)
         }
       } catch (err) {
         console.error("Erro ao buscar carrinho:", err)
+        toast.error("Erro ao buscar itens no carrinho!")
       }
     }
 
@@ -71,14 +74,18 @@ const CartPage = () => {
   }, [userId])
 
   // Remove um item do carrinho via API
-  const removeGame = async (itemId: string) => {
+  const removeGame = async (cartItemId: string) => {
     try {
-      await fetch(`http://localhost:5050/cart/items/${itemId}`, {
+      await fetch(`http://localhost:5050/cart/items/${cartItemId}`, {
         method: "DELETE",
       })
-      setCartGames((prev) => prev.filter((game) => game.id !== itemId))
+      setCartGames((prev) =>
+        prev.filter((game) => game.cartItemId !== cartItemId),
+      )
+      toast.success("Jogo removido com sucesso!")
     } catch (err) {
       console.error("Erro ao remover jogo do carrinho:", err)
+      toast.error("Erro ao remover jogo!")
     }
   }
 
@@ -89,8 +96,10 @@ const CartPage = () => {
         method: "DELETE",
       })
       setCartGames([])
+      toast.success("Carrinho esvaziado com sucesso!")
     } catch (err) {
       console.error("Erro ao limpar carrinho:", err)
+      toast.error("Erro ao esvaziar carrinho!")
     }
   }
 

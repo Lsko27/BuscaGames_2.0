@@ -8,6 +8,7 @@ import CartItem from "@/app/cart/_components/cart-item"
 
 interface Game {
   id: string
+  cartItemId: string // ✅ Adicionado
   image: string
   title: string
   price: number
@@ -15,7 +16,7 @@ interface Game {
 
 interface CartProductsProps {
   games: Game[]
-  removeGame: (id: string) => void
+  removeGame: (cartItemId: string) => void // ✅ Recebe cartItemId
   clearCart: () => void
 }
 
@@ -57,9 +58,9 @@ const CartProducts = ({ games, removeGame, clearCart }: CartProductsProps) => {
             <div className="flex flex-col gap-4">
               {games.map((game) => (
                 <CartItem
-                  key={game.id}
+                  key={game.cartItemId}
                   game={game}
-                  onRemove={() => removeGame(game.id)}
+                  onRemove={() => removeGame(game.cartItemId)}
                 />
               ))}
             </div>
