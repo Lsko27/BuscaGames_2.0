@@ -134,10 +134,12 @@ const GameCard = ({ params, userId }: GameCardProps) => {
                   <Button
                     variant="ghost"
                     size="lg"
-                    className={`rounded-full ${isFavorite ? "text-red-500" : ""}`}
+                    className="rounded-full"
                     onClick={toggleFavorite}
                   >
-                    <Heart />
+                    <Heart
+                      className={isFavorite ? "fill-red-500 text-red-500" : ""}
+                    />
                   </Button>
                 </div>
               </div>
