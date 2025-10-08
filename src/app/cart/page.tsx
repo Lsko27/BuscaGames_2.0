@@ -50,7 +50,7 @@ const CartPage = () => {
         const data = await res.json()
         if (data?.items) {
           const games = data.items.map((item: CartItemResponse) => ({
-            id: item.game.id,
+            id: item.id,
             title: item.game.title,
             image: `http://localhost:5050${item.game.image}`,
             price: Number(item.game.price),
@@ -67,6 +67,30 @@ const CartPage = () => {
 
     fetchCart()
   }, [userId])
+
+  // Remove um item do carrinho via API
+  const removeGame = async (itemId: string) => {
+    try {
+      await fetch(`http://localhost:5050/cart/items/${itemId}`, {
+        method: "DELETE",
+      })
+      setCartGames((prev) => prev.filter((game) => game.id !== itemId))
+    } catch (err) {
+      console.error("Erro ao remover jogo do carrinho:", err)
+    }
+  }
+
+  // Limpa todo o carrinho
+  const clearCart = async () => {
+    try {
+      await fetch(`http://localhost:5050/cart?userId=${userId}`, {
+        method: "DELETE",
+      })
+      setCartGames([])
+    } catch (err) {
+      console.error("Erro ao limpar carrinho:", err)
+    }
+  }
 
   return (
     <>
@@ -90,7 +114,11 @@ const CartPage = () => {
 
       <div className="flex min-h-screen flex-col gap-8 bg-slate-950 px-4 py-10 sm:px-6 md:flex-row md:px-16">
         <div className="w-full md:w-2/3">
-          <CartProducts games={cartGames} />
+          <CartProducts
+            games={cartGames}
+            removeGame={removeGame}
+            clearCart={clearCart}
+          />
         </div>
 
         <div className="flex w-full flex-col gap-8 md:w-1/3">

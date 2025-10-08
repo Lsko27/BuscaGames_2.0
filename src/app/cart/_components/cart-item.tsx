@@ -9,9 +9,10 @@ interface CartItemProps {
     title: string
     price: number
   }
+  onRemove: () => void
 }
 
-const CartItem = ({ game }: CartItemProps) => {
+const CartItem = ({ game, onRemove }: CartItemProps) => {
   return (
     <div className="flex w-full items-center justify-between rounded-lg bg-gray-700 p-5">
       <div className="flex items-center justify-between gap-4">
@@ -31,7 +32,7 @@ const CartItem = ({ game }: CartItemProps) => {
             currency: "BRL",
           }).format(Number(game.price))}
         </p>
-        <Button variant="ghost">
+        <Button variant="ghost" onClick={onRemove}>
           <Trash2 className="text-red-500" />
         </Button>
       </div>

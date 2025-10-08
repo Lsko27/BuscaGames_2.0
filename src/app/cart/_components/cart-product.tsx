@@ -15,9 +15,11 @@ interface Game {
 
 interface CartProductsProps {
   games: Game[]
+  removeGame: (id: string) => void
+  clearCart: () => void
 }
 
-const CartProducts = ({ games }: CartProductsProps) => {
+const CartProducts = ({ games, removeGame, clearCart }: CartProductsProps) => {
   return (
     <>
       <Card className="border-0 bg-gray-800">
@@ -54,7 +56,11 @@ const CartProducts = ({ games }: CartProductsProps) => {
           ) : (
             <div className="flex flex-col gap-4">
               {games.map((game) => (
-                <CartItem key={game.id} game={game} />
+                <CartItem
+                  key={game.id}
+                  game={game}
+                  onRemove={() => removeGame(game.id)}
+                />
               ))}
             </div>
           )}
@@ -74,6 +80,10 @@ const CartProducts = ({ games }: CartProductsProps) => {
 
         <Link
           href="#"
+          onClick={(e) => {
+            e.preventDefault()
+            clearCart()
+          }}
           className="text-md text-red-400 transition-colors hover:underline"
         >
           <div className="flex items-center gap-2">
