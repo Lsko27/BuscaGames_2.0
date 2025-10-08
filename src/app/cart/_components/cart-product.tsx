@@ -4,7 +4,7 @@ import Link from "next/link"
 import { ShoppingCart, ArrowLeft, Trash2 } from "lucide-react"
 import { Card, CardContent } from "@/app/_components/ui/card"
 import { Button } from "@/app/_components/ui/button"
-import CartItem from "@/app/_components/cart-item"
+import CartItem from "@/app/cart/_components/cart-item"
 
 interface Game {
   id: string
@@ -26,7 +26,7 @@ const CartProducts = ({ games }: CartProductsProps) => {
             <p className="text-gray-300">Produto</p>
             <div className="flex justify-between gap-20">
               <p className="text-gray-300">Preço</p>
-              <p className="text-gray-300">Lixeira</p>
+              <p className="text-gray-300">Remover</p>
             </div>
           </div>
 

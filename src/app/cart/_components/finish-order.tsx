@@ -16,6 +16,7 @@ import { SiPix } from "react-icons/si"
 import { Card, CardContent } from "@/app/_components/ui/card"
 import { Input } from "@/app/_components/ui/input"
 import { Button } from "@/app/_components/ui/button"
+import { useState } from "react"
 
 const couponSchema = z.object({
   coupon: z
@@ -26,9 +27,22 @@ const couponSchema = z.object({
 
 type CouponFormData = z.infer<typeof couponSchema>
 
-const FinishOrder = () => {
+interface Game {
+  id: string
+  title: string
+  price: number
+}
+
+interface FinishOrderProps {
+  games: Game[]
+}
+
+const FinishOrder = ({ games }: FinishOrderProps) => {
+  const [discount, setDiscount] = useState(0)
+
   const {
     handleSubmit,
+    register,
     formState: { errors },
     reset,
   } = useForm<CouponFormData>({
@@ -37,12 +51,18 @@ const FinishOrder = () => {
 
   const onSubmit = (data: CouponFormData) => {
     if (data.coupon.toUpperCase() === "DESCONTO10") {
-      toast.success("Cupom aplicado com sucesso! 🤑 Desconto de 10% garantido.")
+      const discountValue = total * 0.1
+      setDiscount(discountValue)
+      toast.success("Cupom aplicado com sucesso! Desconto de 10% garantido.")
     } else {
-      toast.error("Cupom inválido 😅")
+      toast.error("Cupom inválido!")
     }
     reset()
+    console.log(data.coupon)
   }
+
+  // Soma total dos preços
+  const total = games.reduce((acc, game) => acc + game.price, 0)
 
   return (
     <Card className="border-0 bg-gray-800">
@@ -53,16 +73,32 @@ const FinishOrder = () => {
           </h3>
           <div className="mt-4 flex items-center justify-between">
             <p>Subtotal:</p>
-            <p>R$ 0,00</p>
+            <p>
+              {total.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+              })}
+            </p>
           </div>
           <div className="mt-1 flex items-center justify-between">
             <p>Desconto:</p>
-            <p>- R$ 0,00</p>
+            <p>
+              -{" "}
+              {discount.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+              })}
+            </p>
           </div>
         </div>
         <div className="mt-4 flex items-center justify-between">
           <h3 className="text-xl font-semibold text-gray-200">Total:</h3>
-          <p className="text-xl font-semibold text-gray-200">R$ 0,00</p>
+          <p className="text-xl font-semibold text-gray-200">
+            {(total - discount).toLocaleString("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            })}
+          </p>
         </div>
 
         <div className="mt-6">
@@ -72,10 +108,12 @@ const FinishOrder = () => {
             className="mt-3 flex w-full items-center gap-2"
           >
             <Input
+              {...register("coupon")}
               type="text"
               placeholder="Digite seu cupom"
               className="w-full border-0 bg-gray-700 text-white outline-0 placeholder:text-gray-400"
             />
+
             <Button type="submit" className="bg-purple-700 hover:bg-purple-800">
               Aplicar
             </Button>
@@ -89,7 +127,7 @@ const FinishOrder = () => {
           <Button
             variant="ghost"
             className="w-full bg-green-600 px-8 py-5 text-lg text-white"
-            disabled
+            disabled={games.length === 0}
           >
             <div className="flex items-center gap-2">
               Finalizar compra

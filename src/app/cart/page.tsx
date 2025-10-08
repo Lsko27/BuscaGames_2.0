@@ -94,7 +94,7 @@ const CartPage = () => {
         </div>
 
         <div className="flex w-full flex-col gap-8 md:w-1/3">
-          <FinishOrder />
+          <FinishOrder games={cartGames} />
           <Rewards progress={userProgress} />
         </div>
       </div>
