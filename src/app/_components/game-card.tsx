@@ -8,6 +8,7 @@ import { Eye, Heart, ShoppingCart } from "lucide-react"
 import { Button } from "./ui/button"
 import { useEffect, useState } from "react"
 import { toast } from "sonner"
+import { useCart } from "@/_context/cart-context"
 
 interface GameCardProps {
   params: {
@@ -67,6 +68,8 @@ const GameCard = ({ params, userId }: GameCardProps) => {
     }
   }
 
+  const { setCartCount, refreshCart } = useCart()
+
   const addToCart = async () => {
     if (!userId) {
       toast.error("Você precisa estar logado para adicionar ao carrinho")
@@ -83,6 +86,10 @@ const GameCard = ({ params, userId }: GameCardProps) => {
       if (!res.ok) throw new Error("Erro ao adicionar ao carrinho")
 
       toast.success("Jogo adicionado ao carrinho")
+
+      setCartCount((prev) => prev + 1)
+
+      await refreshCart()
     } catch (err) {
       console.error(err)
       toast.error("Não foi possível adicionar o jogo")

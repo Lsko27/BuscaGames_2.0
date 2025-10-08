@@ -17,37 +17,19 @@ import NavItem from "./nav-item"
 import { Badge } from "./ui/badge"
 import { Sheet, SheetTrigger } from "./ui/sheet"
 import SidebarButton from "./sidebar-button"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useSession } from "next-auth/react"
 import UserDropdown from "./user-dropdown"
+import { useCart } from "@/_context/cart-context"
 
 const Header = () => {
   const [sheetOpen, setSheetOpen] = useState(false)
-  const [cartCount, setCartCount] = useState(0)
   const { data } = useSession()
-  const userId = data?.user.id
 
-  useEffect(() => {
-    if (!userId) return
-
-    const fetchCartCount = async () => {
-      try {
-        const res = await fetch(`http://localhost:5050/cart?userId=${userId}`)
-        const data = await res.json()
-
-        // Aqui usamos o totalItems que o backend já envia
-        if (data?.totalItems !== undefined) {
-          setCartCount(data.totalItems)
-        }
-      } catch (err) {
-        console.error("Erro ao buscar carrinho:", err)
-      }
-    }
-
-    fetchCartCount()
-  }, [userId])
+  const { cartCount } = useCart()
 
   const handleSheetClose = () => setSheetOpen(false)
+
   return (
     <div className="flex items-center justify-between border-b border-purple-600 bg-gray-900 px-10 py-5">
       {/* Logo */}
@@ -65,7 +47,7 @@ const Header = () => {
               <MenuIcon />
             </Button>
           </SheetTrigger>
-          <SidebarButton onClick={handleSheetClose} cartCount={cartCount} />
+          <SidebarButton onClick={handleSheetClose} />
         </Sheet>
       </div>
 
@@ -98,6 +80,7 @@ const Header = () => {
         <Button size="lg" variant="ghost" className="rounded-full">
           <MoonIcon />
         </Button>
+
         <div className="relative">
           <Link href="/cart">
             <Button size="lg" variant="ghost" className="rounded-full">
@@ -112,6 +95,7 @@ const Header = () => {
             {cartCount}
           </Badge>
         </div>
+
         {data?.user ? (
           <UserDropdown
             params={{

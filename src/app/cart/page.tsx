@@ -7,6 +7,7 @@ import CartProducts from "./_components/cart-product"
 import FinishOrder from "./_components/finish-order"
 import Rewards from "./_components/rewards"
 import { toast } from "sonner"
+import { useCart } from "@/_context/cart-context"
 
 interface Game {
   id: string
@@ -39,6 +40,7 @@ interface CartItemResponse {
 const CartPage = () => {
   const { data: session } = useSession()
   const userId = session?.user?.id
+  const { refreshCart } = useCart()
 
   const [cartGames, setCartGames] = useState<Game[]>([])
   const userProgress = 50
@@ -79,9 +81,14 @@ const CartPage = () => {
       await fetch(`http://localhost:5050/cart/items/${cartItemId}`, {
         method: "DELETE",
       })
+
       setCartGames((prev) =>
         prev.filter((game) => game.cartItemId !== cartItemId),
       )
+
+      // Atualiza badge do Header
+      await refreshCart()
+
       toast.success("Jogo removido com sucesso!")
     } catch (err) {
       console.error("Erro ao remover jogo do carrinho:", err)
@@ -95,7 +102,12 @@ const CartPage = () => {
       await fetch(`http://localhost:5050/cart?userId=${userId}`, {
         method: "DELETE",
       })
+
       setCartGames([])
+
+      // Atualiza badge do Header e Sidebar
+      await refreshCart()
+
       toast.success("Carrinho esvaziado com sucesso!")
     } catch (err) {
       console.error("Erro ao limpar carrinho:", err)

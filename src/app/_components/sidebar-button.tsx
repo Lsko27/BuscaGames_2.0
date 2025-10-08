@@ -16,14 +16,15 @@ import { SheetContent, SheetHeader, SheetTitle } from "./ui/sheet"
 import Link from "next/link"
 import { useSession } from "next-auth/react"
 import UserDropdown from "./user-dropdown"
+import { useCart } from "@/_context/cart-context" // ✅ import do contexto
 
 interface SidebarButtonProps {
   onClick?: () => void
-  cartCount: number
 }
 
-const SidebarButton = ({ onClick, cartCount }: SidebarButtonProps) => {
+const SidebarButton = ({ onClick }: SidebarButtonProps) => {
   const { data } = useSession()
+  const { cartCount } = useCart() // ✅ pegando o cartCount do contexto
 
   return (
     <SheetContent className="w-[55%] bg-gray-900 p-6 text-white">
@@ -80,7 +81,8 @@ const SidebarButton = ({ onClick, cartCount }: SidebarButtonProps) => {
             className="absolute -top-1 -right-1 rounded-full"
             variant="destructive"
           >
-            {cartCount}
+            {cartCount}{" "}
+            {/* ✅ agora atualizado automaticamente pelo contexto */}
           </Badge>
         </div>
 
