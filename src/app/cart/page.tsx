@@ -48,15 +48,17 @@ const CartPage = () => {
       try {
         const res = await fetch(`http://localhost:5050/cart?userId=${userId}`)
         const data = await res.json()
-        if (data?.items) {
-          const games = data.items.map((item: CartItemResponse) => ({
-            id: item.id,
+
+        if (data?.cart?.items) {
+          const games = data.cart.items.map((item: CartItemResponse) => ({
+            id: item.game.id,
             title: item.game.title,
             image: `http://localhost:5050${item.game.image}`,
             price: Number(item.game.price),
             originalPrice: Number(item.game.originalPrice),
             rating: item.game.rating,
             categories: item.game.tags || [],
+            cartItemId: item.id, // opcional se precisar para deletar
           }))
           setCartGames(games)
         }
