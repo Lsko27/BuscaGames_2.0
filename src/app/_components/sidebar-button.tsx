@@ -19,9 +19,10 @@ import UserDropdown from "./user-dropdown"
 
 interface SidebarButtonProps {
   onClick?: () => void
+  cartCount: number
 }
 
-const SidebarButton = ({ onClick }: SidebarButtonProps) => {
+const SidebarButton = ({ onClick, cartCount }: SidebarButtonProps) => {
   const { data } = useSession()
 
   return (
@@ -79,7 +80,7 @@ const SidebarButton = ({ onClick }: SidebarButtonProps) => {
             className="absolute -top-1 -right-1 rounded-full"
             variant="destructive"
           >
-            0
+            {cartCount}
           </Badge>
         </div>
 

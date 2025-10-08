@@ -17,13 +17,33 @@ import NavItem from "./nav-item"
 import { Badge } from "./ui/badge"
 import { Sheet, SheetTrigger } from "./ui/sheet"
 import SidebarButton from "./sidebar-button"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useSession } from "next-auth/react"
 import UserDropdown from "./user-dropdown"
 
 const Header = () => {
   const [sheetOpen, setSheetOpen] = useState(false)
+  const [cartCount, setCartCount] = useState(0)
   const { data } = useSession()
+  const userId = data?.user.id
+
+  useEffect(() => {
+    if (!userId) return
+
+    const fetchCartCount = async () => {
+      try {
+        const res = await fetch(`http://localhost:5050/cart?userId=${userId}`)
+        const data = await res.json()
+        if (data?.items) {
+          setCartCount(data.items.length) // aqui pegamos a quantidade de itens
+        }
+      } catch (err) {
+        console.error("Erro ao buscar carrinho:", err)
+      }
+    }
+
+    fetchCartCount()
+  }, [userId])
 
   const handleSheetClose = () => setSheetOpen(false)
   return (
@@ -43,7 +63,7 @@ const Header = () => {
               <MenuIcon />
             </Button>
           </SheetTrigger>
-          <SidebarButton onClick={handleSheetClose} />
+          <SidebarButton onClick={handleSheetClose} cartCount={cartCount} />
         </Sheet>
       </div>
 
@@ -87,7 +107,7 @@ const Header = () => {
             className="absolute -top-1 -right-1 rounded-full"
             variant="destructive"
           >
-            0
+            {cartCount}
           </Badge>
         </div>
         {data?.user ? (
