@@ -34,8 +34,10 @@ const Header = () => {
       try {
         const res = await fetch(`http://localhost:5050/cart?userId=${userId}`)
         const data = await res.json()
-        if (data?.items) {
-          setCartCount(data.items.length) // aqui pegamos a quantidade de itens
+
+        // Aqui usamos o totalItems que o backend já envia
+        if (data?.totalItems !== undefined) {
+          setCartCount(data.totalItems)
         }
       } catch (err) {
         console.error("Erro ao buscar carrinho:", err)
