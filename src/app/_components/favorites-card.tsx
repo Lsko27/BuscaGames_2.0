@@ -25,7 +25,7 @@ const FavoriteCards = ({
             src={favoriteCard.image}
             alt={favoriteCard.title}
             fill
-            className="h-full w-full object-cover"
+            className="h-full w-full rounded-md object-cover"
             priority
           />
         </div>

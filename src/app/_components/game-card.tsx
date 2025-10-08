@@ -20,7 +20,7 @@ interface GameCardProps {
     rating: number
     categories: string[]
   }
-  userId: string
+  userId?: string
 }
 
 const GameCard = ({ params, userId }: GameCardProps) => {

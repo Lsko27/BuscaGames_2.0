@@ -77,9 +77,11 @@ const Header = () => {
           <MoonIcon />
         </Button>
         <div className="relative">
-          <Button size="lg" variant="ghost" className="rounded-full">
-            <ShoppingCart />
-          </Button>
+          <Link href="/cart">
+            <Button size="lg" variant="ghost" className="rounded-full">
+              <ShoppingCart />
+            </Button>
+          </Link>
           {/* Badge ShadCN */}
           <Badge
             className="absolute -top-1 -right-1 rounded-full"

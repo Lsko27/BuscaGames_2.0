@@ -65,14 +65,16 @@ const SidebarButton = ({ onClick }: SidebarButtonProps) => {
         </Button>
 
         <div className="relative">
-          <Button
-            size="lg"
-            variant="ghost"
-            className="rounded-full text-white"
-            onClick={onClick}
-          >
-            <ShoppingCart />
-          </Button>
+          <Link href="/cart">
+            <Button
+              size="lg"
+              variant="ghost"
+              className="rounded-full text-white"
+              onClick={onClick}
+            >
+              <ShoppingCart />
+            </Button>
+          </Link>
           <Badge
             className="absolute -top-1 -right-1 rounded-full"
             variant="destructive"

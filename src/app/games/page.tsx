@@ -60,8 +60,9 @@ const GamesPage = () => {
         if (category) params.set("category", category)
         if (maxPrice) params.set("maxPrice", maxPrice)
 
-        const url = `http://localhost:5050/games?${params.toString()}`
-        const res = await fetch(url)
+        const res = await fetch(
+          `http://localhost:5050/games?${params.toString()}`,
+        )
         const data: GameFromAPI[] = await res.json()
 
         const formatted: GameForCard[] = data.map((g) => ({
@@ -78,7 +79,7 @@ const GamesPage = () => {
 
         setGames(formatted)
       } catch (err) {
-        console.error(err)
+        console.error("Erro ao carregar jogos:", err)
       } finally {
         setLoading(false)
       }
@@ -88,7 +89,6 @@ const GamesPage = () => {
   }, [category, maxPrice])
 
   if (loading) return <LoadingScreen />
-  if (!session) return <p>Você precisa estar logado para ver os jogos</p>
 
   return (
     <div className="flex flex-col items-start justify-center gap-6 bg-zinc-900 px-4 py-6 md:flex-row md:px-10">
@@ -123,7 +123,11 @@ const GamesPage = () => {
       {/* Grid de jogos */}
       <div className="grid w-full max-w-[1800px] grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {games.map((game) => (
-          <GameCard key={game.id} params={game} userId={session.user.id} />
+          <GameCard
+            key={game.id}
+            params={game}
+            userId={session?.user?.id ?? ""}
+          />
         ))}
       </div>
     </div>
