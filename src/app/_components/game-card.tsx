@@ -20,7 +20,7 @@ interface GameCardProps {
     rating: number
     categories: string[]
   }
-  userId: string // id do usuário logado
+  userId: string
 }
 
 const GameCard = ({ params, userId }: GameCardProps) => {
@@ -29,8 +29,7 @@ const GameCard = ({ params, userId }: GameCardProps) => {
   // Verifica se já está nos favoritos
   useEffect(() => {
     const checkFavorite = async () => {
-      console.log("🔹 userId:", userId, "params.id:", params.id) // <-- log
-      if (!userId) return // evita fazer fetch sem userId
+      if (!userId) return
 
       try {
         const res = await fetch(`http://localhost:5050/favorites/${userId}`)

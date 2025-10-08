@@ -4,9 +4,13 @@ import { Badge } from "./ui/badge"
 import RatingStars from "./rating-stars"
 import { Heart, ShoppingCart } from "lucide-react"
 import { Button } from "./ui/button"
+import { useEffect, useState } from "react"
+import { toast } from "sonner"
+import { useSession } from "next-auth/react"
 
 interface GameCardProps {
   params: {
+    id: string
     title: string
     image: string
     price: number
@@ -16,6 +20,50 @@ interface GameCardProps {
 }
 
 const HomeGameCards = ({ params }: GameCardProps) => {
+  const [isFavorite, setIsFavorite] = useState(false)
+  const { data: session } = useSession()
+  const userId = session?.user.id
+
+  useEffect(() => {
+    const checkFavorite = async () => {
+      if (!userId) return
+
+      try {
+        const res = await fetch(`http://localhost:5050/favorites/${userId}`)
+        const favoriteGameIds: string[] = await res.json()
+        setIsFavorite(favoriteGameIds.includes(params.id))
+      } catch (err) {
+        console.error("Erro ao buscar favoritos:", err)
+      }
+    }
+    checkFavorite()
+  }, [params.id, userId])
+
+  const toggleFavorite = async () => {
+    try {
+      if (isFavorite) {
+        await fetch("http://localhost:5050/favorites", {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userId, gameId: params.id }),
+        })
+        setIsFavorite(false)
+        toast.success("Removido dos favoritos")
+      } else {
+        await fetch("http://localhost:5050/favorites", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userId, gameId: params.id }),
+        })
+        setIsFavorite(true)
+        toast.success("Adicionado aos favoritos")
+      }
+    } catch (err) {
+      console.error(err)
+      toast.error("Erro ao atualizar favoritos")
+    }
+  }
+
   return (
     <Card className="group relative w-full max-w-md overflow-hidden border-none p-0">
       <CardContent className="p-0">
@@ -61,8 +109,15 @@ const HomeGameCards = ({ params }: GameCardProps) => {
                     <p className="text-lg">Adicionar</p>
                   </Button>
 
-                  <Button variant="ghost" size="sm" className="rounded-full">
-                    <Heart />
+                  <Button
+                    variant="ghost"
+                    size="lg"
+                    className="rounded-full"
+                    onClick={toggleFavorite}
+                  >
+                    <Heart
+                      className={isFavorite ? "fill-red-500 text-red-500" : ""}
+                    />
                   </Button>
                 </div>
               </div>

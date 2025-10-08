@@ -3,7 +3,7 @@
 import LoadingScreen from "@/app/_components/loading-screen"
 import QuestCards from "@/app/_components/quest-cards"
 import { Button } from "@/app/_components/ui/button"
-import { Card } from "@/app/_components/ui/card"
+import { Card, CardContent } from "@/app/_components/ui/card"
 import { QuestStatus } from "@/types/quest"
 import { History } from "lucide-react"
 import { useEffect, useState } from "react"
@@ -62,31 +62,41 @@ const AchievementsTab = () => {
   }
 
   return (
-    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {completedQuests.map((quest) => {
-        let status: QuestStatus
+    <div className="px-4 py-6 sm:px-6 lg:px-8">
+      <Card className="border-0 bg-gray-800 text-white">
+        <CardContent>
+          <h2 className="mb-6 text-xl font-semibold sm:text-2xl">
+            Minhas Conquistas
+          </h2>
 
-        if (quest.progress === 0) status = QuestStatus.NOT_STARTED
-        else if (quest.progress >= quest.totalSteps)
-          status = QuestStatus.COMPLETED
-        else status = QuestStatus.IN_PROGRESS
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {completedQuests.map((quest) => {
+              let status: QuestStatus
 
-        return (
-          <QuestCards
-            key={quest.id}
-            quest={{
-              id: quest.id,
-              title: quest.title,
-              description: quest.description,
-              points: quest.points,
-              progress: quest.progress,
-              totalSteps: quest.totalSteps,
-              type: quest.type.toUpperCase() as "DAILY" | "WEEKLY",
-              status,
-            }}
-          />
-        )
-      })}
+              if (quest.progress === 0) status = QuestStatus.NOT_STARTED
+              else if (quest.progress >= quest.totalSteps)
+                status = QuestStatus.COMPLETED
+              else status = QuestStatus.IN_PROGRESS
+
+              return (
+                <QuestCards
+                  key={quest.id}
+                  quest={{
+                    id: quest.id,
+                    title: quest.title,
+                    description: quest.description,
+                    points: quest.points,
+                    progress: quest.progress,
+                    totalSteps: quest.totalSteps,
+                    type: quest.type.toUpperCase() as "DAILY" | "WEEKLY",
+                    status,
+                  }}
+                />
+              )
+            })}
+          </div>
+        </CardContent>
+      </Card>
     </div>
   )
 }

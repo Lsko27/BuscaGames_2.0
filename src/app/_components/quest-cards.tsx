@@ -12,7 +12,7 @@ const QuestCards = ({ quest }: QuestCardsProps) => {
   const IconComponent = type === "DAILY" ? ClockFading : Calendar
 
   return (
-    <Card className="max-h-[270px] min-h-[270px] max-w-[350px] min-w-[350px] border-blue-500 bg-gray-900">
+    <Card className="min-h-[270px] w-full border-blue-500 bg-gray-900">
       <CardContent className="flex h-full flex-col">
         {/* Cabeçalho */}
         <div className="flex items-center justify-between">
@@ -25,7 +25,7 @@ const QuestCards = ({ quest }: QuestCardsProps) => {
         </div>
 
         {/* Conteúdo */}
-        <div className="mt-6">
+        <div className="mt-6 flex-1">
           <h3 className="text-xl font-semibold text-white">{title}</h3>
           <p className="mt-4 text-sm text-gray-400">
             {progress} de {totalSteps} etapas concluídas

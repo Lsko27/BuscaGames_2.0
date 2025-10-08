@@ -123,11 +123,7 @@ const GamesPage = () => {
       {/* Grid de jogos */}
       <div className="grid w-full max-w-[1800px] grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {games.map((game) => (
-          <GameCard
-            key={game.id}
-            params={game}
-            userId={session.user.id} // ✅ Passando userId para o card
-          />
+          <GameCard key={game.id} params={game} userId={session.user.id} />
         ))}
       </div>
     </div>
