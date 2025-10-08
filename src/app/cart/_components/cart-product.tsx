@@ -4,7 +4,7 @@ import Link from "next/link"
 import { ShoppingCart, ArrowLeft, Trash2 } from "lucide-react"
 import { Card, CardContent } from "@/app/_components/ui/card"
 import { Button } from "@/app/_components/ui/button"
-import Image from "next/image"
+import CartItem from "@/app/_components/cart-item"
 
 interface Game {
   id: string
@@ -52,48 +52,15 @@ const CartProducts = ({ games }: CartProductsProps) => {
               </Button>
             </div>
           ) : (
-            // Lista de jogos no carrinho
             <div className="flex flex-col gap-4">
               {games.map((game) => (
-                <>
-                  <div
-                    key={game.id}
-                    className="flex w-full items-center justify-between rounded-lg bg-gray-700 p-5"
-                  >
-                    <div className="flex items-center justify-between gap-4">
-                      <Image
-                        src={game.image}
-                        alt={`Imagem de ${game.title}`}
-                        width={160}
-                        height={140}
-                        className="rounded-md"
-                      />
-                      <p className="text-lg text-gray-200">{game.title}</p>
-                    </div>
-                    <div className="flex items-center justify-between gap-20 px-5">
-                      <p className="text-gray-200">
-                        {Intl.NumberFormat("pt-BR", {
-                          style: "currency",
-                          currency: "BRL",
-                        }).format(Number(game.price))}
-                      </p>
-                      <Button variant="ghost">
-                        <Trash2 className="text-red-500" />
-                      </Button>
-                    </div>
-                  </div>
-                </>
+                <CartItem key={game.id} game={game} />
               ))}
-
-              <div className="flex justify-between border-t border-gray-500 px-10 pt-5">
-                <h3 className="text-xl font-medium text-gray-300">Total:</h3>
-              </div>
             </div>
           )}
         </CardContent>
       </Card>
 
-      {/* Links fora do card */}
       <div className="mt-3 flex items-center justify-between px-1">
         <Link
           href="/games"
@@ -106,7 +73,7 @@ const CartProducts = ({ games }: CartProductsProps) => {
         </Link>
 
         <Link
-          href="/checkout"
+          href="#"
           className="text-md text-red-400 transition-colors hover:underline"
         >
           <div className="flex items-center gap-2">

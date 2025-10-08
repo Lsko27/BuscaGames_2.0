@@ -1,11 +1,72 @@
 "use client"
 
+import { useSession } from "next-auth/react"
+import { useEffect, useState } from "react"
 import Image from "next/image"
+import CartProducts from "./_components/cart-product"
 import FinishOrder from "./_components/finish-order"
 import Rewards from "./_components/rewards"
 
+interface Game {
+  id: string
+  title: string
+  image: string
+  price: number
+  originalPrice: number
+  rating: number
+  categories: string[]
+}
+
+interface CartItemResponse {
+  id: string
+  cartId: string
+  gameId: string
+  quantity: number
+  addedAt: string
+  game: {
+    id: string
+    title: string
+    image: string
+    price: string
+    originalPrice: string
+    rating: number
+    tags: string[]
+  }
+}
+
 const CartPage = () => {
+  const { data: session } = useSession()
+  const userId = session?.user?.id
+
+  const [cartGames, setCartGames] = useState<Game[]>([])
   const userProgress = 50
+
+  useEffect(() => {
+    if (!userId) return
+
+    const fetchCart = async () => {
+      try {
+        const res = await fetch(`http://localhost:5050/cart?userId=${userId}`)
+        const data = await res.json()
+        if (data?.items) {
+          const games = data.items.map((item: CartItemResponse) => ({
+            id: item.game.id,
+            title: item.game.title,
+            image: `http://localhost:5050${item.game.image}`,
+            price: Number(item.game.price),
+            originalPrice: Number(item.game.originalPrice),
+            rating: item.game.rating,
+            categories: item.game.tags || [],
+          }))
+          setCartGames(games)
+        }
+      } catch (err) {
+        console.error("Erro ao buscar carrinho:", err)
+      }
+    }
+
+    fetchCart()
+  }, [userId])
 
   return (
     <>
@@ -17,8 +78,6 @@ const CartPage = () => {
           className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0.6)] to-[rgba(0,0,0,0.4)]" />
-
-        {/* Texto centralizado */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
           <h1 className="text-center text-4xl font-bold">
             Carrinho de compras
@@ -31,7 +90,7 @@ const CartPage = () => {
 
       <div className="flex min-h-screen flex-col gap-8 bg-slate-950 px-4 py-10 sm:px-6 md:flex-row md:px-16">
         <div className="w-full md:w-2/3">
-          {/* <CartProducts games={game}/> */}
+          <CartProducts games={cartGames} />
         </div>
 
         <div className="flex w-full flex-col gap-8 md:w-1/3">

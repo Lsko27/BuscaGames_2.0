@@ -67,6 +67,28 @@ const GameCard = ({ params, userId }: GameCardProps) => {
     }
   }
 
+  const addToCart = async () => {
+    if (!userId) {
+      toast.error("Você precisa estar logado para adicionar ao carrinho")
+      return
+    }
+
+    try {
+      const res = await fetch("http://localhost:5050/cart/items", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId, gameId: params.id }),
+      })
+
+      if (!res.ok) throw new Error("Erro ao adicionar ao carrinho")
+
+      toast.success("Jogo adicionado ao carrinho")
+    } catch (err) {
+      console.error(err)
+      toast.error("Não foi possível adicionar o jogo")
+    }
+  }
+
   return (
     <Card className="group relative w-full max-w-xl overflow-hidden border-none p-0">
       <CardContent className="p-0">
@@ -121,7 +143,11 @@ const GameCard = ({ params, userId }: GameCardProps) => {
               <div className="mt-2 flex items-center justify-between gap-1">
                 <RatingStars rating={params.rating} />
                 <div className="flex items-center justify-center gap-3">
-                  <Button variant="ghost" className="bg-green-600">
+                  <Button
+                    variant="ghost"
+                    className="bg-green-600"
+                    onClick={addToCart}
+                  >
                     <ShoppingCart />
                     <p className="text-lg">Adicionar</p>
                   </Button>
