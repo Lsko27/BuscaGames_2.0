@@ -51,7 +51,11 @@ const UserDropdown = ({ params }: UserDropdownProps) => {
           <div className="flex items-center justify-center gap-3">
             <Avatar>
               {avatar ? (
-                <AvatarImage src={avatar} alt={userName} />
+                <AvatarImage
+                  src={avatar}
+                  alt={userName}
+                  className="object-cover"
+                />
               ) : (
                 <AvatarFallback className="bg-gray-800">
                   {userName[0].toUpperCase()}

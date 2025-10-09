@@ -11,7 +11,8 @@ const QuestHeader = () => {
   if (status === "loading" || !session?.user) return null
 
   const user = session.user
-  const userName = user.userName || user.name || user.email?.split("@")[0] || "Usuário"
+  const userName =
+    user.userName || user.name || user.email?.split("@")[0] || "Usuário"
   const avatar = user.image
 
   return (
@@ -32,7 +33,11 @@ const QuestHeader = () => {
               <div className="relative">
                 <Avatar className="h-16 w-16">
                   {avatar ? (
-                    <AvatarImage src={avatar} alt={userName} />
+                    <AvatarImage
+                      src={avatar}
+                      alt={userName}
+                      className="object-cover"
+                    />
                   ) : (
                     <AvatarFallback className="bg-gray-800">
                       {userName[0].toUpperCase()}

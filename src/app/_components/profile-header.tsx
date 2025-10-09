@@ -31,7 +31,11 @@ const ProfileHeader = () => {
               <div className="relative">
                 <Avatar className="h-24 w-24">
                   {avatar ? (
-                    <AvatarImage src={avatar} alt={userName} />
+                    <AvatarImage
+                      src={avatar}
+                      alt={userName}
+                      className="object-cover"
+                    />
                   ) : (
                     <AvatarFallback className="bg-gray-800 text-lg">
                       {userName[0].toUpperCase()}
