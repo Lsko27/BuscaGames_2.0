@@ -35,7 +35,7 @@ const QuestsPage = async () => {
         {/* CONTEÚDO */}
         <div className="w-full space-y-16 px-4 py-10 sm:px-6 md:px-10 lg:px-24">
           {/* Quests Diárias */}
-          <section>
+          <div>
             <h2 className="mb-8 text-center text-2xl font-semibold sm:text-3xl">
               Quests Diárias
             </h2>
@@ -46,10 +46,10 @@ const QuestsPage = async () => {
                 ))}
               </div>
             </div>
-          </section>
+          </div>
 
           {/* Quests Semanais */}
-          <section>
+          <div>
             <h2 className="mb-8 text-center text-2xl font-semibold sm:text-3xl">
               Quests Semanais
             </h2>
@@ -60,7 +60,7 @@ const QuestsPage = async () => {
                 ))}
               </div>
             </div>
-          </section>
+          </div>
         </div>
       </div>
     </RequireAuth>
