@@ -19,7 +19,7 @@ const QuestHeader = () => {
     <div className="flex w-full flex-col gap-6 md:flex-row md:items-center md:gap-6">
       {/* ESQUERDA */}
       <div className="flex w-full flex-col gap-3">
-        <h3 className="text-4xl font-bold">Quests & Missões</h3>
+        <h3 className="text-4xl font-bold text-white">Quests & Missões</h3>
         <p className="text-lg text-gray-400">
           Complete desafios, ganhe XP e desbloqueie recompensas exclusivas!
         </p>
@@ -27,7 +27,7 @@ const QuestHeader = () => {
 
       {/* DIREITA */}
       <div className="flex w-full justify-center md:justify-start">
-        <Card className="w-full max-w-4xl border-blue-300 bg-zinc-900">
+        <Card className="w-full max-w-4xl border-blue-300 dark:bg-zinc-900">
           <CardContent>
             <div className="flex items-center justify-start gap-3">
               <div className="relative">
@@ -39,7 +39,7 @@ const QuestHeader = () => {
                       className="object-cover"
                     />
                   ) : (
-                    <AvatarFallback className="bg-gray-800">
+                    <AvatarFallback className="dark:bg-gray-800">
                       {userName[0].toUpperCase()}
                     </AvatarFallback>
                   )}
@@ -51,9 +51,9 @@ const QuestHeader = () => {
               </div>
 
               <div className="flex w-full flex-col gap-2">
-                <p className="text-xl text-white">{userName}</p>
+                <p className="text-xl text-black dark:text-white">{userName}</p>
 
-                <div className="h-2 w-full overflow-hidden rounded-full bg-gray-700">
+                <div className="h-2 w-full overflow-hidden rounded-full bg-slate-300 dark:bg-gray-700">
                   <div
                     className="h-full rounded-full bg-green-500 transition-all duration-300"
                     style={{ width: `${userProgress}%` }}

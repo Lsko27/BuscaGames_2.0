@@ -15,7 +15,7 @@ const QuestsPage = async () => {
 
   return (
     <RequireAuth>
-      <div className="min-h-screen w-full bg-slate-950 text-white">
+      <div className="min-h-screen w-full bg-slate-300 dark:bg-slate-950">
         {/* HEADER */}
         <div className="relative h-auto w-full p-10">
           <Image
