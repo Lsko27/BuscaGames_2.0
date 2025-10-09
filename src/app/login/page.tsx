@@ -56,7 +56,7 @@ const LoginPage = () => {
 
           {/* DIREITA */}
           <div className="mt-10 mb-6 flex w-full items-center justify-center lg:mt-0 lg:w-1/2">
-            <div className="w-full max-w-md rounded-xl border border-purple-600 bg-black p-8">
+            <div className="w-full max-w-md rounded-xl border border-purple-600 bg-slate-100 p-8 dark:bg-black">
               <AuthTabs />
             </div>
           </div>

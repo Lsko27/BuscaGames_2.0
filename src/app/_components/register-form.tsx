@@ -59,7 +59,6 @@ const formSchema = z
 type FormData = z.infer<typeof formSchema>
 
 const RegisterForm = ({ switchToLogin }: RegisterFormProps) => {
-
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -134,12 +133,12 @@ const RegisterForm = ({ switchToLogin }: RegisterFormProps) => {
             name="firstName"
             render={({ field }) => (
               <FormItem className="flex-1">
-                <FormLabel className="text-lg text-white">Nome</FormLabel>
+                <FormLabel className="text-lg">Nome</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Digite seu nome"
                     {...field}
-                    className="border-purple-600"
+                    className="border-purple-600 text-black dark:text-white"
                   />
                 </FormControl>
               </FormItem>
@@ -150,12 +149,12 @@ const RegisterForm = ({ switchToLogin }: RegisterFormProps) => {
             name="lastName"
             render={({ field }) => (
               <FormItem className="flex-1">
-                <FormLabel className="text-lg text-white">Sobrenome</FormLabel>
+                <FormLabel className="text-lg">Sobrenome</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Digite seu sobrenome"
                     {...field}
-                    className="border-purple-600"
+                    className="border-purple-600 text-black dark:text-white"
                   />
                 </FormControl>
               </FormItem>
@@ -169,14 +168,12 @@ const RegisterForm = ({ switchToLogin }: RegisterFormProps) => {
           name="userName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-lg text-white">
-                Nome de usuário
-              </FormLabel>
+              <FormLabel className="text-lg">Nome de usuário</FormLabel>
               <FormControl>
                 <Input
                   placeholder="Digite seu nome de usuário"
                   {...field}
-                  className="border-purple-600 text-white"
+                  className="border-purple-600 text-black dark:text-white"
                 />
               </FormControl>
             </FormItem>
@@ -189,12 +186,12 @@ const RegisterForm = ({ switchToLogin }: RegisterFormProps) => {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-lg text-white">Email</FormLabel>
+              <FormLabel className="text-lg">Email</FormLabel>
               <FormControl>
                 <Input
                   placeholder="Digite seu email"
                   {...field}
-                  className="border-purple-600 text-white"
+                  className="border-purple-600 text-black dark:text-white"
                 />
               </FormControl>
             </FormItem>
@@ -207,14 +204,14 @@ const RegisterForm = ({ switchToLogin }: RegisterFormProps) => {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-lg text-white">Senha</FormLabel>
+              <FormLabel className="text-lg">Senha</FormLabel>
               <FormControl>
                 <div className="relative">
                   <Input
                     type={showPassword ? "text" : "password"}
                     placeholder="Digite sua senha"
                     {...field}
-                    className="border-purple-600 pr-10 text-white"
+                    className="border-purple-600 pr-10 text-black dark:text-white"
                   />
                   <button
                     type="button"
@@ -236,16 +233,14 @@ const RegisterForm = ({ switchToLogin }: RegisterFormProps) => {
           name="confirmPassword"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-lg text-white">
-                Confirmar Senha
-              </FormLabel>
+              <FormLabel className="text-lg">Confirmar Senha</FormLabel>
               <FormControl>
                 <div className="relative">
                   <Input
                     type={showConfirmPassword ? "text" : "password"}
                     placeholder="Confirme sua senha"
                     {...field}
-                    className="border-purple-600 pr-10 text-white"
+                    className="border-purple-600 pr-10 text-black dark:text-white"
                   />
                   <button
                     type="button"
@@ -273,7 +268,7 @@ const RegisterForm = ({ switchToLogin }: RegisterFormProps) => {
             <Checkbox id="notifications" className="mt-1 shrink-0 bg-white" />
             <label
               htmlFor="notifications"
-              className="text-sm leading-snug text-gray-300"
+              className="text-sm leading-snug text-gray-600 dark:text-gray-300"
             >
               Aceito receber notificações via{" "}
               <span className="font-semibold">e-mail</span> e{" "}
@@ -289,12 +284,12 @@ const RegisterForm = ({ switchToLogin }: RegisterFormProps) => {
             />
             <label
               htmlFor="privacy"
-              className="text-sm leading-snug text-gray-300"
+              className="text-sm leading-snug text-gray-600 dark:text-gray-300"
             >
               Concordo com as{" "}
               <Link
                 href="/politica-de-privacidade"
-                className="text-indigo-300 underline"
+                className="text-indigo-600 underline dark:text-indigo-300"
               >
                 políticas de privacidade
               </Link>

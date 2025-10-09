@@ -111,12 +111,12 @@ const LoginForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-lg text-white">Email</FormLabel>
+                <FormLabel className="text-lg">Email</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Digite seu email"
                     {...field}
-                    className="border-purple-600 text-white"
+                    className="border-purple-600 text-black dark:text-white"
                   />
                 </FormControl>
                 <FormMessage />
@@ -130,14 +130,14 @@ const LoginForm = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-lg text-white">Senha</FormLabel>
+                <FormLabel className="text-lg">Senha</FormLabel>
                 <FormControl>
                   <div className="relative">
                     <Input
                       type={showPassword ? "text" : "password"}
                       placeholder="Digite sua senha"
                       {...field}
-                      className="border-purple-600 pr-10 text-white"
+                      className="border-purple-600 pr-10 text-black dark:text-white"
                     />
                     <button
                       type="button"
@@ -154,21 +154,26 @@ const LoginForm = () => {
           />
 
           {/* ERRO */}
-          {error && <p className="text-sm text-red-500">{error}</p>}
+          {error && (
+            <p className="text-sm text-red-600 dark:text-red-500">{error}</p>
+          )}
 
           {/* LEMBRAR & ESQUECI SENHA */}
           <div className="flex flex-col justify-between gap-3 text-white sm:flex-row">
             <div className="flex items-center gap-2">
-              <Checkbox id="remember" className="shrink-0 bg-white" />
+              <Checkbox
+                id="remember"
+                className="shrink-0 bg-gray-300 dark:bg-white"
+              />
               <label
                 htmlFor="remember"
-                className="text-sm leading-snug text-gray-300"
+                className="text-sm leading-snug text-gray-600 dark:text-gray-300"
               >
                 Manter-me conectado
               </label>
             </div>
             <Link href="/forgot-password" className="self-start sm:self-center">
-              <p className="text-sm text-purple-400 underline transition-colors hover:text-purple-300">
+              <p className="text-sm text-purple-700 underline transition-colors hover:text-purple-300 dark:text-purple-400">
                 Esqueci minha senha
               </p>
             </Link>
@@ -186,7 +191,7 @@ const LoginForm = () => {
 
             <LoadingButton
               type="button"
-              className="w-full rounded-lg bg-gray-300 text-lg text-black transition-all hover:bg-gray-100"
+              className="w-full rounded-lg border-2 border-gray-400 bg-white text-lg text-black transition-all hover:bg-gray-100 dark:bg-gray-300"
               disabled={loading}
               onClick={() => signIn("google", { callbackUrl: "/" })}
             >

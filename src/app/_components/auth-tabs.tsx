@@ -19,7 +19,7 @@ const AuthTabs = () => {
           className={`flex-1 py-2 text-lg font-semibold ${
             activeTab === "login"
               ? "bg-purple-700 text-white"
-              : "bg-black text-gray-400"
+              : "bg-slate-100 text-gray-700 dark:bg-black dark:text-gray-400"
           }`}
           onClick={() => setActiveTab("login")}
         >
@@ -30,7 +30,7 @@ const AuthTabs = () => {
           className={`flex-1 py-2 text-lg font-semibold ${
             activeTab === "register"
               ? "bg-purple-700 text-white"
-              : "bg-black text-gray-400"
+              : "bg-slate-100 text-gray-700 dark:bg-black dark:text-gray-400"
           }`}
           onClick={() => setActiveTab("register")}
         >
