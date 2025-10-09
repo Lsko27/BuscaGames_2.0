@@ -17,6 +17,7 @@ import { Card, CardContent } from "@/app/_components/ui/card"
 import { Input } from "@/app/_components/ui/input"
 import { Button } from "@/app/_components/ui/button"
 import { useState } from "react"
+import { loadStripe } from "@stripe/stripe-js"
 
 const couponSchema = z.object({
   coupon: z
@@ -39,6 +40,32 @@ interface FinishOrderProps {
 
 const FinishOrder = ({ games }: FinishOrderProps) => {
   const [discount, setDiscount] = useState(0)
+  const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY!)
+
+  const handleCheckout = async () => {
+    try {
+      const res = await fetch(
+        "http://localhost:5050/payments/create-checkout-session",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ games }),
+        },
+      )
+
+      const data = await res.json()
+
+      if (data.url) {
+        const stripe = await stripePromise
+        window.location.href = data.url
+      } else {
+        toast.error("Erro ao iniciar o pagamento.")
+      }
+    } catch (err) {
+      console.error(err)
+      toast.error("Falha na comunicação com o servidor.")
+    }
+  }
 
   const {
     handleSubmit,
@@ -132,6 +159,7 @@ const FinishOrder = ({ games }: FinishOrderProps) => {
           <Button
             className="w-full bg-green-600 px-8 py-5 text-lg text-white hover:bg-green-500"
             disabled={games.length === 0}
+            onClick={handleCheckout}
           >
             <div className="flex items-center gap-2">
               Finalizar compra

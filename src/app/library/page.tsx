@@ -5,6 +5,10 @@ import Image from "next/image"
 import { useSession } from "next-auth/react"
 import RequireAuth from "../_components/require-auth"
 import LibraryItem from "./_components/library-item"
+import { Joystick } from "lucide-react"
+import { Button } from "../_components/ui/button"
+import Link from "next/link"
+import LoadingScreen from "../_components/loading-screen"
 
 // --- Tipagem dos jogos da biblioteca ---
 interface GameCategory {
@@ -95,9 +99,21 @@ const LibraryPage = () => {
         </h2>
 
         {loading ? (
-          <p className="text-center text-gray-400">Carregando...</p>
+          <LoadingScreen />
         ) : libraryGames.length === 0 ? (
-          <p className="text-center text-gray-400">Nenhum jogo na biblioteca</p>
+          <div className="mt-10 flex flex-col items-center justify-center gap-3">
+            <Joystick size={45} className="text-gray-600 dark:text-gray-400" />
+            <p className="text-lg font-medium text-gray-600 dark:text-gray-400">
+              Você ainda não possui jogos na sua biblioteca
+            </p>
+            <Button
+              variant="ghost"
+              className="w-full bg-purple-700 text-white"
+              asChild
+            >
+              <Link href="/games">Explorar Jogos</Link>
+            </Button>
+          </div>
         ) : (
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
             {libraryGames.map((game) => (
