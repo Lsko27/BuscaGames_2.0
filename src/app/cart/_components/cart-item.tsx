@@ -23,8 +23,10 @@ const CartItem = ({ game, onRemove }: CartItemProps) => {
           height={140}
           className="rounded-md"
         />
-        <p className="text-lg text-gray-200">{game.title}</p>
+        {/* Título só aparece em md+ */}
+        <p className="hidden text-lg text-gray-200 md:block">{game.title}</p>
       </div>
+
       <div className="flex items-center justify-between gap-20 px-5">
         <p className="text-gray-200">
           {Intl.NumberFormat("pt-BR", {
