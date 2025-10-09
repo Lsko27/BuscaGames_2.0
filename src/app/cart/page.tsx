@@ -125,6 +125,7 @@ const CartPage = () => {
           className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0.6)] to-[rgba(0,0,0,0.4)]" />
+
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
           <h1 className="text-center text-4xl font-bold">
             Carrinho de compras
@@ -135,7 +136,7 @@ const CartPage = () => {
         </div>
       </div>
 
-      <div className="flex min-h-screen flex-col gap-8 bg-slate-950 px-4 py-10 sm:px-6 md:flex-row md:px-16">
+      <div className="flex min-h-screen flex-col gap-8 bg-slate-300 px-4 py-10 sm:px-6 md:flex-row md:px-16 dark:bg-slate-950">
         <div className="w-full md:w-2/3">
           <CartProducts
             games={cartGames}

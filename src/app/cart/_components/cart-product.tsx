@@ -23,24 +23,27 @@ interface CartProductsProps {
 const CartProducts = ({ games, removeGame, clearCart }: CartProductsProps) => {
   return (
     <>
-      <Card className="border-0 bg-gray-800">
+      <Card className="border-0 bg-slate-100 dark:bg-gray-800">
         <CardContent>
-          <div className="mx-10 mb-4 flex items-center justify-between border-b border-gray-500 pb-3 font-semibold">
-            <p className="text-gray-300">Produto</p>
+          <div className="mx-10 mb-4 flex items-center justify-between border-b border-gray-400 pb-3 font-semibold dark:border-gray-500">
+            <p className="text-gray-600 dark:text-gray-300">Produto</p>
             <div className="flex justify-between gap-20">
-              <p className="text-gray-300">Preço</p>
-              <p className="text-gray-300">Remover</p>
+              <p className="text-gray-600 dark:text-gray-300">Preço</p>
+              <p className="text-gray-600 dark:text-gray-300">Remover</p>
             </div>
           </div>
 
           {games.length === 0 ? (
             <div className="mt-10 flex flex-col items-center justify-center gap-3 py-10">
-              <ShoppingCart size={45} className="fill-gray-400 text-gray-400" />
+              <ShoppingCart
+                size={45}
+                className="fill-gray-600 text-gray-600 dark:fill-gray-400 dark:text-gray-400"
+              />
               <div className="items-center justify-center gap-0">
-                <p className="text-center text-lg font-medium text-gray-400">
+                <p className="text-center text-lg font-medium text-gray-600 dark:text-gray-400">
                   Seu carrinho está vazio
                 </p>
-                <p className="text-sm text-gray-400">
+                <p className="text-sm text-gray-600 dark:text-gray-400">
                   Adicione jogos ao seu carrinho para continuar
                 </p>
               </div>
@@ -71,7 +74,7 @@ const CartProducts = ({ games, removeGame, clearCart }: CartProductsProps) => {
       <div className="mt-3 flex items-center justify-between px-1">
         <Link
           href="/games"
-          className="text-md text-gray-400 transition-colors hover:underline"
+          className="text-md transition-colors hover:underline dark:text-gray-400"
         >
           <div className="flex items-center gap-2">
             <ArrowLeft />
@@ -85,7 +88,7 @@ const CartProducts = ({ games, removeGame, clearCart }: CartProductsProps) => {
             e.preventDefault()
             clearCart()
           }}
-          className="text-md text-red-400 transition-colors hover:underline"
+          className="text-md text-red-600 transition-colors hover:underline dark:text-red-500"
         >
           <div className="flex items-center gap-2">
             <Trash2 />

@@ -65,13 +65,13 @@ const FinishOrder = ({ games }: FinishOrderProps) => {
   const total = games.reduce((acc, game) => acc + game.price, 0)
 
   return (
-    <Card className="border-0 bg-gray-800">
+    <Card className="border-0 bg-slate-100 dark:bg-gray-800">
       <CardContent>
         <div className="flex flex-col border-b border-gray-500 pb-3 text-gray-400">
-          <h3 className="text-lg font-semibold text-gray-300">
+          <h3 className="text-lg font-semibold text-gray-600 dark:text-gray-300">
             Resumo do pedido
           </h3>
-          <div className="mt-4 flex items-center justify-between">
+          <div className="mt-4 flex items-center justify-between text-gray-600 dark:text-gray-300">
             <p>Subtotal:</p>
             <p>
               {total.toLocaleString("pt-BR", {
@@ -80,7 +80,7 @@ const FinishOrder = ({ games }: FinishOrderProps) => {
               })}
             </p>
           </div>
-          <div className="mt-1 flex items-center justify-between">
+          <div className="mt-1 flex items-center justify-between text-gray-600 dark:text-gray-300">
             <p>Desconto:</p>
             <p>
               -{" "}
@@ -92,8 +92,8 @@ const FinishOrder = ({ games }: FinishOrderProps) => {
           </div>
         </div>
         <div className="mt-4 flex items-center justify-between">
-          <h3 className="text-xl font-semibold text-gray-200">Total:</h3>
-          <p className="text-xl font-semibold text-gray-200">
+          <h3 className="text-xl font-semibold dark:text-gray-200">Total:</h3>
+          <p className="text-xl font-semibold dark:text-gray-200">
             {(total - discount).toLocaleString("pt-BR", {
               style: "currency",
               currency: "BRL",
@@ -111,22 +111,26 @@ const FinishOrder = ({ games }: FinishOrderProps) => {
               {...register("coupon")}
               type="text"
               placeholder="Digite seu cupom"
-              className="w-full border-0 bg-gray-700 text-white outline-0 placeholder:text-gray-400"
+              className="w-full border-0 bg-white outline-0 placeholder:text-gray-400 dark:bg-gray-700"
             />
 
-            <Button type="submit" className="bg-purple-700 hover:bg-purple-800">
+            <Button
+              type="submit"
+              className="bg-purple-700 text-white hover:bg-purple-800"
+            >
               Aplicar
             </Button>
           </form>
           {errors.coupon && (
-            <p className="mt-2 text-sm text-red-400">{errors.coupon.message}</p>
+            <p className="mt-2 text-sm text-red-600 dark:text-red-500">
+              {errors.coupon.message}
+            </p>
           )}
         </div>
 
         <div className="mt-5">
           <Button
-            variant="ghost"
-            className="w-full bg-green-600 px-8 py-5 text-lg text-white"
+            className="w-full bg-green-600 px-8 py-5 text-lg text-white hover:bg-green-500"
             disabled={games.length === 0}
           >
             <div className="flex items-center gap-2">
@@ -137,8 +141,8 @@ const FinishOrder = ({ games }: FinishOrderProps) => {
         </div>
 
         <div className="mt-5">
-          <h4 className="text-gray-300">Aceitamos: </h4>
-          <div className="mt-3 flex flex-wrap items-center gap-3 text-xl text-gray-400">
+          <h4 className="text-gray-600 dark:text-gray-300">Aceitamos: </h4>
+          <div className="mt-3 flex flex-wrap items-center gap-3 text-xl text-gray-700 dark:text-gray-400">
             <FaCcVisa />
             <FaCcMastercard />
             <FaCcAmex />
