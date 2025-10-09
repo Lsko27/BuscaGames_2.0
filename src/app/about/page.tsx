@@ -128,7 +128,7 @@ const AboutPage = () => {
               <p className="mb-3 text-black dark:text-gray-300">
                 Tem alguma dúvida ou sugestão? Estamos aqui para ajudar!
               </p>
-              <div className="flex flex-col gap-3 text-xl text-black">
+              <div className="flex flex-col gap-3 text-xl text-black dark:text-white">
                 <FooterContact
                   icon={<Mail />}
                   label="equipebuscagames@gmail.com"

@@ -67,7 +67,7 @@ const ContactAboutForm = () => {
                   <Input
                     placeholder="Seu nome"
                     {...field}
-                    className="border-gray-600 text-black"
+                    className="border-gray-600 text-black dark:text-gray-300"
                   />
                 </FormControl>
                 <FormMessage />
@@ -131,7 +131,7 @@ const ContactAboutForm = () => {
                   <textarea
                     placeholder="Escreva sua mensagem aqui"
                     rows={5}
-                    className="w-full resize-none rounded-md border border-gray-600 px-3 py-2 text-black focus:border-indigo-500 focus:outline-none"
+                    className="w-full resize-none rounded-md border border-gray-600 px-3 py-2 text-black focus:border-indigo-500 focus:outline-none dark:text-white"
                     {...field}
                   />
                 </FormControl>
