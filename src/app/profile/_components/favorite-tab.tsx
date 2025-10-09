@@ -88,16 +88,23 @@ const FavoriteTab = () => {
 
   return (
     <>
-      <Card className="border-0 bg-gray-800 text-white">
+      <Card className="border-0 bg-slate-200 dark:bg-gray-800">
         {favoriteGames.length === 0 ? (
           <CardContent>
             <h2 className="mb-6 text-xl font-semibold">Meus Jogos Favoritos</h2>
             <div className="flex flex-col items-center justify-center gap-3">
-              <Heart size={45} className="fill-gray-400 text-gray-400" />
-              <p className="text-lg font-medium text-gray-400">
+              <Heart
+                size={45}
+                className="fill-gray-600 text-gray-600 dark:fill-gray-400 dark:text-gray-400"
+              />
+              <p className="text-lg font-medium text-gray-600 dark:text-gray-400">
                 Você ainda não adicionou jogos aos favoritos
               </p>
-              <Button variant="ghost" className="w-full bg-purple-700" asChild>
+              <Button
+                variant="ghost"
+                className="w-full bg-purple-700 text-white"
+                asChild
+              >
                 <Link href="/games">Explorar Jogos</Link>
               </Button>
             </div>
@@ -118,12 +125,15 @@ const FavoriteTab = () => {
         )}
       </Card>
 
-      <Card className="mt-5 border-0 bg-gray-800 text-white">
+      <Card className="mt-5 border-0 bg-slate-200 dark:bg-gray-800">
         <CardContent>
           <h2 className="mb-6 text-xl font-semibold">Alerta de Preços</h2>
           <div className="flex flex-col items-center justify-center gap-3">
-            <BellRing size={45} className="fill-gray-400 text-gray-400" />
-            <p className="text-lg font-medium text-gray-400">
+            <BellRing
+              size={45}
+              className="fill-gray-600 text-gray-600 dark:fill-gray-400 dark:text-gray-400"
+            />
+            <p className="text-lg font-medium text-gray-600 dark:text-gray-400">
               Você não configurou alertas de preços
             </p>
             <p className="text-gray-500">

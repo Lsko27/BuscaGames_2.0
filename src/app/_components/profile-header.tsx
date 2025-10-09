@@ -82,13 +82,15 @@ const ProfileHeader = () => {
             ].map((item, index) => (
               <Card
                 key={index}
-                className="flex-1 border-blue-500 bg-slate-950/90 text-center transition-all duration-300 hover:scale-105 hover:border-blue-400"
+                className="flex-1 border-blue-500 text-center transition-all duration-300 hover:scale-105 hover:border-blue-400 dark:bg-slate-950/90"
               >
                 <CardContent className="flex flex-col items-center justify-center py-4">
-                  <h3 className="text-2xl font-bold text-white">
+                  <h3 className="text-2xl font-bold text-purple-900 dark:text-white">
                     {item.value}
                   </h3>
-                  <p className="text-sm text-gray-300">{item.label}</p>
+                  <p className="text-sm text-gray-700 dark:text-gray-300">
+                    {item.label}
+                  </p>
                 </CardContent>
               </Card>
             ))}

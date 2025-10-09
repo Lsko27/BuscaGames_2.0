@@ -48,7 +48,7 @@ const ProfilePage = () => {
               className={`rounded-full px-6 py-2 text-sm font-medium transition-all duration-300 ${
                 activeTab === tab.key
                   ? "scale-105 bg-purple-700 text-white shadow-md"
-                  : "bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white"
+                  : "bg-white text-gray-600 hover:bg-purple-100 dark:bg-gray-800 dark:text-gray-400 dark:hover:text-white"
               }`}
             >
               {tab.label}

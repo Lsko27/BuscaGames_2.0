@@ -18,7 +18,7 @@ const FavoriteCards = ({
   handleRemoveFavorite,
 }: FavoriteTabProps) => {
   return (
-    <Card className="w-full max-w-sm overflow-hidden rounded-2xl border-0 bg-gray-900 text-white shadow-lg">
+    <Card className="w-full max-w-sm overflow-hidden rounded-2xl border-0 shadow-lg dark:bg-gray-900">
       <CardContent>
         <div className="relative h-56 w-full">
           <Image
@@ -32,7 +32,7 @@ const FavoriteCards = ({
         <div className="mt-5 flex flex-col gap-5">
           <h3 className="text-lg font-semibold">{favoriteCard.title}</h3>
           <div className="flex items-center justify-between">
-            <p className="font-medium text-purple-400">
+            <p className="font-medium text-purple-700 dark:text-purple-400">
               {Number(favoriteCard.price) === 0
                 ? "Gratuito"
                 : Intl.NumberFormat("pt-BR", {

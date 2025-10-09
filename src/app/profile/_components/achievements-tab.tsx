@@ -46,14 +46,14 @@ const AchievementsTab = () => {
 
   if (completedQuests.length === 0) {
     return (
-      <Card className="border-0 bg-gray-800 p-10 text-white">
+      <Card className="border-0 bg-slate-200 p-10 dark:bg-gray-800">
         <h2 className="mb-6 text-xl font-semibold">Minhas Conquistas</h2>
         <div className="flex flex-col items-center justify-center gap-3">
-          <History size={45} className="text-gray-400" />
-          <p className="text-lg font-medium text-gray-400">
+          <History size={45} className="text-gray-600 dark:text-gray-400" />
+          <p className="text-lg font-medium text-gray-600 dark:text-gray-400">
             Nenhuma Conquista disponível
           </p>
-          <Button variant="ghost" className="w-full bg-purple-700">
+          <Button variant="ghost" className="w-full bg-purple-700 text-white">
             Explorar Jogos
           </Button>
         </div>
@@ -63,7 +63,7 @@ const AchievementsTab = () => {
 
   return (
     <div className="px-4 py-6 sm:px-6 lg:px-8">
-      <Card className="border-0 bg-gray-800 text-white">
+      <Card className="border-0 bg-slate-200 dark:bg-gray-800">
         <CardContent>
           <h2 className="mb-6 text-xl font-semibold sm:text-2xl">
             Minhas Conquistas
