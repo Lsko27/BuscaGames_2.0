@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image"
 import { Card, CardContent } from "./ui/card"
 import { Badge } from "./ui/badge"
@@ -7,6 +9,7 @@ import { Button } from "./ui/button"
 import { useEffect, useState } from "react"
 import { toast } from "sonner"
 import { useSession } from "next-auth/react"
+import { useCart } from "@/_context/cart-context"
 
 interface GameCardProps {
   params: {
@@ -23,7 +26,9 @@ const HomeGameCards = ({ params }: GameCardProps) => {
   const [isFavorite, setIsFavorite] = useState(false)
   const { data: session } = useSession()
   const userId = session?.user.id
+  const { setCartCount, refreshCart } = useCart()
 
+  // Check favoritos
   useEffect(() => {
     const checkFavorite = async () => {
       if (!userId) return
@@ -40,6 +45,11 @@ const HomeGameCards = ({ params }: GameCardProps) => {
   }, [params.id, userId])
 
   const toggleFavorite = async () => {
+    if (!userId) {
+      toast.error("Você precisa estar logado para favoritar jogos")
+      return
+    }
+
     try {
       if (isFavorite) {
         await fetch("http://localhost:5050/favorites", {
@@ -64,10 +74,33 @@ const HomeGameCards = ({ params }: GameCardProps) => {
     }
   }
 
+  const addToCart = async () => {
+    if (!userId) {
+      toast.error("Você precisa estar logado para adicionar ao carrinho")
+      return
+    }
+
+    try {
+      const res = await fetch("http://localhost:5050/cart/items", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId, gameId: params.id }),
+      })
+
+      if (!res.ok) throw new Error("Erro ao adicionar ao carrinho")
+
+      toast.success("Jogo adicionado ao carrinho")
+      setCartCount((prev) => prev + 1)
+      await refreshCart()
+    } catch (err) {
+      console.error(err)
+      toast.error("Não foi possível adicionar o jogo")
+    }
+  }
+
   return (
     <Card className="group relative w-full max-w-md overflow-hidden border-none p-0">
       <CardContent className="p-0">
-        {/* Imagem ocupa todo o card */}
         <div className="relative h-60 w-full">
           <Image
             src={params.image}
@@ -104,7 +137,11 @@ const HomeGameCards = ({ params }: GameCardProps) => {
               <div className="mt-2 flex items-center justify-between gap-1">
                 <RatingStars rating={params.rating} />
                 <div className="flex items-center justify-center gap-3">
-                  <Button variant="ghost" className="bg-green-600">
+                  <Button
+                    variant="ghost"
+                    className="bg-green-600"
+                    onClick={addToCart}
+                  >
                     <ShoppingCart />
                     <p className="text-lg">Adicionar</p>
                   </Button>
