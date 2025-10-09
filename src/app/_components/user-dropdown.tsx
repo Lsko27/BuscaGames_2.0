@@ -62,29 +62,29 @@ const UserDropdown = ({ params }: UserDropdownProps) => {
                 </AvatarFallback>
               )}
             </Avatar>
-            <p className="font-semibold">{userName}</p>
+            <p className="font-semibold text-white">{userName}</p>
           </div>
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="border-gray-600 bg-zinc-900 p-3 text-white">
+      <DropdownMenuContent className="border-gray-600 p-3 dark:bg-zinc-900 dark:text-white">
         <DropdownMenuLabel>Minha Conta</DropdownMenuLabel>
         <DropdownMenuSeparator className="bg-gray-600" />
         <DropdownMenuItem asChild>
           <Link href="/profile">
-            <User className="text-white" />
+            <User className="dark:text-white" />
             Perfil
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <Link href="/library">
-            <LibraryBig className="text-white" />
+            <LibraryBig className="dark:text-white" />
             Biblioteca
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <Link href="/settings">
-            <Settings className="text-white" />
+            <Settings className="dark:text-white" />
             Configurações
           </Link>
         </DropdownMenuItem>

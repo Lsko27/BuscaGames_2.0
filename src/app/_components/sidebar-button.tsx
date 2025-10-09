@@ -8,6 +8,7 @@ import {
   LogIn,
   MoonIcon,
   ShoppingCart,
+  SunIcon,
 } from "lucide-react"
 import NavItem from "./nav-item"
 import { Button } from "./ui/button"
@@ -16,7 +17,8 @@ import { SheetContent, SheetHeader, SheetTitle } from "./ui/sheet"
 import Link from "next/link"
 import { useSession } from "next-auth/react"
 import UserDropdown from "./user-dropdown"
-import { useCart } from "@/_context/cart-context" // ✅ import do contexto
+import { useCart } from "@/_context/cart-context"
+import useTheme from "@/_hooks/useTheme"
 
 interface SidebarButtonProps {
   onClick?: () => void
@@ -24,17 +26,18 @@ interface SidebarButtonProps {
 
 const SidebarButton = ({ onClick }: SidebarButtonProps) => {
   const { data } = useSession()
-  const { cartCount } = useCart() // ✅ pegando o cartCount do contexto
+  const { cartCount } = useCart()
+  const { theme, toggleTheme } = useTheme()
 
   return (
-    <SheetContent className="w-[55%] bg-gray-900 p-6 text-white">
+    <SheetContent className="w-[55%] bg-slate-100 p-6 dark:bg-gray-900 dark:text-white">
       <SheetHeader>
-        <SheetTitle className="border-b border-gray-400 py-5 text-center text-xl text-white">
+        <SheetTitle className="border-b border-gray-400 py-5 text-center text-xl dark:text-white">
           Menu
         </SheetTitle>
       </SheetHeader>
 
-      <div className="flex flex-col justify-center gap-3 border-b border-gray-400 pb-5 text-white">
+      <div className="flex flex-col justify-center gap-3 border-b border-gray-400 pb-5 text-purple-900 dark:text-white">
         <NavItem href="/" icon={<HomeIcon />} label="Home" onClick={onClick} />
         <NavItem
           href="/games"
@@ -56,14 +59,14 @@ const SidebarButton = ({ onClick }: SidebarButtonProps) => {
         />
       </div>
 
-      <div className="flex flex-col items-center justify-center gap-3">
+      <div className="flex flex-col items-center justify-center gap-3 text-purple-900">
         <Button
           size="lg"
           variant="ghost"
-          className="rounded-full text-white"
-          onClick={onClick}
+          className="rounded-full"
+          onClick={toggleTheme}
         >
-          <MoonIcon />
+          {theme === "light" ? <SunIcon /> : <MoonIcon />}
         </Button>
 
         <div className="relative">
@@ -71,7 +74,7 @@ const SidebarButton = ({ onClick }: SidebarButtonProps) => {
             <Button
               size="lg"
               variant="ghost"
-              className="rounded-full text-white"
+              className="rounded-full dark:text-white"
               onClick={onClick}
             >
               <ShoppingCart />
@@ -81,8 +84,7 @@ const SidebarButton = ({ onClick }: SidebarButtonProps) => {
             className="absolute -top-1 -right-1 rounded-full"
             variant="destructive"
           >
-            {cartCount}{" "}
-            {/* ✅ agora atualizado automaticamente pelo contexto */}
+            {cartCount}
           </Badge>
         </div>
 
@@ -97,7 +99,7 @@ const SidebarButton = ({ onClick }: SidebarButtonProps) => {
             }}
           />
         ) : (
-          <Button size="lg" variant="ghost" className="text-white" asChild>
+          <Button size="lg" variant="ghost" className="dark:text-white" asChild>
             <Link href="/login">
               <LogIn />
               <span className="text-lg">Login</span>

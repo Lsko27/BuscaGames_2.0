@@ -91,7 +91,7 @@ const GamesPage = () => {
   if (loading) return <LoadingScreen />
 
   return (
-    <div className="flex flex-col items-start justify-center gap-6 bg-zinc-900 px-4 py-6 md:flex-row md:px-10">
+    <div className="flex flex-col items-start justify-center gap-6 bg-slate-300 px-4 py-6 md:flex-row md:px-10 dark:bg-zinc-900">
       {/* Sheet para mobile / tablet */}
       <div className="mb-4 block w-full md:hidden">
         <Sheet>

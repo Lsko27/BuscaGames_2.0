@@ -93,22 +93,46 @@ const CategoryFilter = ({ isSheet = false }: CategoryFilterProps) => {
       <Button
         key="Todos os jogos"
         onClick={() => updateFilters()}
-        className={`justify-start ${!selectedCategory ? "bg-blue-600" : "bg-transparent"} hover:bg-blue-600`}
+        className={`justify-start ${
+          !selectedCategory
+            ? "bg-blue-600 text-white"
+            : "bg-transparent text-purple-900 dark:text-white"
+        } hover:bg-blue-600`}
       >
-        <Joystick size={22} className="mr-2 text-white" />
-        Todos os jogos
+        <Joystick
+          size={22}
+          className={`mr-2 ${!selectedCategory ? "text-white" : "text-purple-900 dark:text-white"}`}
+        />
+        <span
+          className={`${!selectedCategory ? "text-white" : "text-purple-900 dark:text-white"}`}
+        >
+          Todos os jogos
+        </span>
       </Button>
+
       {categories.map(({ name }) => {
         const Icon = iconMap[name] || Joystick
         const isActive = selectedCategory === name.toLowerCase()
+
         return (
           <Button
             key={name}
             onClick={() => updateFilters(name)}
-            className={`justify-start ${isActive ? "bg-blue-600" : "bg-transparent"} hover:bg-blue-600`}
+            className={`justify-start ${
+              isActive
+                ? "bg-blue-600 text-white"
+                : "bg-transparent text-purple-900 dark:text-white"
+            } hover:bg-blue-600`}
           >
-            <Icon size={22} className="mr-2 text-white" />
-            {name}
+            <Icon
+              size={22}
+              className={`mr-2 ${isActive ? "text-white" : "text-purple-900 dark:text-white"}`}
+            />
+            <span
+              className={`${isActive ? "text-white" : "text-purple-900 dark:text-white"}`}
+            >
+              {name}
+            </span>
           </Button>
         )
       })}
@@ -117,10 +141,12 @@ const CategoryFilter = ({ isSheet = false }: CategoryFilterProps) => {
 
   const renderPriceFilter = () => (
     <div className="mt-6">
-      <Label className="mb-2 block text-lg text-white">Preço máximo</Label>
+      <Label className="mb-2 block text-lg dark:text-white">Preço máximo</Label>
       <div className="mb-2 flex items-center justify-between">
-        <span className="text-sm text-gray-400">R$ 0</span>
-        <span className="text-sm font-semibold text-white">R$ {price}</span>
+        <span className="text-sm dark:text-gray-400">R$ 0</span>
+        <span className="text-sm font-semibold dark:text-white">
+          R$ {price}
+        </span>
       </div>
       <Slider
         value={[price]}
@@ -142,11 +168,11 @@ const CategoryFilter = ({ isSheet = false }: CategoryFilterProps) => {
 
   return (
     <Card
-      className={`border-zinc-800 bg-zinc-800 shadow-lg ${isSheet ? "w-full p-4" : ""}`}
+      className={`shadow-lg dark:border-zinc-800 dark:bg-zinc-800 ${isSheet ? "w-full p-4" : ""}`}
     >
       <CardContent className="p-4">
         {!isSheet && (
-          <h2 className="mb-6 ml-3 text-2xl font-bold text-white">
+          <h2 className="mb-6 ml-3 text-2xl font-bold dark:text-white">
             Categorias
           </h2>
         )}
