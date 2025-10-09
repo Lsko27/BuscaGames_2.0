@@ -60,12 +60,14 @@ const ContactAboutForm = () => {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-gray-300">Nome</FormLabel>
+                <FormLabel className="text-black dark:text-gray-300">
+                  Nome
+                </FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Seu nome"
                     {...field}
-                    className="border-gray-600 text-white"
+                    className="border-gray-600 text-black"
                   />
                 </FormControl>
                 <FormMessage />
@@ -79,13 +81,15 @@ const ContactAboutForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-gray-300">Email</FormLabel>
+                <FormLabel className="text-black dark:text-gray-300">
+                  Email
+                </FormLabel>
                 <FormControl>
                   <Input
                     type="email"
                     placeholder="seuemail@exemplo.com"
                     {...field}
-                    className="border-gray-600 text-white"
+                    className="border-gray-600 text-black"
                   />
                 </FormControl>
                 <FormMessage />
@@ -99,12 +103,14 @@ const ContactAboutForm = () => {
             name="subject"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-gray-300">Assunto</FormLabel>
+                <FormLabel className="text-black dark:text-gray-300">
+                  Assunto
+                </FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Assunto da mensagem"
                     {...field}
-                    className="border-gray-600 text-white"
+                    className="border-gray-600 text-black"
                   />
                 </FormControl>
                 <FormMessage />
@@ -118,12 +124,14 @@ const ContactAboutForm = () => {
             name="message"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-gray-300">Mensagem</FormLabel>
+                <FormLabel className="text-black dark:text-gray-300">
+                  Mensagem
+                </FormLabel>
                 <FormControl>
                   <textarea
                     placeholder="Escreva sua mensagem aqui"
                     rows={5}
-                    className="w-full resize-none rounded-md border border-gray-600 px-3 py-2 text-white focus:border-indigo-500 focus:outline-none"
+                    className="w-full resize-none rounded-md border border-gray-600 px-3 py-2 text-black focus:border-indigo-500 focus:outline-none"
                     {...field}
                   />
                 </FormControl>
