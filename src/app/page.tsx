@@ -92,7 +92,7 @@ const HomePage = () => {
 
       {/* OUTRO CONTEÚDO */}
       <div className="mt-10 w-full text-center">
-        <h3 className="mb-9 text-3xl font-bold text-white">
+        <h3 className="mb-9 text-3xl font-bold dark:text-white">
           Jogos Em destaque
         </h3>
 
@@ -100,7 +100,9 @@ const HomePage = () => {
           {loading ? (
             <LoadingScreen />
           ) : games.length === 0 ? (
-            <p className="text-gray-400">Nenhum jogo em destaque no momento.</p>
+            <p className="dark:text-gray-400">
+              Nenhum jogo em destaque no momento.
+            </p>
           ) : (
             <>
               {/* Botões do carousel */}
@@ -143,7 +145,7 @@ const HomePage = () => {
           <Button
             variant="ghost"
             asChild
-            className="rounded-xl bg-blue-600"
+            className="rounded-xl bg-blue-600 text-white"
             size="lg"
           >
             <Link href="/games">
@@ -154,7 +156,7 @@ const HomePage = () => {
         </div>
       </div>
 
-      <div className="bg-gray-800 px-4 py-20 sm:px-6">
+      <div className="bg-slate-200 px-4 py-20 sm:px-6 dark:bg-gray-800">
         <div className="mx-auto flex max-w-6xl flex-col gap-10 lg:flex-row lg:gap-8">
           {/* ESQUERDA */}
           <div className="flex flex-col gap-4 lg:w-1/2">
@@ -182,7 +184,7 @@ const HomePage = () => {
           </div>
 
           {/* DIREITA */}
-          <div className="rounded-lg bg-gray-900 p-6 sm:p-9 lg:w-1/2">
+          <div className="rounded-lg bg-slate-100 p-6 sm:p-9 lg:w-1/2 dark:bg-gray-900">
             <OffersForm />
           </div>
         </div>

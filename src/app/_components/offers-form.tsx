@@ -77,16 +77,20 @@ const OffersForm = () => {
         />
 
         <div className="flex items-center space-x-2">
-          <Checkbox id="offers" className="bg-white" required />
+          <Checkbox id="offers" className="bg-slate-300 dark:bg-white" required />
           <label
             htmlFor="offers"
-            className="text-md leading-none text-gray-300 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            className="text-md leading-none text-black peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-gray-300"
           >
             <p>Concordo em receber emails promocionais</p>
           </label>
         </div>
 
-        <Button variant="ghost" type="submit" className="w-full bg-blue-600">
+        <Button
+          variant="ghost"
+          type="submit"
+          className="w-full bg-blue-600 text-white"
+        >
           <Mail />
           <p className="text-lg">Inscrever-se</p>
         </Button>

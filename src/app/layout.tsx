@@ -23,7 +23,9 @@ export default function RootLayout({
         <AuthProvider>
           <CartProvider>
             <Header />
-            <div className="bg-gray-900 text-white">{children}</div>
+            <div className="bg-slate-100 text-purple-900 dark:bg-gray-900 dark:text-white">
+              {children}
+            </div>
             <Footer />
             <Toaster />
           </CartProvider>

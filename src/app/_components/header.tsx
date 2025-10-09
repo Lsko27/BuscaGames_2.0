@@ -10,6 +10,7 @@ import {
   LogIn,
   MenuIcon,
   MoonIcon,
+  SunIcon,
   ShoppingCart,
 } from "lucide-react"
 import Link from "next/link"
@@ -21,17 +22,19 @@ import { useState } from "react"
 import { useSession } from "next-auth/react"
 import UserDropdown from "./user-dropdown"
 import { useCart } from "@/_context/cart-context"
+import useTheme from "@/_hooks/useTheme"
 
 const Header = () => {
   const [sheetOpen, setSheetOpen] = useState(false)
   const { data } = useSession()
+  const { theme, toggleTheme } = useTheme()
 
   const { cartCount } = useCart()
 
   const handleSheetClose = () => setSheetOpen(false)
 
   return (
-    <div className="flex items-center justify-between border-b border-purple-600 bg-gray-900 px-10 py-5">
+    <div className="flex items-center justify-between border-b border-purple-600 bg-slate-100 px-10 py-5 dark:bg-gray-900">
       {/* Logo */}
       <div>
         <Link href="/">
@@ -43,7 +46,7 @@ const Header = () => {
       <div className="ml-auto block md:hidden">
         <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
           <SheetTrigger asChild>
-            <Button size="icon" variant="ghost" className="text-white">
+            <Button size="icon" variant="ghost" className="dark:text-white">
               <MenuIcon />
             </Button>
           </SheetTrigger>
@@ -52,7 +55,7 @@ const Header = () => {
       </div>
 
       {/* Links */}
-      <div className="hidden justify-center space-x-6 text-white md:flex">
+      <div className="hidden justify-center space-x-6 text-purple-900 md:flex dark:text-white">
         <NavItem
           href="/"
           icon={<HomeIcon className="mr-2 h-6 w-6" />}
@@ -76,9 +79,14 @@ const Header = () => {
       </div>
 
       {/* Botões (lua, carrinho, login) */}
-      <div className="hidden max-w-[300px] flex-1 justify-between text-white md:flex">
-        <Button size="lg" variant="ghost" className="rounded-full">
-          <MoonIcon />
+      <div className="hidden max-w-[300px] flex-1 justify-between text-purple-900 md:flex dark:text-white">
+        <Button
+          size="lg"
+          variant="ghost"
+          className="rounded-full"
+          onClick={toggleTheme}
+        >
+          {theme === "light" ? <SunIcon /> : <MoonIcon />}
         </Button>
 
         <div className="relative">
@@ -107,7 +115,7 @@ const Header = () => {
             }}
           />
         ) : (
-          <Button size="lg" variant="ghost" className="text-white" asChild>
+          <Button size="lg" variant="ghost" asChild>
             <Link href="/login">
               <LogIn />
               <span className="text-lg">Login</span>
