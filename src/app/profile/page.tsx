@@ -1,12 +1,12 @@
 "use client"
 
 import { useState } from "react"
-import RequireAuth from ".@/components/require-auth"
-import ProfileHeader from ".@/components/profile-header"
+import RequireAuth from "@/components/require-auth"
+import ProfileHeader from "@/components/profile-header"
 import OverviewTab from "@/components/overview-tab"
 import LibraryTab from "@/components/library-tab"
 import FavoriteTab from "@/components/favorite-tab"
-import { Button } from ".@/components/ui/button"
+import { Button } from "@/components/ui/button"
 import AchievementsTab from "@/components/achievements-tab"
 
 const tabs = [

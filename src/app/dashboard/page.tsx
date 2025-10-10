@@ -1,6 +1,6 @@
 "use client"
 
-import RequireAuth from ".@/components/require-auth"
+import RequireAuth from "@/components/require-auth"
 import HypeIndexGraph from "@/components/hype-index"
 import ResourceDepreciationGraph from "@/components/resource-depreciation-graph"
 import RevenueProjectionGraph from "@/components/revenue-projection-graph"

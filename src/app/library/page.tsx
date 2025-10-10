@@ -3,12 +3,12 @@
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import { useSession } from "next-auth/react"
-import RequireAuth from ".@/components/require-auth"
+import RequireAuth from "@/components/require-auth"
 import LibraryItem from "@/components/library-item"
 import { Joystick } from "lucide-react"
-import { Button } from ".@/components/ui/button"
+import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import LoadingScreen from ".@/components/loading-screen"
+import LoadingScreen from "@/components/loading-screen"
 
 // --- Tipagem dos jogos da biblioteca ---
 interface GameCategory {

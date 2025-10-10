@@ -1,7 +1,7 @@
 import Image from "next/image"
-import QuestCards from ".@/components/quest-cards"
-import QuestHeader from ".@/components/quest-header"
-import RequireAuth from ".@/components/require-auth"
+import QuestCards from "@/components/quest-cards"
+import QuestHeader from "@/components/quest-header"
+import RequireAuth from "@/components/require-auth"
 import { Quest } from "@/types/quest"
 
 const QuestsPage = async () => {

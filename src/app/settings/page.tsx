@@ -11,8 +11,8 @@ import {
   SheetContent,
   SheetTitle,
   SheetTrigger,
-} from ".@/components/ui/sheet"
-import { Button } from ".@/components/ui/button"
+} from "@/components/ui/sheet"
+import { Button } from "@/components/ui/button"
 import { MenuIcon } from "lucide-react"
 
 const SettingsPage = () => {
