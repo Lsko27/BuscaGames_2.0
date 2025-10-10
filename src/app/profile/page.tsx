@@ -6,14 +6,16 @@ import ProfileHeader from "@/components/profile-header"
 import OverviewTab from "./_components/overview-tab"
 import LibraryTab from "./_components/library-tab"
 import FavoriteTab from "./_components/favorite-tab"
-import { Button } from "@/components/ui/button"
 import AchievementsTab from "./_components/achievements-tab"
+import { Button } from "@/components/ui/button"
+import ESGModule from "./_components/esg-models"
 
 const tabs = [
   { key: "overview", label: "Visão Geral" },
   { key: "library", label: "Biblioteca" },
   { key: "favorites", label: "Favoritos" },
   { key: "achievements", label: "Conquistas" },
+  { key: "esg", label: "Sustentabilidade" }, // 🌱 nova aba
 ]
 
 const ProfilePage = () => {
@@ -29,6 +31,8 @@ const ProfilePage = () => {
         return <FavoriteTab />
       case "achievements":
         return <AchievementsTab />
+      case "esg":
+        return <ESGModule />
       default:
         return null
     }
