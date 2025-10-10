@@ -1,6 +1,6 @@
 import { KeyRound } from "lucide-react"
-import { Card, CardContent } from "../_components/ui/card"
-import ForgotPasswordForm from "../_components/forgot-password-form"
+import { Card, CardContent } from ".@/components/ui/card"
+import ForgotPasswordForm from ".@/components/forgot-password-form"
 import Image from "next/image"
 
 const ForgotPasswordPage = () => {

@@ -21,8 +21,8 @@ import SidebarButton from "./sidebar-button"
 import { useState } from "react"
 import { useSession } from "next-auth/react"
 import UserDropdown from "./user-dropdown"
-import { useCart } from "@/_context/cart-context"
-import useTheme from "@/_hooks/useTheme"
+import { useCart } from "@/context/cart-context"
+import useTheme from "@/hooks/useTheme"
 
 const Header = () => {
   const [sheetOpen, setSheetOpen] = useState(false)
@@ -34,7 +34,7 @@ const Header = () => {
   const handleSheetClose = () => setSheetOpen(false)
 
   return (
-    <div className="flex items-center justify-between border-b border-purple-600 bg-slate-100 px-10 py-5 dark:bg-gray-900">
+    <div className="flex items-center justify-between border-b border-purple-600 bg-slate-100 px-4 md:px-8 lg:px-16 py-5 dark:bg-gray-900">
       {/* Logo */}
       <div>
         <Link href="/">

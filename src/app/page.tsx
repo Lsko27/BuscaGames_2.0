@@ -3,12 +3,12 @@
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Button } from "./_components/ui/button"
+import { Button } from "@/components/ui/button"
 import { CheckCircle, Joystick, ChevronLeft, ChevronRight } from "lucide-react"
-import LaunchCountdown from "./_components/launch-countdown"
-import OffersForm from "./_components/offers-form"
-import HomeGameCards from "./_components/home-gamecards"
-import LoadingScreen from "./_components/loading-screen"
+import LaunchCountdown from "@/components/launch-countdown"
+import OffersForm from "@/components/offers-form"
+import HomeGameCards from "@/components/home-gamecards"
+import LoadingScreen from "@/components/loading-screen"
 import { toast } from "sonner"
 
 interface Game {

@@ -1,18 +1,18 @@
 "use client"
 
 import { useState } from "react"
-import Account from "./_components/account"
-import Security from "./_components/security"
-import Notifications from "./_components/notifications"
-import Privacy from "./_components/privacy"
-import Sidebar from "./_components/sidebar"
+import Account from "@/components/account"
+import Security from "@/components/security"
+import Notifications from "@/components/notifications"
+import Privacy from "@/components/privacy"
+import Sidebar from "@/components/sidebar"
 import {
   Sheet,
   SheetContent,
   SheetTitle,
   SheetTrigger,
-} from "../_components/ui/sheet"
-import { Button } from "../_components/ui/button"
+} from ".@/components/ui/sheet"
+import { Button } from ".@/components/ui/button"
 import { MenuIcon } from "lucide-react"
 
 const SettingsPage = () => {

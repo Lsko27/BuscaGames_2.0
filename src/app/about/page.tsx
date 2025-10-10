@@ -1,9 +1,9 @@
 import Image from "next/image"
-import AboutCard from "../_components/about-card"
-import TeamCard from "../_components/team-card"
+import AboutCard from ".@/components/about-card"
+import TeamCard from ".@/components/team-card"
 import { Github, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react"
-import ContactAboutForm from "../_components/contact-about-form"
-import FooterContact from "../_components/footer-contact"
+import ContactAboutForm from ".@/components/contact-about-form"
+import FooterContact from ".@/components/footer-contact"
 
 const AboutPage = () => {
   const teamMembers = [

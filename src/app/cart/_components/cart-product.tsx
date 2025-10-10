@@ -2,9 +2,9 @@
 
 import Link from "next/link"
 import { ShoppingCart, ArrowLeft, Trash2 } from "lucide-react"
-import { Card, CardContent } from "@/app/_components/ui/card"
-import { Button } from "@/app/_components/ui/button"
-import CartItem from "@/app/cart/_components/cart-item"
+import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import CartItem from "../_components/cart-item"
 
 interface Game {
   id: string

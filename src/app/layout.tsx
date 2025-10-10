@@ -1,10 +1,10 @@
 import type { Metadata } from "next"
 import "./globals.css"
-import Header from "./_components/header"
-import Footer from "./_components/footer"
+import Header from "@/components/header"
+import Footer from "@/components/footer"
 import { Toaster } from "sonner"
-import AuthProvider from "./_providers/session-provider"
-import { CartProvider } from "@/_context/cart-context"
+import AuthProvider from "@/providers/session-provider"
+import { CartProvider } from "@/context/cart-context"
 
 export const metadata: Metadata = {
   title: "BuscaGames",
@@ -23,7 +23,7 @@ export default function RootLayout({
         <AuthProvider>
           <CartProvider>
             <Header />
-            <div className="bg-slate-100 text-purple-900 dark:bg-gray-900 dark:text-white">
+            <div className="bg-slate-100 text-purple-900 dark:bg-gray-900 dark:text-white px-4 md:px-8 lg:px-16">
               {children}
             </div>
             <Footer />

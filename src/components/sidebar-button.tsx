@@ -17,8 +17,8 @@ import { SheetContent, SheetHeader, SheetTitle } from "./ui/sheet"
 import Link from "next/link"
 import { useSession } from "next-auth/react"
 import UserDropdown from "./user-dropdown"
-import { useCart } from "@/_context/cart-context"
-import useTheme from "@/_hooks/useTheme"
+import { useCart } from "@/context/cart-context"
+import useTheme from "@/hooks/useTheme"
 
 interface SidebarButtonProps {
   onClick?: () => void

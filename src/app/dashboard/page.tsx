@@ -1,9 +1,9 @@
 "use client"
 
-import RequireAuth from "../_components/require-auth"
-import HypeIndexGraph from "./_components/hype-index"
-import ResourceDepreciationGraph from "./_components/resource-depreciation-graph"
-import RevenueProjectionGraph from "./_components/revenue-projection-graph"
+import RequireAuth from ".@/components/require-auth"
+import HypeIndexGraph from "@/components/hype-index"
+import ResourceDepreciationGraph from "@/components/resource-depreciation-graph"
+import RevenueProjectionGraph from "@/components/revenue-projection-graph"
 
 const DashboardPage = () => {
   return (

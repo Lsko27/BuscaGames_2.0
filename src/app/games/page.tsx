@@ -3,17 +3,17 @@
 import { useEffect, useState } from "react"
 import { useSearchParams } from "next/navigation"
 import { useSession } from "next-auth/react"
-import GameCard from "../_components/game-card"
-import LoadingScreen from "../_components/loading-screen"
-import CategoryFilter from "../_components/category-filter"
+import GameCard from ".@/components/game-card"
+import LoadingScreen from ".@/components/loading-screen"
+import CategoryFilter from ".@/components/category-filter"
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
   SheetHeader,
   SheetTitle,
-} from "../_components/ui/sheet"
-import { Button } from "../_components/ui/button"
+} from ".@/components/ui/sheet"
+import { Button } from ".@/components/ui/button"
 import { MenuIcon } from "lucide-react"
 
 interface GameFromAPI {

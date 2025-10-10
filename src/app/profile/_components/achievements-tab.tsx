@@ -1,9 +1,9 @@
 "use client"
 
-import LoadingScreen from "@/app/_components/loading-screen"
-import QuestCards from "@/app/_components/quest-cards"
-import { Button } from "@/app/_components/ui/button"
-import { Card, CardContent } from "@/app/_components/ui/card"
+import LoadingScreen from "@/components/loading-screen"
+import QuestCards from "@/components/quest-cards"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 import { QuestStatus } from "@/types/quest"
 import { History } from "lucide-react"
 import { useEffect, useState } from "react"

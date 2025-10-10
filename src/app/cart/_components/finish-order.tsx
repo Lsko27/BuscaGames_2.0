@@ -13,9 +13,9 @@ import {
   FaBarcode,
 } from "react-icons/fa"
 import { SiPix } from "react-icons/si"
-import { Card, CardContent } from "@/app/_components/ui/card"
-import { Input } from "@/app/_components/ui/input"
-import { Button } from "@/app/_components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { loadStripe } from "@stripe/stripe-js"
 

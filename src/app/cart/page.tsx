@@ -3,11 +3,11 @@
 import { useSession } from "next-auth/react"
 import { useEffect, useState } from "react"
 import Image from "next/image"
-import CartProducts from "./_components/cart-product"
-import FinishOrder from "./_components/finish-order"
-import Rewards from "./_components/rewards"
+import CartProducts from "@/components/cart-product"
+import FinishOrder from "@/components/finish-order"
+import Rewards from "@/components/rewards"
 import { toast } from "sonner"
-import { useCart } from "@/_context/cart-context"
+import { useCart } from "@/context/cart-context"
 
 interface Game {
   id: string

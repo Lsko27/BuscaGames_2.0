@@ -1,13 +1,13 @@
 "use client"
 
 import { useState } from "react"
-import RequireAuth from "../_components/require-auth"
-import ProfileHeader from "../_components/profile-header"
-import OverviewTab from "./_components/overview-tab"
-import LibraryTab from "./_components/library-tab"
-import FavoriteTab from "./_components/favorite-tab"
-import { Button } from "../_components/ui/button"
-import AchievementsTab from "./_components/achievements-tab"
+import RequireAuth from ".@/components/require-auth"
+import ProfileHeader from ".@/components/profile-header"
+import OverviewTab from "@/components/overview-tab"
+import LibraryTab from "@/components/library-tab"
+import FavoriteTab from "@/components/favorite-tab"
+import { Button } from ".@/components/ui/button"
+import AchievementsTab from "@/components/achievements-tab"
 
 const tabs = [
   { key: "overview", label: "Visão Geral" },

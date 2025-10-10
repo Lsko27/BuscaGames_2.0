@@ -9,7 +9,7 @@ import { Button } from "./ui/button"
 import { useEffect, useState } from "react"
 import { toast } from "sonner"
 import { useSession } from "next-auth/react"
-import { useCart } from "@/_context/cart-context"
+import { useCart } from "@/context/cart-context"
 
 interface GameCardProps {
   params: {

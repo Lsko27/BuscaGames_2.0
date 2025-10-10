@@ -15,7 +15,7 @@ import Link from "next/link"
 
 const Footer = () => {
   return (
-    <footer className="mx-auto border-t-4 border-purple-600 p-8 sm:p-12 dark:bg-gray-900">
+    <footer className="mx-auto border-t-4 border-purple-600 px-4 md:px-8 lg:px-16 py-8 sm:p-12 dark:bg-gray-900">
       <div className="flex flex-col gap-8 md:flex-row md:justify-between">
         {/* Coluna 1: Logo + Parágrafo + Social */}
         <div className="flex flex-col items-center text-center md:items-start md:text-left lg:space-y-5">

@@ -1,5 +1,5 @@
-import { Button } from "@/app/_components/ui/button"
-import { Input } from "@/app/_components/ui/input"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 
 const Account = () => {
   return (

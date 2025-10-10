@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from "react"
 import { useSession } from "next-auth/react"
-import FavoriteCards from "@/app/_components/favorites-card"
-import { Button } from "@/app/_components/ui/button"
-import { Card, CardContent } from "@/app/_components/ui/card"
+import FavoriteCards from "@/components/favorites-card"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 import { BellRing, Heart } from "lucide-react"
 import Link from "next/link"
-import LoadingScreen from "@/app/_components/loading-screen"
+import LoadingScreen from "@/components/loading-screen"
 import { toast } from "sonner"
 
 interface FavoriteGame {

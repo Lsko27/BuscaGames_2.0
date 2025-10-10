@@ -1,6 +1,6 @@
 import Image from "next/image"
-import AuthTabs from "../_components/auth-tabs"
-import { Card, CardContent } from "../_components/ui/card"
+import AuthTabs from ".@/components/auth-tabs"
+import { Card, CardContent } from ".@/components/ui/card"
 import { CirclePlus } from "lucide-react"
 
 const LoginPage = () => {

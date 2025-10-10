@@ -8,7 +8,7 @@ import { Eye, Heart, ShoppingCart } from "lucide-react"
 import { Button } from "./ui/button"
 import { useEffect, useState } from "react"
 import { toast } from "sonner"
-import { useCart } from "@/_context/cart-context"
+import { useCart } from "@/context/cart-context"
 
 interface GameCardProps {
   params: {

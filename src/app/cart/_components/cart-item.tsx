@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { Button } from "../../_components/ui/button"
+import { Button } from "../.@/components/ui/button"
 import { Trash2 } from "lucide-react"
 
 interface CartItemProps {
