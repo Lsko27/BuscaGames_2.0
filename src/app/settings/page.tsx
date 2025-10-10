@@ -12,6 +12,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "../_components/ui/sheet"
+import { Button } from "../_components/ui/button"
+import { MenuIcon } from "lucide-react"
 
 const SettingsPage = () => {
   const [activeTab, setActiveTab] = useState("account")
@@ -50,9 +52,10 @@ const SettingsPage = () => {
         <div className="mb-4 md:hidden">
           <Sheet>
             <SheetTrigger asChild>
-              <button className="w-full rounded-lg bg-purple-700 px-4 py-2 font-medium text-white shadow-md transition hover:bg-purple-600">
+              <Button className="w-full rounded-lg bg-purple-700 px-4 py-2 font-medium text-white shadow-md transition hover:bg-purple-600">
+                <MenuIcon />
                 Abrir Configurações
-              </button>
+              </Button>
             </SheetTrigger>
             <SheetContent side="left" className="w-[70%] p-6 dark:bg-slate-950">
               <SheetTitle className="sr-only">Configurações</SheetTitle>
