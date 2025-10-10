@@ -1,11 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import Account from "@/components/account"
-import Security from "@/components/security"
-import Notifications from "@/components/notifications"
-import Privacy from "@/components/privacy"
-import Sidebar from "@/components/sidebar"
 import {
   Sheet,
   SheetContent,
@@ -14,6 +9,11 @@ import {
 } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import { MenuIcon } from "lucide-react"
+import Account from "./_components/account"
+import Security from "./_components/security"
+import Notifications from "./_components/notifications"
+import Privacy from "./_components/privacy"
+import Sidebar from "./_components/sidebar"
 
 const SettingsPage = () => {
   const [activeTab, setActiveTab] = useState("account")
