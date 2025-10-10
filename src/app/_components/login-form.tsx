@@ -21,7 +21,6 @@ import { useState } from "react"
 import Swal from "sweetalert2"
 import { useRouter } from "next/navigation"
 import LoadingButton from "./loading-button"
-import Image from "next/image"
 
 // Schema Zod
 const formSchema = z.object({
@@ -189,7 +188,7 @@ const LoginForm = () => {
               {loading ? "Entrando..." : "Entrar"}
             </LoadingButton>
 
-            <LoadingButton
+            {/* <LoadingButton
               type="button"
               className="w-full rounded-lg border-2 border-gray-400 bg-white text-lg text-black transition-all hover:bg-gray-100 dark:bg-gray-300"
               disabled={loading}
@@ -199,7 +198,7 @@ const LoginForm = () => {
                 <Image src="/google.svg" alt="Google" width={20} height={20} />
                 <p>Entrar com Google</p>
               </div>
-            </LoadingButton>
+            </LoadingButton> */}
           </div>
         </form>
       </Form>
