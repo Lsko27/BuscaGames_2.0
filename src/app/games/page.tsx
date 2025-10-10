@@ -98,17 +98,17 @@ const GamesPage = () => {
           <SheetTrigger asChild>
             <Button
               variant="ghost"
-              className="w-full justify-center bg-blue-600"
+              className="w-full justify-center bg-blue-600 text-white"
             >
               <MenuIcon className="mr-2" /> Filtros
             </Button>
           </SheetTrigger>
           <SheetContent
             side="left"
-            className="h-full w-[70%] overflow-y-auto bg-zinc-800 p-4 text-white [&::-webkit-scrollbar]:hidden"
+            className="h-full w-[70%] overflow-y-auto p-4 text-white dark:bg-zinc-800 [&::-webkit-scrollbar]:hidden"
           >
             <SheetHeader>
-              <SheetTitle className="text-white">Filtros</SheetTitle>
+              <SheetTitle>Filtros</SheetTitle>
             </SheetHeader>
             <CategoryFilter isSheet />
           </SheetContent>
