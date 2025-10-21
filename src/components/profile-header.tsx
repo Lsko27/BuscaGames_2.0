@@ -76,8 +76,8 @@ const ProfileHeader = () => {
           {/* DIREITA */}
           <div className="grid w-full max-w-2xl grid-cols-3 gap-6 text-white">
             {[
-              { value: 0, label: "Jogos" },
-              { value: 0, label: "Favoritos" },
+              { value: 1, label: "Jogos" },
+              { value: 4, label: "Favoritos" },
               { value: 1, label: "Conquistas" },
             ].map((item, index) => (
               <Card

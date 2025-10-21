@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/progress"
+import { Earth, Zap } from "lucide-react"
 
 const ESGModule = () => {
   const [usageHours, setUsageHours] = useState<number>(1)
@@ -29,9 +30,12 @@ const ESGModule = () => {
       {/* Seção Educacional ESG */}
       <Card className="rounded-2xl bg-white shadow-md dark:bg-gray-900">
         <CardContent className="p-6">
-          <h2 className="mb-4 text-2xl font-semibold text-gray-800 dark:text-gray-100">
-            🌍 Educação ESG — Consumo Consciente
-          </h2>
+          <div className="flex gap-3">
+            <Earth size={30} />
+            <h2 className="mb-4 text-2xl font-semibold text-gray-800 dark:text-gray-100">
+              Educação ESG — Consumo Consciente
+            </h2>
+          </div>
           <p className="leading-relaxed text-gray-600 dark:text-gray-300">
             O <strong>BuscaGames</strong> promove a responsabilidade digital.
             Jogar é ótimo — mas também é importante entender o impacto
@@ -51,9 +55,12 @@ const ESGModule = () => {
       {/* Simulador de Consumo Energético */}
       <Card className="rounded-2xl bg-white shadow-md dark:bg-gray-900">
         <CardContent className="space-y-4 p-6">
-          <h2 className="mb-2 text-2xl font-semibold text-gray-800 dark:text-gray-100">
-            ⚡ Simulador de Consumo Energético
-          </h2>
+          <div className="flex gap-3">
+            <Zap size={30} />
+            <h2 className="mb-2 text-2xl font-semibold text-gray-800 dark:text-gray-100">
+              Simulador de Consumo Energético
+            </h2>
+          </div>
           <p className="text-gray-600 dark:text-gray-300">
             Informe quantas horas por dia você usa o BuscaGames para estimar seu
             consumo energético digital:
