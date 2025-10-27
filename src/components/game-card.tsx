@@ -10,6 +10,7 @@ import { useEffect, useState } from "react"
 import { toast } from "sonner"
 import { useCart } from "@/context/cart-context"
 import { motion } from "framer-motion"
+import { useRouter } from "next/navigation"
 
 interface GameCardProps {
   params: {
@@ -26,8 +27,13 @@ interface GameCardProps {
 }
 
 const GameCard = ({ params, userId }: GameCardProps) => {
+  const router = useRouter()
   const [isFavorite, setIsFavorite] = useState(false)
   const [addedToCart, setAddedToCart] = useState(false)
+
+  const navigateToGame = () => {
+    router.push(`/games/${params.id}`)
+  }
 
   // Verifica se já está nos favoritos
   useEffect(() => {
@@ -145,7 +151,10 @@ const GameCard = ({ params, userId }: GameCardProps) => {
 
               <div className="flex gap-2">
                 {params.categories.map((category, i) => (
-                  <Badge key={i} className="text-md rounded-xl bg-blue-600">
+                  <Badge
+                    key={i}
+                    className="text-md rounded-xl bg-blue-600 text-white"
+                  >
                     {category}
                   </Badge>
                 ))}
@@ -172,7 +181,12 @@ const GameCard = ({ params, userId }: GameCardProps) => {
                     </Button>
                   </motion.div>
 
-                  <Button variant="ghost" size="lg" className="rounded-full">
+                  <Button
+                    variant="ghost"
+                    size="lg"
+                    className="rounded-full"
+                    onClick={navigateToGame}
+                  >
                     <Eye />
                   </Button>
 
