@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import { motion } from "framer-motion"
 import { Card, CardContent } from "./ui/card"
 import { Badge } from "./ui/badge"
 import RatingStars from "./rating-stars"
@@ -24,6 +25,7 @@ interface GameCardProps {
 
 const HomeGameCards = ({ params }: GameCardProps) => {
   const [isFavorite, setIsFavorite] = useState(false)
+  const [addedToCart, setAddedToCart] = useState(false)
   const { data: session } = useSession()
   const userId = session?.user.id
   const { setCartCount, refreshCart } = useCart()
@@ -92,6 +94,10 @@ const HomeGameCards = ({ params }: GameCardProps) => {
       toast.success("Jogo adicionado ao carrinho")
       setCartCount((prev) => prev + 1)
       await refreshCart()
+
+      // 🔥 ativa animação
+      setAddedToCart(true)
+      setTimeout(() => setAddedToCart(false), 500)
     } catch (err) {
       console.error(err)
       toast.error("Não foi possível adicionar o jogo")
@@ -137,25 +143,43 @@ const HomeGameCards = ({ params }: GameCardProps) => {
               <div className="mt-2 flex items-center justify-between gap-1">
                 <RatingStars rating={params.rating} />
                 <div className="flex items-center justify-center gap-3">
-                  <Button
-                    variant="ghost"
-                    className="bg-green-600"
-                    onClick={addToCart}
+                  <motion.div
+                    animate={
+                      addedToCart
+                        ? { scale: [1, 1.2, 1], rotate: [0, -10, 10, 0] }
+                        : { scale: 1 }
+                    }
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
                   >
-                    <ShoppingCart />
-                    <p className="text-lg">Adicionar</p>
-                  </Button>
+                    <Button
+                      variant="ghost"
+                      className="flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2 text-white transition-all hover:bg-green-700"
+                      onClick={addToCart}
+                    >
+                      <ShoppingCart />
+                      <p className="text-lg">Adicionar</p>
+                    </Button>
+                  </motion.div>
 
-                  <Button
-                    variant="ghost"
-                    size="lg"
-                    className="rounded-full"
-                    onClick={toggleFavorite}
+                  <motion.div
+                    animate={isFavorite ? { scale: [1, 1.3, 1] } : { scale: 1 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
                   >
-                    <Heart
-                      className={isFavorite ? "fill-red-500 text-red-500" : ""}
-                    />
-                  </Button>
+                    <Button
+                      variant="ghost"
+                      size="lg"
+                      className="rounded-full"
+                      onClick={toggleFavorite}
+                    >
+                      <Heart
+                        className={`transition-all duration-300 ${
+                          isFavorite
+                            ? "fill-red-500 text-red-500"
+                            : "text-white"
+                        }`}
+                      />
+                    </Button>
+                  </motion.div>
                 </div>
               </div>
             </div>
