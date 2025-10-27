@@ -9,12 +9,20 @@ import LoadingScreen from "@/components/loading-screen"
 import { motion } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import { Heart, ShoppingCart } from "lucide-react"
+import ScreenshotCarousel from "./_components/screenshot-carousel"
 
 interface CategoriesGame {
   category: {
     id: string
     name: string
   }
+}
+
+interface Media {
+  id: string
+  type: "SCREENSHOT" | "TRAILER" | "VIDEO" | "COVER"
+  url: string
+  order?: number
 }
 
 interface Game {
@@ -33,6 +41,7 @@ const GamePage = () => {
   const id = params?.id
   const [game, setGame] = useState<Game | null>(null)
   const [loading, setLoading] = useState(true)
+  const [media, setMedia] = useState<Media[]>([])
   const [isFavorite, setIsFavorite] = useState(false)
 
   useEffect(() => {
@@ -52,6 +61,24 @@ const GamePage = () => {
     }
 
     fetchGame()
+  }, [id])
+
+  // Fetch das mídias
+  useEffect(() => {
+    if (!id) return
+
+    const fetchMedia = async () => {
+      try {
+        const res = await fetch(`http://localhost:5050/medias/game/${id}`)
+        if (!res.ok) throw new Error("Erro ao carregar mídias")
+        const data: Media[] = await res.json()
+        setMedia(data)
+      } catch (err: unknown) {
+        toast.error(err instanceof Error ? err.message : "Erro desconhecido")
+      }
+    }
+
+    fetchMedia()
   }, [id])
 
   if (loading) return <LoadingScreen />
@@ -135,10 +162,7 @@ const GamePage = () => {
       {/* Galeria de screenshots / vídeos */}
       <div>
         <h2 className="mb-4 text-2xl font-bold">Screenshots</h2>
-        <div className="flex gap-4 overflow-x-auto">
-          {/* Map screenshots */}
-          {/* <Image src={screenshot.url} width={400} height={200} className="rounded-lg" /> */}
-        </div>
+        <ScreenshotCarousel media={media} />
       </div>
 
       {/* Reviews */}
