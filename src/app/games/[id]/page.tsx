@@ -105,7 +105,9 @@ const GamePage = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-4xl font-bold">{game.title}</h1>
+          <h1 className="text-4xl font-bold text-black dark:text-white">
+            {game.title}
+          </h1>
 
           {/* Badges */}
           <div className="mt-2 flex flex-wrap gap-2">
@@ -125,7 +127,7 @@ const GamePage = () => {
           </div>
 
           {/* Preço */}
-          <p className="mt-2 text-2xl font-bold text-green-500">
+          <p className="mt-2 text-2xl font-bold text-green-600 dark:text-green-500">
             {game.price === 0
               ? "Gratuito"
               : Intl.NumberFormat("pt-BR", {
@@ -135,10 +137,12 @@ const GamePage = () => {
           </p>
 
           {/* Descrição curta */}
-          <p className="line-clamp-3 text-gray-300">{game.description}</p>
+          <p className="line-clamp-3 text-gray-600 dark:text-gray-300">
+            {game.description}
+          </p>
 
           {/* Botões */}
-          <div className="mt-4 flex gap-4">
+          <div className="mt-4 flex w-full gap-4">
             <Button className="flex items-center gap-2 rounded-lg bg-green-600 px-5 py-2 text-white transition-all hover:bg-green-700">
               <ShoppingCart /> Adicionar
             </Button>
@@ -146,7 +150,7 @@ const GamePage = () => {
             <Button
               variant="ghost"
               size="lg"
-              className="rounded-full"
+              className="rounded-full bg-black hover:bg-black/65 dark:bg-transparent"
               //   onClick={toggleFavorite}
             >
               <Heart
